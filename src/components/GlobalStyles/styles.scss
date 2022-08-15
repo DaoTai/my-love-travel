@@ -6,6 +6,7 @@
     --white: #fff;
     --text: #161823;
     --font-family: 'IBM Plex Sans', sans-serif;
+    --width-header-layout: 1150px;
 }
 
 * {
@@ -16,6 +17,7 @@
 
 html {
     font-size: 62.5%;
+    color: var(--text);
 }
 
 html *::-webkit-scrollbar {
@@ -41,4 +43,27 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
+}
+
+ul,
+li {
+    list-style: none;
+    padding: 0;
+}
+
+.d-flex {
+    display: flex;
+    flex-wrap: wrap;
+    &.inline {
+        display: inline-flex;
+    }
+    &.align-items-center {
+        align-items: center;
+    }
+    &.justify-content-center {
+        justify-content: center;
+    }
+    &.justify-content-between {
+        justify-content: space-between;
+    }
 }
