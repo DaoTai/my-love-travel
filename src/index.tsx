@@ -6,8 +6,8 @@ import GlobalStyles from '~/components/GlobalStyles';
 import './index.css';
 import App from '~/App';
 import { publicRoutes } from '~/routes';
-import Home from '~/Layout/components/Home';
-import ErrorPage from '~/Layout/components/ErrorPage';
+import Home from '~/layouts/components/Home';
+import ErrorPage from '~/layouts/components/ErrorPage';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);

@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600&display=swap');
+
+// Intro heading
+.intro__container {
+    // margin-top: 80px;
+    background-image: url('../../../assets/background-intro.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 50%;
+    position: relative;
+    z-index: 2;
+    .intro__heading {
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -35%);
+        font-size: 4.8rem;
+        letter-spacing: 8px;
+        font-weight: 600;
+        width: 100%;
+        color: var(--white);
+        text-rendering: optimize;
+        text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.6);
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
+        div {
+            background: transparent !important;
+            color: var(--white) !important;
+            font-size: 4.2rem;
+        }
+    }
+
+    button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid transparent;
+        border-radius: 24px;
+        background-color: rgba(0, 0, 0, 0.6);
+        transition: all 0.3s ease;
+        &:hover {
+            background: var(--white);
+            a {
+                color: var(--primary);
+            }
+        }
+        a {
+            padding: 12px 32px;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+    }
+}
+
+// Intro carousel
+#intro__carousel {
+    position: relative;
+    width: var(--width-header-layout);
+    margin: var(--space-top-container) auto;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    .intro__tour-content {
+        display: flex;
+        align-items: center;
+    }
+
+    .fade {
+        animation: fade 0.5s ease-in-out;
+    }
+
+    .intro__image {
+        flex: 2 1 50%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 40vh;
+        width: 100%;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        filter: drop-shadow(1px 0px 2px rgba(0, 0, 0, 0.4));
+        &:hover {
+            filter: contrast(120%) drop-shadow(1px 0px 2px rgba(0, 0, 0, 0.4));
+        }
+    }
+    .intro__tour {
+        width: 50%;
+        padding: 0 12px;
+        flex: 1 1 50%;
+        .intro__tour-quote {
+            font-size: 2.8rem;
+            font-weight: 600;
+            font-family: 'Dancing Script';
+        }
+        .intro__tour-name {
+            text-align: center;
+            font-size: 2rem;
+            padding-top: 12px;
+            font-weight: 600;
+        }
+        .intro__tour-desc {
+            text-align: justify;
+        }
+    }
+
+    .button-group {
+        button {
+            color: #fff;
+            font-size: 1.8rem;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px solid transparent;
+            width: 42px;
+            height: 42px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s linear;
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+        }
+        button:first-child {
+            left: 0;
+        }
+        button:last-child {
+            right: 0;
+        }
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateX(10px) scaleX(0) skew(5deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1) skew(0deg);
+    }
+}
