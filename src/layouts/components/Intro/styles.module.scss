@@ -25,6 +25,12 @@
         -webkit-user-select: none; /* Safari */
         -ms-user-select: none; /* IE 10 and IE 11 */
         user-select: none; /* Standard syntax */
+        text-decoration: underline wavy #6aba62;
+        text-underline-offset: 20%;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+            animation: changeColor 0.3s ease forwards;
+        }
         div {
             background: transparent !important;
             color: var(--white) !important;
@@ -145,5 +151,15 @@
     to {
         opacity: 1;
         transform: translateX(0) scale(1) skew(0deg);
+    }
+}
+
+@keyframes changeColor {
+    from {
+        text-decoration: underline wavy #6aba62;
+    }
+    to {
+        opacity: 1;
+        text-decoration: underline wavy #007f60;
     }
 }

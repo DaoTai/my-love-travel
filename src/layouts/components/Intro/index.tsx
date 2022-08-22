@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,7 +20,6 @@ enum SHOW {
 const Intro = () => {
     const [currentTour, setCurrentTour] = useState<SHOW>(0);
     const tourRef = useRef<HTMLHeadingElement>(Object(null));
-
     const renderTour: Record<SHOW, React.ReactNode> = {
         [SHOW.FIRST]: (
             <div ref={tourRef} className={cx('intro__tour-content')}>
@@ -112,10 +111,6 @@ const Intro = () => {
             tourRef.current.classList.remove(cx('fade'));
         }, 800);
     };
-
-    useEffect(() => {
-        // tourRef.current.classList.add(cx('fade'));
-    }, [tourRef]);
 
     return (
         <div id="intro">

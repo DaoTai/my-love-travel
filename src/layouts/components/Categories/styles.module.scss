@@ -54,27 +54,38 @@
     border-radius: 4px;
     transition: all 0.3s linear;
     &:hover {
-        a {
-            display: block;
-            animation: fadeFromBottom 0.5s ease-in-out forwards;
+        .layer-children {
+            background-color: rgba(127, 118, 118, 0.16);
+            a {
+                display: block;
+                animation: fadeFromBottom 0.5s ease-in-out forwards;
+            }
         }
     }
-    a {
-        display: none;
+    .layer-children {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        font-size: 1.7rem;
-        transform: translate(-50%, -50%);
-        color: var(--text);
-        text-decoration: none;
-        border-radius: 24px;
-        background-color: var(--white);
-        padding: 10px 24px;
-        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s linear;
-        &:hover {
-            color: var(--primary);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transition: all 0.2s linear;
+        a {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 1.7rem;
+            transform: translate(-50%, -50%);
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 24px;
+            background-color: var(--white);
+            padding: 10px 24px;
+            box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s linear;
+            &:hover {
+                color: var(--primary);
+            }
         }
     }
 }

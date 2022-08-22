@@ -20,7 +20,9 @@ const Categories = () => {
                     quan các di tích lịch sử nổi tiếng thì đây chính là hình thức du lịch tuyệt vời.
                 </p>
                 <div className={cx('category__image')} style={{ backgroundImage: `url(${img_1})` }}>
-                    <Link to="/">Xem ngay</Link>
+                    <div className={cx('layer-children')}>
+                        <Link to="/">Xem ngay</Link>
+                    </div>
                 </div>
             </div>
 
@@ -32,7 +34,9 @@ const Categories = () => {
                     những thử thách không ngờ tới.
                 </p>
                 <div className={cx('category__image')} style={{ backgroundImage: `url(${img_2})` }}>
-                    <Link to="/">Xem ngay</Link>
+                    <div className={cx('layer-children')}>
+                        <Link to="/">Xem ngay</Link>
+                    </div>
                 </div>
             </div>
 
@@ -43,7 +47,9 @@ const Categories = () => {
                     tại các resort đối tác của Love Travel,....
                 </p>
                 <div className={cx('category__image')} style={{ backgroundImage: `url(${img_3})` }}>
-                    <Link to="/">Xem ngay</Link>
+                    <div className={cx('layer-children')}>
+                        <Link to="/">Xem ngay</Link>
+                    </div>
                 </div>
             </div>
         </div>

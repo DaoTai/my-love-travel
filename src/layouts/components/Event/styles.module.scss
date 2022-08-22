@@ -1,4 +1,4 @@
-#event {
+.event {
     margin: var(--space-top-container) auto 0;
     width: var(--width-header-layout);
     h3 {
@@ -25,12 +25,13 @@
 
     #wrapper {
         margin-top: var(--space-top-container);
-        flex-wrap: nowrap;
         gap: 0 8px;
+        justify-content: space-between;
     }
 
     .event-item {
-        width: 100%;
+        width: 30%;
+        flex: 1 1 30%;
         padding-top: 45%;
         border-radius: 12px;
         transition: all 0.3s ease-in-out;

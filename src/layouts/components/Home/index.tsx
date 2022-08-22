@@ -1,9 +1,8 @@
 import React from 'react';
-import Header from '../Header';
 import Intro from '../Intro';
 import Categories from '../Categories';
 import Event from '../Event';
-import Suggestion from '../Suggestion';
+import Footer from '../Footer';
 
 const Home: React.FC = () => {
     return (
@@ -11,7 +10,7 @@ const Home: React.FC = () => {
             <Intro />
             <Categories />
             <Event />
-            <Suggestion />
+            <Footer />
         </>
     );
 };

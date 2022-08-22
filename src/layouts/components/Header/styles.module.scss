@@ -35,8 +35,17 @@ $primaryColor: #ff385c;
 
 #navigate {
     gap: 0 16px;
-    li {
+    .navigate__item {
         position: relative;
+
+        &:last-child {
+            a {
+                &::after {
+                    width: 0;
+                }
+            }
+        }
+
         &:hover::after {
             transform: scale(1);
         }
@@ -73,8 +82,24 @@ $primaryColor: #ff385c;
             color: var(--text);
             font-size: 1.8rem;
             padding: 10px 4px;
+            position: relative;
             &:hover {
                 color: $primaryColor;
+                &::after {
+                    background-color: var(--primary);
+                }
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                right: -8px;
+                transform: translateY(-50%);
+                width: 0.8px;
+                height: 50%;
+                border-radius: 50%;
+                background: rgba(22, 24, 35, 0.12);
+                transition: all 0.2s linear;
             }
         }
     }
@@ -96,6 +121,7 @@ $primaryColor: #ff385c;
         color: $primaryColor;
     }
 }
+
 .actions {
     display: flex;
     flex-direction: column;
@@ -114,7 +140,7 @@ $primaryColor: #ff385c;
         text-decoration: none;
         color: var(--text);
         position: relative;
-        transition: border-color 1s ease-out;
+        transition: border-color 0.1s ease-out;
         &:hover {
             border-color: transparent;
         }
@@ -163,6 +189,26 @@ $primaryColor: #ff385c;
     }
 }
 
+#auth-btns {
+    gap: 0 8px;
+    .auth-btn {
+        text-decoration: none;
+        color: var(--text);
+        padding: 6px 14px;
+        background-color: var(--white);
+        border-radius: 4px;
+        color: var(--primary);
+        border: 1px solid transparent;
+        transition: all 0.2s ease;
+        &:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: currentColor;
+            opacity: 0.9;
+        }
+    }
+}
+
 #scroll-top-btn {
     position: fixed;
     z-index: 1;
@@ -170,11 +216,14 @@ $primaryColor: #ff385c;
     right: 1%;
     font-size: 2rem;
     background-color: rgba(0, 0, 0, 0.1);
-    color: var(--text);
+    color: rgb(91, 78, 78);
     width: 42px;
     height: 42px;
     border-radius: 50%;
+    transition: all 0.3s linear;
     &:hover {
-        opacity: 0.6;
+        opacity: 0.8;
+        background-color: var(--primary);
+        color: var(--white);
     }
 }
