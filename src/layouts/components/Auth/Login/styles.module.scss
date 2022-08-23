@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600&display=swap');
+
+// When focus input
+@mixin muatedLabel {
+    transform: scale(1);
+    text-shadow: 4px 3px 3px rgba(0, 0, 0, 0.3);
+    animation: showFromBottom 0.2s linear;
+}
+
+#login {
+    position: fixed;
+    z-index: 1;
+    inset: 0 0 0 0;
+    background-image: url('../../../../assets/background-auth.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    :where(h1, h2) {
+        color: var(--white);
+        font-weight: 600;
+        font-family: 'Dancing Script';
+        text-align: center;
+        text-shadow: 4px 4px 4px var(--text);
+        &::selection {
+            color: var(--primary);
+        }
+    }
+    a {
+        font-size: 1.8rem;
+        color: var(--white);
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 8px;
+        text-shadow: 4px 4px 4px var(--text);
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    .container {
+        position: absolute;
+        z-index: 10;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -10%);
+        padding: 12px 32px;
+        .heading {
+            margin: 12px 0;
+            font-size: 5.2rem;
+            letter-spacing: 4px;
+            text-decoration: underline wavy #6aba62;
+            text-underline-offset: 20%;
+        }
+        .sub-heading {
+            position: relative;
+            font-size: 4.2rem;
+            letter-spacing: 2px;
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0px;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: var(--primary);
+                border-radius: 8px;
+            }
+        }
+    }
+    .login-form {
+        margin: 20px 0;
+        width: 380px;
+        max-width: 100%;
+    }
+    .form-group {
+        padding: 12px 0;
+        position: relative;
+        font-size: 1.8rem;
+        &:focus-within {
+            label {
+                @include muatedLabel;
+            }
+        }
+        input:not(:placeholder-shown) ~ label {
+            @include muatedLabel;
+        }
+        label {
+            position: absolute;
+            top: -12px;
+            left: 12px;
+            font-size: 1.9rem;
+            font-weight: 400;
+            color: var(--white);
+            transform: scale(0);
+            transition: all 0.3s ease-out;
+        }
+        .form-input {
+            position: relative;
+            z-index: 2;
+            font-weight: 400;
+            color: var(--text);
+            width: 100%;
+            padding: 12px 8px 12px 12px;
+            margin: 8px 0;
+            border-radius: 24px;
+            background-color: rgba(142, 157, 163, 0.4);
+            border: 1px solid transparent;
+            box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.3);
+            outline: 1px solid var(--white);
+            caret-color: var(--primary);
+
+            &:focus {
+                border-color: var(--primary);
+                outline-color: var(--primary);
+                &::placeholder {
+                    opacity: 0;
+                }
+                &:placeholder-shown {
+                    font-size: 1.6rem;
+                }
+            }
+
+            &::placeholder {
+                color: var(--white);
+            }
+
+            &:placeholder-shown {
+                letter-spacing: 2px;
+                font-size: 1.5rem;
+            }
+        }
+
+        .error-msg {
+            color: var(--primary);
+            font-weight: 400;
+            text-shadow: 4px 4px 4px var(--text);
+        }
+    }
+
+    .submit-btn {
+        position: relative;
+        font-size: 1.6rem;
+        color: var(--white);
+        font-weight: 400;
+        letter-spacing: 1px;
+        width: 100%;
+        padding: 12px;
+        margin: 20px 0;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        background: #ee9b63; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #fc5170, #ee9b63);
+        background: linear-gradient(to right, #fc5170, #ee9b63);
+        &:hover {
+            background: -webkit-linear-gradient(to left, var(--primary), #f3904f);
+            background: linear-gradient(to left, var(--primary), #f3904f);
+            &::after {
+                transform: scaleX(1);
+            }
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(198, 194, 194, 0.3);
+            transform: scaleX(0);
+            transform-origin: left;
+            border-radius: inherit;
+            transition: all 0.2s ease-in-out;
+        }
+    }
+}
+
+@keyframes showFromBottom {
+    from {
+        transform: translateY(24px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}

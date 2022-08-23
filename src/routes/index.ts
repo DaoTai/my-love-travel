@@ -1,9 +1,9 @@
 import React from 'react';
 import Home from '~/layouts/components/Home';
-import ErrorPage from '~/layouts/components/ErrorPage';
 import SearchTours from '~/layouts/components/SearchTours';
 import DetailTour from '~/components/DetailTour';
-
+import Login from '~/layouts/components/Auth/Login';
+import Register from '~/layouts/components/Auth/Register';
 interface Route {
     path: string;
     component: React.FC;
@@ -20,7 +20,6 @@ const publicRoutes: Array<Route> = [
         path: 'home',
         component: Home,
     },
-
     {
         path: 'search-tours',
         component: SearchTours,
@@ -33,4 +32,15 @@ const publicRoutes: Array<Route> = [
     },
 ];
 
-export { publicRoutes };
+const authRoutes: Array<Route> = [
+    {
+        path: 'auth/login',
+        component: Login,
+    },
+    {
+        path: 'auth/register',
+        component: Register,
+    },
+];
+
+export { publicRoutes, authRoutes };

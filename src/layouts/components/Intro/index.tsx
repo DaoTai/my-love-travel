@@ -20,6 +20,7 @@ enum SHOW {
 const Intro = () => {
     const [currentTour, setCurrentTour] = useState<SHOW>(0);
     const tourRef = useRef<HTMLHeadingElement>(Object(null));
+    const nextBtnRef = useRef<HTMLButtonElement>(Object(null));
     const renderTour: Record<SHOW, React.ReactNode> = {
         [SHOW.FIRST]: (
             <div ref={tourRef} className={cx('intro__tour-content')}>
@@ -86,6 +87,16 @@ const Intro = () => {
         ),
     };
 
+    useEffect(() => {
+        const timeoutId = setInterval(() => {
+            nextBtnRef.current.click();
+        }, 3800);
+        return () => {
+            clearTimeout(timeoutId);
+        };
+    }, []);
+
+    // Prev slide button
     const handlePrevTour = () => {
         tourRef.current.classList.add(cx('fade'));
         setCurrentTour((prev) => {
@@ -99,6 +110,7 @@ const Intro = () => {
         }, 800);
     };
 
+    // Next slide button
     const handleNextTour = () => {
         tourRef.current.classList.add(cx('fade'));
         setCurrentTour((prev) => {
@@ -128,13 +140,12 @@ const Intro = () => {
             {/* Intro carousel */}
             <div id={cx('intro__carousel')}>
                 {renderTour[currentTour]}
-
                 {/* Button group */}
                 <div className={cx('button-group')}>
                     <button onClick={handlePrevTour}>
                         <FontAwesomeIcon icon={faAngleLeft} />
                     </button>
-                    <button onClick={handleNextTour}>
+                    <button ref={nextBtnRef} onClick={handleNextTour}>
                         <FontAwesomeIcon icon={faAngleRight} />
                     </button>
                 </div>

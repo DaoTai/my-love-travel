@@ -1,8 +1,5 @@
-import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-
 import classNames from 'classnames/bind';
-
 import img_1 from '~/assets/lich-su.jpg';
 import img_2 from '~/assets/kham-pha.jpg';
 import img_3 from '~/assets/nghi-duong.jpg';
@@ -24,6 +21,12 @@ const Categories = () => {
                         <Link to="/">Xem ngay</Link>
                     </div>
                 </div>
+                <h2 className={cx('category__heading')}>Sinh thái khám phá</h2>
+                <p className={cx('category__desc-content')}>
+                    Khi cuộc sống hiện đại trở nên quá áp lực, ngột ngạt thì du lịch sinh thái giờ đây nổi lên như một
+                    trào lưu mới. Phù hợp cho những du khách thích trải nghiệm, hòa mình vào thiên nhiên và sẵn sàng cho
+                    những thử thách không ngờ tới.
+                </p>
             </div>
 
             <div className={cx('category')}>

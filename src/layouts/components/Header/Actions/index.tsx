@@ -16,10 +16,10 @@ const Actions = () => {
     if (!contextAuth) {
         return (
             <div id={cx('auth-btns')} className="d-flex">
-                <Link className={cx('auth-btn')} to="/">
+                <Link className={cx('auth-btn')} to="/auth/register">
                     Đăng ký
                 </Link>
-                <Link className={cx('auth-btn')} to="/">
+                <Link className={cx('auth-btn')} to="/auth/login">
                     Đăng nhập
                 </Link>
             </div>

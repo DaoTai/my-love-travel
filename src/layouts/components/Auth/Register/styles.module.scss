@@ -1,0 +1,196 @@
+#register {
+    position: absolute;
+    z-index: 1;
+    inset: 0 0 0 0;
+    background-image: url('../../../../assets/background-auth.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    :where(h1, h2) {
+        color: var(--white);
+        font-weight: 600;
+        font-family: 'Dancing Script';
+        text-align: center;
+        // text-shadow: 4px 4px 4px var(--text);
+        &::selection {
+            color: var(--primary);
+        }
+    }
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    color: var(--text);
+    transform: translateY(-50%);
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    .wrap-intro {
+        text-align: center;
+        .heading {
+            font-size: 5.8rem;
+            letter-spacing: 4px;
+            text-decoration: underline wavy #6aba62;
+            text-underline-offset: 20%;
+            text-shadow: 4px 4px 4px var(--text);
+        }
+        a {
+            @mixin pseudoElement {
+                content: '';
+                position: absolute;
+                width: 2px;
+                height: 100%;
+                transition: height 0.4s ease-in;
+            }
+            display: block;
+            font-size: 1.8rem;
+            margin-top: 24px;
+            text-decoration: none;
+            color: var(--white);
+            padding: 12px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease-in-out;
+            &:hover {
+                opacity: 0.8;
+                background-color: var(--white);
+                color: var(--primary);
+                &::before,
+                &::after {
+                    height: 2px;
+                    width: 100%;
+                }
+            }
+            &::before {
+                @include pseudoElement;
+                top: 0;
+                left: 0;
+                background-color: #fc5170;
+            }
+            &::after {
+                @include pseudoElement;
+                bottom: 0;
+                right: 0;
+                background-color: #ee9b63;
+            }
+        }
+    }
+    .sub-heading {
+        color: var(--text) !important;
+        font-size: 4.2rem;
+        letter-spacing: 2px;
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 8px;
+        }
+    }
+}
+.wrap-register-form {
+    width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: var(--white);
+    border-radius: 4px;
+    box-shadow: 4px 6px 6px var(--text);
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: #ee9b63; /* fallback for old browsers */
+        background: -webkit-linear-gradient(
+            to right,
+            #fc5170,
+            #ee9b63,
+            var(--primary)
+        ); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #fc5170, #ee9b63, var(--primary));
+        border-radius: 25px;
+    }
+}
+.register-form {
+    padding: 12px 24px;
+    .form-group {
+        padding: 12px 0;
+        .form-label {
+            display: block;
+            font-weight: 600;
+            padding-bottom: 8px;
+        }
+        .form-input {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--text);
+            width: 100%;
+            padding: 12px 8px 12px 12px;
+            border-radius: 12px;
+            border: 1px solid var(--text);
+            background-color: var(--white);
+            // box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.3);
+            outline: 1px solid var(--white);
+            caret-color: var(--primary);
+            &:focus {
+                border-color: var(--primary);
+                outline-color: var(--primary);
+            }
+
+            &::placeholder {
+                color: var(--text);
+            }
+
+            &:placeholder-shown {
+                letter-spacing: 1px;
+                font-size: 1.5rem;
+            }
+        }
+        input[type='radio'] {
+            transform: scale(1.2);
+            accent-color: var(--primary);
+            margin-right: 12px;
+        }
+
+        .error-msg {
+            color: var(--primary);
+        }
+    }
+    .submit-btn {
+        font-size: 1.6rem;
+        color: var(--white);
+        font-weight: 400;
+        letter-spacing: 1px;
+        width: 100%;
+        padding: 12px;
+        margin: 20px 0;
+        border-radius: 12px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        background: #ee9b63; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #fc5170, #ee9b63); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(
+            to right,
+            #fc5170,
+            #ee9b63
+        ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        &:hover {
+            opacity: 0.9;
+            background: -webkit-linear-gradient(to left, var(--primary), #f3904f); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(
+                to left,
+                var(--primary),
+                #f3904f
+            ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+    }
+}

@@ -6,6 +6,7 @@ import GlobalStyles from '~/components/GlobalStyles';
 import './index.css';
 import App from '~/App';
 import { publicRoutes } from '~/routes';
+import { authRoutes } from '~/routes';
 import Home from '~/layouts/components/Home';
 import ErrorPage from '~/layouts/components/ErrorPage';
 import reportWebVitals from './reportWebVitals';
@@ -16,8 +17,14 @@ root.render(
         <GlobalStyles>
             <Router>
                 <Routes>
+                    {/* Auth page */}
+                    {authRoutes?.map((route, i) => {
+                        const Page = route.component;
+                        return <Route key={i} path={route.path} element={<Page />} />;
+                    })}
+
+                    {/* Public page */}
                     <Route path="/" element={<App />}>
-                        {/* Public page */}
                         {publicRoutes?.map((route, i) => {
                             const Page = route.component;
                             const children = route.children;

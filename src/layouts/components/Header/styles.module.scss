@@ -37,7 +37,6 @@ $primaryColor: #ff385c;
     gap: 0 16px;
     .navigate__item {
         position: relative;
-
         &:last-child {
             a {
                 &::after {
@@ -45,7 +44,6 @@ $primaryColor: #ff385c;
                 }
             }
         }
-
         &:hover::after {
             transform: scale(1);
         }
@@ -211,7 +209,7 @@ $primaryColor: #ff385c;
 
 #scroll-top-btn {
     position: fixed;
-    z-index: 1;
+    z-index: 8;
     bottom: 15%;
     right: 1%;
     font-size: 2rem;
