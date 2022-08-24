@@ -112,7 +112,7 @@ const Intro = () => {
 
     // Next slide button
     const handleNextTour = () => {
-        tourRef.current.classList.add(cx('fade'));
+        tourRef.current?.classList.add(cx('fade'));
         setCurrentTour((prev) => {
             if (prev === SHOW.LAST) {
                 return 0;
@@ -120,7 +120,7 @@ const Intro = () => {
             return prev + 1;
         });
         setTimeout(() => {
-            tourRef.current.classList.remove(cx('fade'));
+            tourRef.current?.classList.remove(cx('fade'));
         }, 800);
     };
 

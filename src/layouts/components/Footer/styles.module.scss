@@ -1,7 +1,13 @@
+#footer {
+    background-color: #f5f5f5;
+}
+
 .footer {
-    margin: var(--space-top-container) auto var(--space-top-container);
+    margin: var(--space-top-container) auto 0;
     width: var(--width-header-layout);
     text-align: left;
+    padding: 16px 0 24px;
+
     #footer__wrapper {
         margin-left: -8px;
         margin-right: -8px;

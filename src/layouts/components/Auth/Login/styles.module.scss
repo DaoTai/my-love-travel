@@ -15,7 +15,8 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    :where(h1, h2) {
+    h1,
+    h2 {
         color: var(--white);
         font-weight: 600;
         font-family: 'Dancing Script';
@@ -90,8 +91,7 @@
             font-size: 1.9rem;
             font-weight: 400;
             color: var(--white);
-            transform: scale(0);
-            transition: all 0.3s ease-out;
+            transform: scaleY(0);
         }
         .form-input {
             position: relative;
