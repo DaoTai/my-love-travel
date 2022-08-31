@@ -1,6 +1,7 @@
 #categories {
     width: var(--width-header-layout);
     margin: var(--space-top-container) auto 0;
+    text-align: center;
     h1 {
         font-size: 4.2rem;
         font-weight: 600;
@@ -20,6 +21,7 @@
 
 .category__heading {
     font-size: 3.2rem;
+    line-height: 1.8;
     color: var(--text);
     font-weight: 500;
     text-align: left;

@@ -8,6 +8,7 @@ import { Register as RegisterData } from '../interface';
 import { vietNamProvinces, requestRegister } from '~/apis/auth';
 import Toast from '~/components/Toast';
 import { Status } from '~/components/Toast';
+import { ToastData } from '~/components/Toast/interface';
 import style from './styles.module.scss';
 const cx = classNames.bind(style);
 
@@ -25,8 +26,37 @@ const init: RegisterData = {
 };
 
 const Register = () => {
-    const [provinces, setProvinces] = useState([{ name: '' }]);
-    const navigate = useNavigate();
+    const [provinces, setProvinces] = useState<any[]>([{ name: '' }]);
+    const [showToast, setShowToast] = useState<boolean>(false);
+    const [contentToast, setContentToast] = useState<Partial<ToastData>>({
+        status: Status.success,
+        text: 'Đăng ký thành công',
+    });
+
+    // Fetch api provinces
+    useEffect(() => {
+        document.title = 'Đăng ký';
+        const fetchApi = async () => {
+            const result = await vietNamProvinces();
+            setProvinces(result);
+        };
+        fetchApi();
+    }, []);
+
+    // Validate when on change phone input
+    const handleOnChangePhone = (e: any) => {
+        const regex = /^[0-9\b]+$/;
+        if (regex.test(e.target.value)) {
+            handleChange(e);
+        }
+    };
+
+    const hideToast = () => {
+        setTimeout(() => {
+            setShowToast(false);
+        }, 5000);
+    };
+
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
         initialValues: init,
         validationSchema: Yup.object().shape({
@@ -59,37 +89,34 @@ const Register = () => {
             // Call API
             const submitRegister = async () => {
                 try {
-                    const status = await requestRegister(values);
-                    if (status === 201) {
+                    const res: any = await requestRegister(values);
+                    if (res.status === 201) {
                         console.log('Đăng ký thành công');
+                        setShowToast(true);
+                        setContentToast({ status: Status.success, text: 'Đăng ký thành công' });
+                        hideToast();
+                    } else {
+                        setShowToast(true);
+                        setContentToast({ status: Status.error, title: 'Thất bại', text: res.response.data.error });
+                        hideToast();
                     }
                 } catch (err) {
-                    console.log(err);
+                    setShowToast(true);
+                    setContentToast({ status: Status.success, title: 'Thất bại', text: 'Máy chủ không phản hồi' });
+                    hideToast();
                 }
             };
+
+            // Send request
             submitRegister();
         },
     });
 
-    // Fetch api provinces
-    useEffect(() => {
-        document.title = 'Đăng ký';
-        const fetchApi = async () => {
-            const result = await vietNamProvinces();
-            setProvinces(result);
-        };
-        fetchApi();
-    }, []);
-
-    // Validate when on change phone input
-    const handleOnChangePhone = (e: any) => {
-        const regex = /^[0-9\b]+$/;
-        if (regex.test(e.target.value)) {
-            handleChange(e);
-        }
-    };
     return (
         <>
+            {/* Toast */}
+            {showToast && <Toast {...contentToast} />}
+            {/* Register  */}
             <div id={cx('register')}>
                 <div className={cx('container')}>
                     <div className={cx('wrap-intro')}>
@@ -159,11 +186,23 @@ const Register = () => {
                                 </label>
                                 <div className="d-flex justify-content-evenly">
                                     <div>
-                                        <input type="radio" onChange={handleChange} value="Nam" name="gender" />
+                                        <input
+                                            type="radio"
+                                            onChange={handleChange}
+                                            checked={values.gender === 'Nam'}
+                                            value="Nam"
+                                            name="gender"
+                                        />
                                         Nam
                                     </div>
                                     <div>
-                                        <input type="radio" onChange={handleChange} value="Nữ" name="gender" />
+                                        <input
+                                            type="radio"
+                                            onChange={handleChange}
+                                            checked={values.gender === 'Nữ'}
+                                            value="Nữ"
+                                            name="gender"
+                                        />
                                         Nữ
                                     </div>
                                 </div>
@@ -260,7 +299,6 @@ const Register = () => {
                     </div>
                 </div>
             </div>
-            <Toast status={Status.success} text="Đăng ký thành công" />
         </>
     );
 };

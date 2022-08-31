@@ -8,7 +8,7 @@ const Event = () => {
         <div id="events" className={cx('event')}>
             <h1>Sự kiện và ưu đãi dành riêng cho bạn</h1>
             <h3>
-                Nhanh tay <Link to="/"> Đăng ký </Link> để nhận những món quà đặc biệt
+                Nhanh tay <Link to="/auth/register"> Đăng ký </Link> để nhận những món quà đặc biệt
             </h3>
             <div id={cx('wrapper')} className="d-flex justify-content-space-between">
                 <Link to="/" className={cx('event-item')}>

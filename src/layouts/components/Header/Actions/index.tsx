@@ -3,13 +3,20 @@ import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faUserAstronaut, faMap, faCoins, faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import {
+    faBars,
+    faUserAstronaut,
+    faMap,
+    faCoins,
+    faArrowRightToBracket,
+    faHeartCircleBolt,
+} from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 import 'tippy.js/dist/tippy.css';
-import styles from '../styles.module.scss';
+import styles from './styles.module.scss';
 const cx = classNames.bind(styles);
 
-const contextAuth = false;
+const contextAuth = true;
 
 const Actions = () => {
     const [isShow, setShow] = useState<boolean>(false);
@@ -46,6 +53,11 @@ const Actions = () => {
                         <Tippy duration={[300, 250]} content="Coins" placement="left">
                             <Link className={cx('action')} to="/">
                                 <FontAwesomeIcon icon={faCoins} />
+                            </Link>
+                        </Tippy>
+                        <Tippy duration={[300, 250]} content="Tour yêu thích" placement="left">
+                            <Link className={cx('action')} to="/">
+                                <FontAwesomeIcon icon={faHeartCircleBolt} />
                             </Link>
                         </Tippy>
                         <Tippy duration={[300, 250]} content="Đăng xuất" placement="left">

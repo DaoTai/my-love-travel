@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { LogoIcon } from '~/components/Icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
@@ -12,8 +12,12 @@ import styles from './styles.module.scss';
 const cx = classNames.bind(styles);
 
 const Header = () => {
+    const [showSearch, setShowSearch] = useState<boolean>(false);
+    const [showNavigation, setShowNavigation] = useState<boolean>(false);
     const headerRef = useRef<HTMLHeadingElement>(Object(null));
+    const location = useLocation();
     useEffect(() => {
+        // Change background header
         const handleChangeBackGround = () => {
             if (window.scrollY >= 10) {
                 headerRef.current.classList.add(cx('default-background-header'));
@@ -22,12 +26,24 @@ const Header = () => {
             }
         };
 
-        window.addEventListener('scroll', handleChangeBackGround);
+        if (location.pathname === '/home' || location.pathname === '/') {
+            setShowSearch(true);
+            setShowNavigation(true);
+            window.addEventListener('scroll', handleChangeBackGround);
+        } else {
+            setShowSearch(false);
+            setShowNavigation(false);
+            headerRef.current.classList.add(cx('default-background-header'));
+        }
 
         return () => {
             window.removeEventListener('scroll', handleChangeBackGround);
         };
-    }, []);
+    }, [location]);
+
+    const handleScrollTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     return (
         <>
@@ -42,10 +58,10 @@ const Header = () => {
                     </div>
 
                     {/* Search */}
-                    <Search />
+                    {showSearch && <Search />}
 
                     {/* Navigate */}
-                    <Navigation />
+                    {showNavigation && <Navigation />}
 
                     {/* Actions */}
                     <Actions />
@@ -53,9 +69,13 @@ const Header = () => {
             </header>
 
             {/* Button scroll top */}
-            <a href="#" id={cx('scroll-top-btn')} className="d-flex align-items-center justify-content-center">
+            <button
+                id={cx('scroll-top-btn')}
+                className="d-flex align-items-center justify-content-center"
+                onClick={handleScrollTop}
+            >
                 <FontAwesomeIcon icon={faArrowUp} />
-            </a>
+            </button>
         </>
     );
 };

@@ -1,0 +1,63 @@
+@mixin textOverflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wrap-tour {
+    text-decoration: none;
+    padding: 0 8px;
+    width: 25%;
+    transition: all 0.3s linear;
+    &:hover {
+        transform: translateY(-6px);
+    }
+}
+.tour {
+    position: relative;
+    border-radius: 8px;
+    color: var(--text);
+    box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.2);
+    min-height: 380px;
+    line-height: 1.8;
+
+    .mark-icon {
+        position: absolute;
+        top: 3px;
+        right: 3%;
+        fill: transparent;
+        stroke: var(--white);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        &:hover,
+        &.active {
+            fill: var(--primary);
+        }
+    }
+    .tour__image {
+        width: 100%;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        object-fit: cover;
+    }
+
+    .tour__content {
+        padding: 12px;
+        .tour__name {
+            font-size: 2rem;
+            font-weight: 600;
+            @include textOverflow;
+        }
+        .tour__place {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        .tour__price {
+            letter-spacing: 1px;
+        }
+        .tour__start {
+        }
+        .tour__start {
+        }
+    }
+}

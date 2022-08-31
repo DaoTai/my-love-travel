@@ -3,17 +3,16 @@
     top: 5%;
     right: 1%;
     z-index: 10;
-    animation: fadeOut 2s ease-in-out;
+    animation: fadeOut 1.4s ease-in-out;
+    transition: all 0.3s linear;
     .toast__container {
-        position: absolute;
-        top: 5%;
-        right: 1%;
-        z-index: inherit;
+        position: relative;
         display: flex;
         align-items: center;
         min-width: 280px;
         background-color: var(--white);
         padding: 8px 12px 12px;
+        margin-bottom: 12px;
         border-left: 4px solid currentColor;
         border-radius: 4px;
         &.error {
@@ -100,15 +99,15 @@
 @keyframes fadeOut {
     0% {
         transform: translateX(100px);
-        opacity: 1;
     }
     50% {
         transform: translateX(-10px);
-        opacity: 1;
+    }
+    75% {
+        transform: translateX(10px);
     }
     100% {
-        transform: translateX(0px);
-        opacity: 0;
+        transform: translateX(0);
     }
 }
 

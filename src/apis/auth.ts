@@ -13,8 +13,9 @@ export const requestRegister = async (data: Register) => {
     try {
         const api = 'http://localhost:8000/api/auth/signup';
         const res = await axios.post(api, data);
-        return res.status as Number;
+        return res;
     } catch (err) {
         console.log('Error: ', err);
+        return err;
     }
 };

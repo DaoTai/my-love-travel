@@ -1,7 +1,8 @@
-import React from 'react';
+import { memo, useRef } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faClose, faInfo, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { ToastData } from './interface';
 import styles from './styles.module.scss';
 
 const cx = classNames.bind(styles);
@@ -30,15 +31,16 @@ export const Status: Record<STATUS_ICON, Object> = {
     ),
 };
 
-interface ToastData {
-    status: any;
-    heading: string;
-    text: string;
-}
 //
-const Toast = ({ status = Status.error, heading = 'Thông báo', text = '...' }: Partial<ToastData>) => {
+const Toast = ({ status = Status.error, title = 'Thông báo', text = '...' }: Partial<ToastData>) => {
+    const toastRef = useRef<HTMLHeadingElement>(Object(null));
+
+    const handleCloseToast = () => {
+        toastRef.current.style.display = 'none';
+    };
+
     return (
-        <div id={cx('toast')}>
+        <div ref={toastRef} id={cx('toast')}>
             <div
                 className={cx('toast__container', {
                     error: status === Status.error,
@@ -48,10 +50,10 @@ const Toast = ({ status = Status.error, heading = 'Thông báo', text = '...' }:
             >
                 <div className={cx('toast__icon-status')}>{status}</div>
                 <div className={cx('toast__content')}>
-                    <h2 className={cx('toast-content__heading')}>{heading}</h2>
+                    <h2 className={cx('toast-content__heading')}>{title}</h2>
                     <p className={cx('toast-content__text')}>{text}</p>
                 </div>
-                <div className={cx('toast__close-btn')}>
+                <div className={cx('toast__close-btn')} onClick={handleCloseToast}>
                     <FontAwesomeIcon icon={faClose} />
                 </div>
             </div>
@@ -59,4 +61,4 @@ const Toast = ({ status = Status.error, heading = 'Thông báo', text = '...' }:
     );
 };
 
-export default Toast;
+export default memo(Toast);

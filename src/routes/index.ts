@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from '~/layouts/components/Home';
 import SearchTours from '~/layouts/components/SearchTours';
-import DetailTour from '~/components/DetailTour';
+import DetailTour from '~/layouts/components/SearchTours/Search/DetailTour';
 import Login from '~/layouts/components/Auth/Login';
 import Register from '~/layouts/components/Auth/Register';
 interface Route {
