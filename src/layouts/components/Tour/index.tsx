@@ -2,16 +2,18 @@ import { useState } from 'react';
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
 import { HeartIcon } from '~/components/Icons';
+import { Link } from 'react-router-dom';
+import { Tour as ITour } from './interface';
+
 import DaLat from '~/assets/da-lat.jpg';
 import 'tippy.js/dist/tippy.css';
 import style from './styles.module.scss';
-import { Link } from 'react-router-dom';
 const cx = classNames.bind(style);
-const Tour = () => {
+const Tour = ({ tour }: { tour: ITour }) => {
     const [isFavTour, setFavTour] = useState<boolean>(false);
 
     return (
-        <Link to="" className={cx('wrap-tour')}>
+        <Link to={`/tour/detail-tour/${tour.id}`} target="_blank" rel="noopener noreferrer" className={cx('wrap-tour')}>
             <div className={cx('tour')}>
                 {/* Mark to fav tours */}
                 <div>
@@ -29,16 +31,20 @@ const Tour = () => {
                 {/* Content */}
                 <img className={cx('tour__image')} src={DaLat} alt="tour-img" />
                 <div className={cx('tour__content')}>
-                    <h3 className={cx('tour__name')}>Du lịch Bát Tràng</h3>
-                    <h4 className={cx('tour__place')}>Hà Nội</h4>
-                    <p className={cx('tour__price')}>500.000VND</p>
+                    <h3 className={cx('tour__name')}>{tour.name}</h3>
+                    <h4 className={cx('tour__place')}>{tour.place}</h4>
+                    <p className={cx('tour__price')}>{tour.price}</p>
                     <p className={cx('tour__start')}>
                         Ngày khởi hành:
-                        <b> 24/10/2022</b>
+                        <b>
+                            {tour.start.getDate()}/{tour.start.getMonth() + 1}/{tour.start.getFullYear()}
+                        </b>
                     </p>
                     <p className={cx('tour__end')}>
                         Ngày kết thúc:
-                        <b> 30/10/2022</b>
+                        <b>
+                            {tour.end.getDate()}/{tour.end.getMonth() + 1}/{tour.end.getFullYear()}
+                        </b>
                     </p>
                 </div>
             </div>

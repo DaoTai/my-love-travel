@@ -1,9 +1,11 @@
 import React from 'react';
 import Home from '~/layouts/components/Home';
+import Header from '~/layouts/components/Header';
 import SearchTours from '~/layouts/components/SearchTours';
-import DetailTour from '~/layouts/components/SearchTours/Search/DetailTour';
+import DetailTour from '~/layouts/components/Tour/DetailTour';
 import Login from '~/layouts/components/Auth/Login';
 import Register from '~/layouts/components/Auth/Register';
+import Fragment from '~/components/Fragment';
 interface Route {
     path: string;
     component: React.FC;
@@ -23,9 +25,13 @@ const publicRoutes: Array<Route> = [
     {
         path: 'search-tours',
         component: SearchTours,
+    },
+    {
+        path: 'tour',
+        component: Fragment,
         children: [
             {
-                path: 'detail-tour',
+                path: 'detail-tour/:id',
                 component: DetailTour,
             },
         ],

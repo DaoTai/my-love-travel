@@ -2,7 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight, faClose, faSearch } from '@fortawesome/free-solid-svg-icons';
-import Tour from './Tour';
+import Tour from '~/layouts/components/Tour';
+import { data } from './FakeData';
 import style from '../styles.module.scss';
 import { useDebounce } from '~/hooks';
 const cx = classNames.bind(style);
@@ -87,12 +88,9 @@ const Search = () => {
 
             {/* List tour */}
             <div id={cx('list-tour')}>
-                <Tour />
-                <Tour />
-                <Tour />
-                <Tour />
-                <Tour />
-                <Tour />
+                {data.map((tour, i) => (
+                    <Tour key={i} tour={tour} />
+                ))}
             </div>
 
             {/* Pagination */}

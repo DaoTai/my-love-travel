@@ -55,9 +55,11 @@
         .tour__price {
             letter-spacing: 1px;
         }
-        .tour__start {
-        }
-        .tour__start {
+        .tour__start,
+        .tour__end {
+            b {
+                padding-left: 8px;
+            }
         }
     }
 }
