@@ -51,7 +51,9 @@ body {
     line-height: 1.5;
     text-rendering: optimizeSpeed;
 }
-
+a {
+    text-decoration: none;
+}
 ul,
 li {
     list-style: none;

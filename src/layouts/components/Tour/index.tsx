@@ -4,11 +4,11 @@ import classNames from 'classnames/bind';
 import { HeartIcon } from '~/components/Icons';
 import { Link } from 'react-router-dom';
 import { Tour as ITour } from './interface';
-
 import DaLat from '~/assets/da-lat.jpg';
 import 'tippy.js/dist/tippy.css';
 import style from './styles.module.scss';
 const cx = classNames.bind(style);
+
 const Tour = ({ tour }: { tour: ITour }) => {
     const [isFavTour, setFavTour] = useState<boolean>(false);
 

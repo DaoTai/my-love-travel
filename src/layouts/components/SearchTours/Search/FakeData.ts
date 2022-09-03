@@ -8,6 +8,10 @@ export const data: Tour[] = [
         price: 1350000,
         start: new Date(),
         end: new Date(),
+        status: 'Activing',
+        limit: 50,
+        currentCustomers: 40,
+        categories: ['Sinh thái khám phá'],
     },
     {
         id: 2,
@@ -16,6 +20,7 @@ export const data: Tour[] = [
         price: 380000,
         start: new Date(),
         end: new Date(2022, 11, 24),
+        status: 'Ending',
     },
     {
         id: 3,
@@ -24,6 +29,10 @@ export const data: Tour[] = [
         price: 580000,
         start: new Date(),
         end: new Date(),
+        status: 'Activing',
+        limit: 50,
+        currentCustomers: 40,
+        categories: ['Sinh thái khám phá'],
     },
     {
         id: 4,
@@ -32,5 +41,9 @@ export const data: Tour[] = [
         price: 280000,
         start: new Date(),
         end: new Date(),
+        status: 'Activing',
+        limit: 50,
+        currentCustomers: 40,
+        categories: ['Sinh thái khám phá'],
     },
 ];

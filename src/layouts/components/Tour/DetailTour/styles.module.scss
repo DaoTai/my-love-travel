@@ -1,11 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600&display=swap');
 
+@mixin button {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+    cursor: pointer;
+    min-width: 80px;
+    color: var(--white);
+    padding: 8px 12px;
+    margin-top: 12px;
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+    border-radius: 6px;
+    transition: all 0.2s linear;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
 .wrap-detail-tour {
     margin-top: var(--height-header-layout);
 }
 
 .detail-tour {
     margin: 0 auto;
+    max-width: 100%;
     width: var(--width-header-layout);
     padding: 12px 0 32px;
 }
@@ -15,44 +34,59 @@
 }
 .content-tour {
     display: flex;
+    align-items: start;
     flex-wrap: wrap;
     line-height: 1.8;
 }
 
+// Tour info
 .tour-info {
     max-width: 70%;
     flex: 0 0 70%;
+    padding-right: 12px;
     .tour-name {
         font-family: 'Dancing Script';
         display: inline-block;
         border-bottom: 2px solid var(--primary);
         margin-bottom: 4px;
     }
+    .tour-limit-amount,
+    .tour-current-customers,
     .tour-status,
     .tour-place,
     .tour-categories {
         font-weight: 500;
-
         svg {
             color: var(--primary);
         }
         span {
+            font-weight: 400;
             letter-spacing: 1px;
             padding-left: 8px;
         }
     }
-    .tour-status {
+    .tour-utilities {
+        font-weight: 500;
+        padding-left: 0;
+        li {
+            list-style: inside;
+            font-weight: 400;
+        }
     }
-    .tour-limit-amount {
-    }
-    .tour-current-customers {
+    .tour-intro {
+        text-align: justify;
+        span {
+            font-weight: 500;
+        }
     }
 }
+
+// Book tour
 .book-tour {
     max-width: 30%;
     flex: 0 0 70%;
     border: 1px solid #e9e9e9;
-    padding: 16px;
+    padding: 16px 16px 32px;
     letter-spacing: 1px;
     .tour-price,
     .tour-start,
@@ -124,5 +158,101 @@
             pointer-events: none;
             border-color: transparent;
         }
+    }
+}
+
+// Comments tour
+#wrap-comments {
+    margin-top: 22px;
+    b {
+        letter-spacing: 1px;
+        font-weight: 500;
+    }
+}
+.wrap-comments {
+    padding: 14px 8px 14px 0;
+    height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    .my-comment {
+        display: flex;
+        gap: 0 12px;
+        input {
+            @extend .input-comment;
+            background-color: #fcfcfc !important;
+            &:focus {
+                border-color: var(--primary);
+            }
+            &:focus ~ .wrap-btns {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
+        .wrap-btns {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0 32px;
+            transform-origin: top;
+            transition: all 0.2s linear;
+            transform: scaleY(1);
+            opacity: 1;
+            // transform: scaleY(0);
+            // opacity: 0;
+            .send-comment-btn {
+                @include button;
+            }
+            .cancel-comment-btn {
+                @include button;
+                background-color: transparent;
+                color: var(--text);
+                border-color: transparent;
+                &:hover {
+                    background-color: #e9e9e9;
+                }
+            }
+        }
+    }
+    .input-comment {
+        width: 100%;
+        padding: 12px 8px;
+        border-bottom: 1px solid #333;
+        border-radius: 2px;
+        outline: none;
+        border-left: none;
+        border-top: none;
+        border-right: none;
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+    }
+    .avatar {
+        margin-top: 5px;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    .other-comments {
+        display: flex;
+        gap: 0 12px;
+        margin-top: 12px;
+        padding: 4px 0;
+        span {
+            display: inline-block;
+            font-size: 1.8rem;
+            font-weight: 600;
+            padding: 4px 12px 0 8px;
+        }
+
+        .time-comment {
+            margin-top: 4px;
+            svg,
+            span {
+                font-weight: 400;
+                color: #ccc;
+            }
+        }
+    }
+    .wrap-input-comment {
+        flex: 2 1 auto;
     }
 }
