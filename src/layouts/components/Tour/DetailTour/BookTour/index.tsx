@@ -44,10 +44,10 @@ const BookTour = () => {
                 </span>
             </p>
             <p>
-                Thời gian khởi hành: <mark className={cx('tour-start')}>24/9/2022</mark>
+                Thời gian khởi hành: <span className={cx('tour-start')}>24/9/2022</span>
             </p>
             <p>
-                Thời gian kết thúc: <mark className={cx('tour-end')}>26/9/2022</mark>
+                Thời gian kết thúc: <span className={cx('tour-end')}>26/9/2022</span>
             </p>
             <p>
                 Tổng:

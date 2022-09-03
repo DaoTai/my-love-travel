@@ -94,6 +94,10 @@
     .total-price {
         padding: 0 8px;
     }
+    .tour-start,
+    .tour-end {
+        font-weight: 600;
+    }
     .wrap-amount-customer-input {
         margin: 16px 0 24px;
         display: flex;
@@ -164,7 +168,7 @@
 // Comments tour
 #wrap-comments {
     margin-top: 22px;
-    b {
+    h3 {
         letter-spacing: 1px;
         font-weight: 500;
     }
@@ -183,10 +187,6 @@
             &:focus {
                 border-color: var(--primary);
             }
-            &:focus ~ .wrap-btns {
-                transform: scaleY(1);
-                opacity: 1;
-            }
         }
         .wrap-btns {
             display: flex;
@@ -194,10 +194,6 @@
             gap: 0 32px;
             transform-origin: top;
             transition: all 0.2s linear;
-            transform: scaleY(1);
-            opacity: 1;
-            // transform: scaleY(0);
-            // opacity: 0;
             .send-comment-btn {
                 @include button;
             }

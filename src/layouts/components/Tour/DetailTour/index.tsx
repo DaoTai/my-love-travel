@@ -27,7 +27,7 @@ const DetailTour = () => {
         <div className={cx('wrap-detail-tour')}>
             <img
                 className={cx('tour-image')}
-                src="https://cdn.luxstay.com/rooms/15111/large/1537264615_42044860_537358870032123_3138685967326511104_n.jpg"
+                srcSet="https://cdn.luxstay.com/rooms/15111/large/1537264615_42044860_537358870032123_3138685967326511104_n.jpg"
                 alt=""
             />
             <div className={cx('detail-tour')}>

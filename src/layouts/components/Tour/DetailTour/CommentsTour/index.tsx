@@ -12,6 +12,9 @@ const CommentsTour = () => {
     const { id } = useParams();
     const [comments, setComments] = useState(FakeComments.filter((comment) => comment.idTour === id));
     const [myComment, setMyComment] = useState<string>('');
+    const [showWrapButtons, setShowWrapButtons] = useState<boolean>(false);
+
+    // Submit comment
     const handleSendComment = () => {
         setComments((prev: any) => {
             const dataSend = {
@@ -25,33 +28,41 @@ const CommentsTour = () => {
         });
         setMyComment('');
     };
-    useEffect(() => {
-        console.log('All comments: ', comments);
-    }, [comments]);
+
+    // Cancel comment
+    const handleCancelComment = () => {
+        setMyComment('');
+        setShowWrapButtons(false);
+    };
+
     return (
         <div id={cx('wrap-comments')}>
-            <b>Bình luận</b>
+            <h3>Bình luận:</h3>
             <div className={cx('wrap-comments')}>
                 {/* My comment */}
                 <div className={cx('my-comment')}>
-                    <img src={myAccount.avatar} alt="avatar" className={cx('avatar')} />
+                    <img srcSet={myAccount.avatar} alt="avatar" className={cx('avatar')} />
                     <div className={cx('wrap-input-comment')}>
                         <input
                             type="text"
+                            placeholder="Love Travel luôn sẵn sàng giải đáp thắc mắc của khách hàng"
                             spellCheck={false}
                             autoComplete="off"
                             className={cx('input-comment')}
-                            onChange={(e) => setMyComment(e.target.value)}
                             value={myComment}
+                            onChange={(e) => setMyComment(e.target.value)}
+                            onFocus={() => setShowWrapButtons(true)}
                         />
-                        <div className={cx('wrap-btns')}>
-                            <button className={cx('cancel-comment-btn')} onClick={() => setMyComment('')}>
-                                Huỷ
-                            </button>
-                            <button className={cx('send-comment-btn')} onClick={handleSendComment}>
-                                Bình luận
-                            </button>
-                        </div>
+                        {showWrapButtons && (
+                            <div className={cx('wrap-btns')}>
+                                <button className={cx('cancel-comment-btn')} onClick={handleCancelComment}>
+                                    Huỷ
+                                </button>
+                                <button className={cx('send-comment-btn')} onClick={handleSendComment}>
+                                    Bình luận
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
                 {/* Other comments */}

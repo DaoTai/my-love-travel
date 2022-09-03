@@ -19,7 +19,10 @@ const Tour = ({ tour }: { tour: ITour }) => {
                 <div>
                     <Tippy animation="fade" offset={[0, 16]} content="Thêm vào tour yêu thích" placement="top">
                         <div
-                            onClick={() => setFavTour(!isFavTour)}
+                            onClick={(e) => {
+                                setFavTour(!isFavTour);
+                                e.preventDefault();
+                            }}
                             className={cx('mark-icon', {
                                 active: isFavTour,
                             })}
@@ -29,11 +32,13 @@ const Tour = ({ tour }: { tour: ITour }) => {
                     </Tippy>
                 </div>
                 {/* Content */}
-                <img className={cx('tour__image')} src={DaLat} alt="tour-img" />
+                <img className={cx('tour__image')} srcSet={DaLat} alt="tour-img" onClick={(e) => e.preventDefault()} />
                 <div className={cx('tour__content')}>
                     <h3 className={cx('tour__name')}>{tour.name}</h3>
                     <h4 className={cx('tour__place')}>{tour.place}</h4>
-                    <p className={cx('tour__price')}>{tour.price}</p>
+                    <p className={cx('tour__price')}>
+                        {tour.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
+                    </p>
                     <p className={cx('tour__start')}>
                         Ngày khởi hành:
                         <b>
