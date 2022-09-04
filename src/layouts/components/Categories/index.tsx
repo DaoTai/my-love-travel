@@ -5,7 +5,7 @@ import img_2 from '~/assets/kham-pha.jpg';
 import img_3 from '~/assets/nghi-duong.jpg';
 import styles from './styles.module.scss';
 const cx = classNames.bind(styles);
-const Categories = () => {
+const Categories: React.FC = () => {
     return (
         <div id={cx('categories')}>
             <h1>Thể loại tour thịnh hành</h1>

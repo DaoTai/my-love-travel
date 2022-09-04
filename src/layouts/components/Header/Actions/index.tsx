@@ -61,7 +61,7 @@ const Actions = () => {
                             </Link>
                         </Tippy>
                         <Tippy duration={[300, 250]} content="Đăng xuất" placement="left">
-                            <Link className={cx('action')} to="/">
+                            <Link className={cx('action')} to="/auth/login">
                                 <FontAwesomeIcon icon={faArrowRightToBracket} />
                             </Link>
                         </Tippy>

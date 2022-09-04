@@ -1,22 +1,14 @@
-import React from 'react';
+import { Route } from './interface';
 import Home from '~/layouts/components/Home';
-import Header from '~/layouts/components/Header';
 import SearchTours from '~/layouts/components/SearchTours';
 import DetailTour from '~/layouts/components/Tour/DetailTour';
-import Login from '~/layouts/components/Auth/Login';
-import Register from '~/layouts/components/Auth/Register';
 import Fragment from '~/components/Fragment';
-interface Route {
-    path: string;
-    component: React.FC;
-    children?: [
-        {
-            path: string;
-            component: React.FC;
-        },
-    ];
-}
+// import about Auth
+import { Login, Register } from '~/layouts/components/Auth';
+//import about User
+import { Profile, PrivateTours, Coin, FavouriteTours } from '~/layouts/user/components';
 
+// Public routes
 const publicRoutes: Array<Route> = [
     {
         path: 'home',
@@ -38,6 +30,7 @@ const publicRoutes: Array<Route> = [
     },
 ];
 
+// Auth routes
 const authRoutes: Array<Route> = [
     {
         path: 'auth/login',
@@ -49,4 +42,24 @@ const authRoutes: Array<Route> = [
     },
 ];
 
-export { publicRoutes, authRoutes };
+// User routes
+const userRoutes: Array<Route> = [
+    {
+        path: 'user/profile',
+        component: Profile,
+    },
+    {
+        path: 'user/private-tours',
+        component: PrivateTours,
+    },
+    {
+        path: 'user/Coin',
+        component: Coin,
+    },
+    {
+        path: 'user/favourite-tours',
+        component: FavouriteTours,
+    },
+];
+
+export { publicRoutes, authRoutes, userRoutes };

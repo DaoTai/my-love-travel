@@ -14,7 +14,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    padding-top: 50%;
+    height: 100vh;
     position: relative;
     z-index: 2;
     .intro__content {
@@ -25,7 +25,7 @@
         transform: translate(-50%, -20%);
         background-color: rgba(255, 255, 255, 0.3);
         padding: 18px 8px;
-        width: 70%;
+        min-width: 70%;
         font-family: 'Dancing Script';
         border-radius: 4px;
         box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
@@ -78,7 +78,7 @@
         left: 50%;
         bottom: -6%;
         transform: translate(-50%, 6%);
-        width: 50%;
+        min-width: 70%;
         background-color: var(--white);
         border-radius: 4px;
         box-shadow: 0px 3px 8px rgb(0 0 0 / 20%);
@@ -124,9 +124,9 @@
 
 #content {
     margin: calc(var(--height-header-layout) + 24px) auto 0;
-    width: 100%;
-    max-width: var(--width-header-layout);
-    padding: 24px 0;
+    max-width: 100%;
+    width: var(--width-header-layout);
+    padding: 24px 8px;
 }
 
 #search {

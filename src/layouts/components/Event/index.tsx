@@ -3,7 +3,7 @@ import className from 'classnames/bind';
 import styles from './styles.module.scss';
 import { Link } from 'react-router-dom';
 const cx = className.bind(styles);
-const Event = () => {
+const Event: React.FC = () => {
     return (
         <div id="events" className={cx('event')}>
             <h1>Sự kiện và ưu đãi dành riêng cho bạn</h1>

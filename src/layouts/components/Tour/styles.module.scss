@@ -10,7 +10,7 @@
     width: 25%;
     transition: all 0.3s linear;
     &:hover {
-        transform: translateY(-6px);
+        transform: scale(1.05);
     }
 }
 .tour {

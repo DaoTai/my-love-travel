@@ -5,7 +5,7 @@ const cx = classNames.bind(styles);
 
 const Navigation = () => {
     return (
-        <ul id={cx('navigate')} className=" d-flex align-items-center">
+        <ul id={cx('navigate')} className="d-flex">
             <li className={cx('navigate__item')}>
                 <NavLink className={(nav) => cx({ active: nav.isActive })} to="/search-tours">
                     Khám phá

@@ -17,7 +17,7 @@ enum SHOW {
     LAST,
 }
 
-const Intro = () => {
+const Intro: React.FC = () => {
     const [currentTour, setCurrentTour] = useState<SHOW>(0);
     const tourRef = useRef<HTMLHeadingElement>(Object(null));
     const nextBtnRef = useRef<HTMLButtonElement>(Object(null));
@@ -133,7 +133,7 @@ const Intro = () => {
                     {/* <div>Website đặt tour du lịch số 1 Việt Nam</div> */}
                 </h1>
                 <button>
-                    <Link to="/">Đăng ký ngay</Link>
+                    <Link to="/auth/register">Đăng ký ngay</Link>
                 </button>
             </div>
 

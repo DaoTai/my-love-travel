@@ -1,6 +1,8 @@
 #categories {
     width: var(--width-header-layout);
+    max-width: 100%;
     margin: var(--space-top-container) auto 0;
+    padding: 0 8px;
     text-align: center;
     h1 {
         font-size: 4.2rem;

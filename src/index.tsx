@@ -1,14 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyles from '~/components/GlobalStyles';
-import './index.css';
 import App from '~/App';
-import { publicRoutes } from '~/routes';
-import { authRoutes } from '~/routes';
-import Home from '~/layouts/components/Home';
-import ErrorPage from '~/layouts/components/ErrorPage';
+import { publicRoutes, authRoutes, userRoutes } from '~/routes';
+import { Home, ErrorPage } from '~/layouts/components';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
@@ -40,6 +36,14 @@ root.render(
 
                         {/* Default page */}
                         <Route index element={<Home />} />
+                    </Route>
+
+                    {/* User page */}
+                    <Route path="/" element={<App />}>
+                        {userRoutes?.map((route, i) => {
+                            const Page = route.component;
+                            return <Route key={i} path={route.path} element={<Page />} />;
+                        })}
                     </Route>
 
                     {/* Error page */}

@@ -11,7 +11,7 @@ import styles from './styles.module.scss';
 
 const cx = classNames.bind(styles);
 
-const Header = () => {
+const Header: React.FC = () => {
     const [showSearch, setShowSearch] = useState<boolean>(false);
     const [showNavigation, setShowNavigation] = useState<boolean>(false);
     const headerRef = useRef<HTMLHeadingElement>(Object(null));

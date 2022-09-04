@@ -16,17 +16,19 @@ const CommentsTour = () => {
 
     // Submit comment
     const handleSendComment = () => {
-        setComments((prev: any) => {
-            const dataSend = {
-                ...myAccount,
-                idTour: id,
-                idAccount: Number(myAccount.id),
-                comment: myComment,
-                id: Math.floor(Math.random() * 1000),
-            };
-            return [dataSend, ...prev];
-        });
-        setMyComment('');
+        if (myComment.trim()) {
+            setComments((prev: any) => {
+                const dataSend = {
+                    ...myAccount,
+                    idTour: id,
+                    idAccount: Number(myAccount.id),
+                    comment: myComment,
+                    id: Math.floor(Math.random() * 1000),
+                };
+                return [dataSend, ...prev];
+            });
+            setMyComment('');
+        }
     };
 
     // Cancel comment
