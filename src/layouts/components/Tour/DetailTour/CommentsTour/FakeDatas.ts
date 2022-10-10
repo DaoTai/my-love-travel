@@ -4,6 +4,14 @@ export const myAccount = {
     avatar: 'https://wallpaperaccess.com/full/1102530.jpg',
     nameAccount: 'A$AP Richy',
 };
+export const myComments: Partial<Comment>[] = [
+    {
+        id: 11,
+        idTour: '1',
+        comment: 'Good services !!',
+        time: '2 ngày trước',
+    },
+];
 export const comments: Comment[] = [
     {
         id: 123,

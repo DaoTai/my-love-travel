@@ -42,13 +42,13 @@ const Tour = ({ tour }: { tour: ITour }) => {
                     <p className={cx('tour__start')}>
                         Ngày khởi hành:
                         <b>
-                            {tour.start.getDate()}/{tour.start.getMonth() + 1}/{tour.start.getFullYear()}
+                            {tour.timeStart.getDate()}/{tour.timeStart.getMonth() + 1}/{tour.timeStart.getFullYear()}
                         </b>
                     </p>
                     <p className={cx('tour__end')}>
                         Ngày kết thúc:
                         <b>
-                            {tour.end.getDate()}/{tour.end.getMonth() + 1}/{tour.end.getFullYear()}
+                            {tour.timeEnd.getDate()}/{tour.timeEnd.getMonth() + 1}/{tour.timeEnd.getFullYear()}
                         </b>
                     </p>
                 </div>

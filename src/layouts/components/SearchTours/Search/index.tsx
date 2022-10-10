@@ -64,9 +64,12 @@ const Search = () => {
                 <div className={cx('wrap-input-search')}>
                     <div className={cx('icon-search')}>
                         <FontAwesomeIcon icon={faSearch} />
-                        <div className={cx('icon-close')} onClick={handleEmptySearchValue}>
-                            <FontAwesomeIcon icon={faClose} />
-                        </div>
+                        {/* Close button */}
+                        {searchValue && (
+                            <div className={cx('icon-close')} onClick={handleEmptySearchValue}>
+                                <FontAwesomeIcon icon={faClose} />
+                            </div>
+                        )}
                     </div>
                     <input
                         ref={searchRef}
@@ -78,6 +81,7 @@ const Search = () => {
                         onChange={(e) => handleChangeSearchValue(e)}
                     />
                 </div>
+                {/* Select options */}
                 <select id={cx('select-tour')} name="" onChange={(e) => setTypeSearch(e.target.value as TYPE_SEARCH)}>
                     <option value=""></option>
                     <option value="Di tích lịch sử">Di tích lịch sử</option>

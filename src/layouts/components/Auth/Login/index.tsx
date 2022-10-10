@@ -1,16 +1,25 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import classNames from 'classnames/bind';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faClose } from '@fortawesome/free-solid-svg-icons';
+import { useState, useEffect, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
+import classNames from 'classnames/bind';
 import * as Yup from 'yup';
-
+import { AuthContext } from '~/Contexts';
+import { Auth } from '~/Contexts/interface';
+import Spinner from '~/components/Spinner';
 import styles from './styles.module.scss';
 
 const cx = classNames.bind(styles);
 
+const user: Auth = {
+    id: '123',
+    username: 'Đào Tài',
+    role: 'user',
+};
+
 const Login: React.FC = () => {
+    const context = useContext(AuthContext);
+    const [showSpinner, setShowSpinner] = useState<boolean>(false);
+    const navigate = useNavigate();
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
         initialValues: {
             username: '',
@@ -21,7 +30,12 @@ const Login: React.FC = () => {
             password: Yup.string().required('Vui lòng nhập trường này').min(6, 'Vui lòng nhập tối thiểu 6 ký tự'),
         }),
         onSubmit: (values) => {
-            console.log(values);
+            setShowSpinner(true);
+            setTimeout(() => {
+                context?.setAuth(user);
+                setShowSpinner(false);
+                navigate('/home');
+            }, 3000);
         },
     });
 
@@ -31,6 +45,7 @@ const Login: React.FC = () => {
 
     return (
         <div id={cx('login')}>
+            {showSpinner && <Spinner />}
             <div className={cx('container')}>
                 <h1 className={cx('heading')}>Love Travel</h1>
                 <h2 className={cx('sub-heading')}>Đăng nhập</h2>

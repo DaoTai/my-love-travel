@@ -3,9 +3,10 @@ export interface Tour {
     name: string;
     place: string;
     categories?: string[];
+    images?: string[];
     price: number;
-    start: Date;
-    end: Date;
+    timeStart: Date;
+    timeEnd: Date;
     intro?: string;
     utilities?: string[];
     status: 'Activing' | 'Ending' | 'Pending';

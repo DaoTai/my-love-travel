@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import HeadlessTippy from '@tippyjs/react/headless';
@@ -11,16 +11,19 @@ import {
     faArrowRightToBracket,
     faHeartCircleBolt,
 } from '@fortawesome/free-solid-svg-icons';
+import { AuthContext } from '~/Contexts';
 import classNames from 'classnames/bind';
 import 'tippy.js/dist/tippy.css';
 import styles from './styles.module.scss';
 const cx = classNames.bind(styles);
 
-const contextAuth = true;
-
 const Actions = () => {
+    const authContext = useContext(AuthContext);
     const [isShow, setShow] = useState<boolean>(false);
-    if (!contextAuth) {
+    useEffect(() => {
+        // console.log(authContext);
+    }, []);
+    if (!authContext.auth) {
         return (
             <div id={cx('auth-btns')} className="d-flex">
                 <Link className={cx('auth-btn')} to="/auth/register">

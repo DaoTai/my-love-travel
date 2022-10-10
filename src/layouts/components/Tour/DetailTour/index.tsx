@@ -11,8 +11,13 @@ const data: Tour = {
     name: 'Penth house Đà Lạt',
     place: 'Lâm Đồng',
     price: 1350000,
-    start: new Date(),
-    end: new Date(),
+    images: [
+        'https://cdn.pixabay.com/photo/2017/12/15/13/51/polynesia-3021072_1280.jpg',
+        'https://cdn.pixabay.com/photo/2018/07/16/16/08/island-3542290_1280.jpg',
+        'https://cdn.pixabay.com/photo/2018/10/02/16/12/nature-3719233_1280.jpg',
+    ],
+    timeStart: new Date(),
+    timeEnd: new Date(),
     status: 'Activing',
     limit: 50,
     currentCustomers: 40,
@@ -25,18 +30,14 @@ const DetailTour = () => {
 
     return (
         <div className={cx('wrap-detail-tour')}>
-            <img
-                className={cx('tour-image')}
-                srcSet="https://cdn.luxstay.com/rooms/15111/large/1537264615_42044860_537358870032123_3138685967326511104_n.jpg"
-                alt=""
-            />
+            <img className={cx('tour-image')} srcSet={data.images ? data.images[1] : ''} alt="" />
             <div className={cx('detail-tour')}>
                 <div className={cx('content-tour')}>
                     {/* Info about tour */}
                     <InfoTour tour={data} />
 
                     {/* Book tour */}
-                    <BookTour />
+                    <BookTour tour={data} />
                 </div>
                 {/* Comments about tour */}
                 <CommentsTour />

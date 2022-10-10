@@ -85,3 +85,23 @@
         }
     }
 }
+
+#auth-btns {
+    gap: 0 8px;
+    .auth-btn {
+        text-decoration: none;
+        color: var(--text);
+        padding: 6px 14px;
+        background-color: var(--white);
+        border-radius: 4px;
+        color: var(--primary);
+        border: 1px solid transparent;
+        transition: all 0.2s ease;
+        &:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: currentColor;
+            opacity: 0.9;
+        }
+    }
+}

@@ -3,4 +3,5 @@ export interface ToastData {
     status: any;
     title: string;
     text: string;
+    show: boolean;
 }

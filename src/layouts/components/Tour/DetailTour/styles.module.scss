@@ -30,6 +30,9 @@
 }
 .tour-image {
     width: 100%;
+    height: 60vh;
+    object-fit: cover;
+    object-position: cover;
     margin-bottom: 12px;
 }
 .content-tour {
@@ -43,7 +46,8 @@
 .tour-info {
     max-width: 70%;
     flex: 0 0 70%;
-    padding-right: 12px;
+    padding: 0 12px;
+    box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.1);
     .tour-name {
         font-family: 'Dancing Script';
         display: inline-block;
@@ -84,9 +88,9 @@
 // Book tour
 .book-tour {
     max-width: 30%;
-    flex: 0 0 70%;
+    flex: 0 0 30%;
     border: 1px solid #e9e9e9;
-    padding: 16px 16px 32px;
+    padding: 16px 12px 32px;
     letter-spacing: 1px;
     .tour-price,
     .tour-start,
@@ -99,7 +103,7 @@
         font-weight: 600;
     }
     .wrap-amount-customer-input {
-        margin: 16px 0 24px;
+        margin: 16px 12px 24px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -143,7 +147,7 @@
         font-size: 1.6rem;
         letter-spacing: 2px;
         width: 100%;
-        padding: 8px 12px;
+        padding: 11px;
         margin-top: 8px;
         border: 1px solid var(--primary);
         border-radius: 6px;
@@ -210,7 +214,7 @@
     }
     .input-comment {
         width: 100%;
-        padding: 12px 8px;
+        padding: 12px 8px 12px 4px;
         border-bottom: 1px solid #333;
         border-radius: 2px;
         outline: none;
@@ -240,15 +244,74 @@
         }
 
         .time-comment {
-            margin-top: 4px;
+            margin-top: -4px;
             svg,
             span {
                 font-weight: 400;
                 color: #ccc;
             }
         }
+        .options-comment {
+            position: relative;
+            .option-icon {
+                cursor: pointer;
+                font-size: 2rem;
+                padding: 0px 12px 8px;
+                &.active,
+                &:hover {
+                    color: var(--primary);
+                }
+            }
+            .options-container {
+                position: absolute;
+                background-color: #fff;
+                top: 0;
+                right: 16px;
+                font-size: 1.5rem;
+                border-radius: 4px;
+                box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+                .option {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 0 18px;
+                    padding: 6px 14px;
+                    cursor: pointer;
+                    border-bottom: 1px solid #e9e9e9;
+                    &:hover {
+                        color: var(--primary);
+                        opacity: 0.8;
+                        transition: all 0.2s linear;
+                    }
+                }
+            }
+        }
     }
     .wrap-input-comment {
         flex: 2 1 auto;
+
+        .time-comment,
+        span {
+            padding-left: 4px;
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .content-tour {
+        .tour-info {
+            max-width: 100%;
+            flex: 0 0 100%;
+            padding: 0 12px;
+            .tour-name {
+                display: block;
+                text-align: center;
+            }
+        }
+        .book-tour {
+            margin-top: 24px;
+            max-width: 100%;
+            flex: 0 0 100%;
+        }
     }
 }

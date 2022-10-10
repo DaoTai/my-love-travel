@@ -1,17 +1,12 @@
-import { memo, useRef } from 'react';
+import { memo, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faClose, faInfo, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { ToastData } from './interface';
 import styles from './styles.module.scss';
+import { STATUS_ICON } from './constants';
 
 const cx = classNames.bind(styles);
-
-export enum STATUS_ICON {
-    SUCCESS = 'success',
-    ERROR = 'error',
-    WARNING = 'warning',
-}
 
 export const Status: Record<STATUS_ICON, Object> = {
     [STATUS_ICON.SUCCESS]: (
@@ -32,31 +27,38 @@ export const Status: Record<STATUS_ICON, Object> = {
 };
 
 //
-const Toast = ({ status = Status.error, title = 'Thông báo', text = '...' }: Partial<ToastData>) => {
-    const toastRef = useRef<HTMLHeadingElement>(Object(null));
-
+const Toast = ({ status = Status.error, show, title = 'Thông báo', text = '...' }: Partial<ToastData>) => {
+    const [display, setDisplay] = useState(show);
+    const toastContainerRef = useRef<HTMLHeadingElement>(Object(null));
     const handleCloseToast = () => {
-        toastRef.current.style.display = 'none';
+        const timeHide = 2500;
+        toastContainerRef.current.animate([{ opacity: 0.3 }, { transform: 'translateX(300%)' }], {
+            duration: timeHide,
+        });
+        setTimeout(() => setDisplay(false), timeHide);
     };
 
     return (
-        <div ref={toastRef} id={cx('toast')}>
-            <div
-                className={cx('toast__container', {
-                    error: status === Status.error,
-                    success: status === Status.success,
-                    warning: status === Status.warning,
-                })}
-            >
-                <div className={cx('toast__icon-status')}>{status}</div>
-                <div className={cx('toast__content')}>
-                    <h2 className={cx('toast-content__heading')}>{title}</h2>
-                    <p className={cx('toast-content__text')}>{text}</p>
+        <div id={cx('toast')}>
+            {display && (
+                <div
+                    ref={toastContainerRef}
+                    className={cx('toast__container', {
+                        error: status === Status.error,
+                        success: status === Status.success,
+                        warning: status === Status.warning,
+                    })}
+                >
+                    <div className={cx('toast__icon-status')}>{status}</div>
+                    <div className={cx('toast__content')}>
+                        <h2 className={cx('toast-content__heading')}>{title}</h2>
+                        <p className={cx('toast-content__text')}>{text}</p>
+                    </div>
+                    <div className={cx('toast__close-btn')} onClick={handleCloseToast}>
+                        <FontAwesomeIcon icon={faClose} />
+                    </div>
                 </div>
-                <div className={cx('toast__close-btn')} onClick={handleCloseToast}>
-                    <FontAwesomeIcon icon={faClose} />
-                </div>
-            </div>
+            )}
         </div>
     );
 };
