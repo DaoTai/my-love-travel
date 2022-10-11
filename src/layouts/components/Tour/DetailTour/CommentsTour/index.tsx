@@ -30,6 +30,7 @@ const CommentsTour = () => {
                 return [dataSend, ...prev];
             });
             setMyComment('');
+            setShowWrapButtons(false);
         }
     };
 
