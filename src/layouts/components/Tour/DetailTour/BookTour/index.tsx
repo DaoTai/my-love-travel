@@ -1,10 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useCallback, memo } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import Toast, { Status } from '~/components/Toast';
-import style from '../styles.module.scss';
 import { Tour } from '../../interface';
+import style from './styles.module.scss';
 const cx = classNames.bind(style);
 const data = {
     id: 1,
@@ -20,30 +20,45 @@ const BookTour = ({ tour }: { tour: Tour }) => {
     const [showToast, setShowToast] = useState<boolean>(false);
     const [amount, setAmount] = useState<number>(0);
 
+    // Total price
     const totalPrice = useMemo(() => {
         return amount * data.price;
     }, [amount]);
 
-    const toastOptions = {
-        show: showToast,
-        text: amount ? 'Đặt tour thành công' : 'Đặt tour thất bại',
-        status: amount ? Status.success : Status.error,
-    };
+    // Hide toast
+    const hideToast = useCallback(() => {
+        setShowToast(false);
+    }, []);
 
+    // toastOptions
+    const toastOptions = useMemo(() => {
+        return {
+            show: showToast,
+            text: amount ? 'Đặt tour thành công' : 'Đặt tour thất bại',
+            status: amount ? Status.success : Status.error,
+            onHide: hideToast,
+        };
+    }, [showToast]);
+
+    // Handle increase amount tour
     const handleIncreaseAmount = () => {
         setAmount((prev) => {
             return prev === data.limit - data.currentCustomers ? prev : prev + 1;
         });
     };
+
+    // Handle decrease amount tour
     const handleDecreaseAmount = () => {
         setAmount((prev) => {
             return prev > 0 ? prev - 1 : prev;
         });
     };
 
+    // Handle submit tour
     const handleSubmit = () => {
+        console.log('Submit');
+
         setShowToast(true);
-        setTimeout(() => setShowToast(false), 5000);
     };
 
     const timeStart =
@@ -98,7 +113,9 @@ const BookTour = ({ tour }: { tour: Tour }) => {
                     disabled={data.limit - data.currentCustomers < amount}
                     className={cx('book-tour-btn', {
                         disabled:
-                            data.limit - data.currentCustomers < amount || data.limit - data.currentCustomers === 0,
+                            data.limit - data.currentCustomers === 0 ||
+                            data.limit - data.currentCustomers < amount ||
+                            showToast,
                     })}
                 >
                     Đặt tour
@@ -108,4 +125,4 @@ const BookTour = ({ tour }: { tour: Tour }) => {
     );
 };
 
-export default BookTour;
+export default memo(BookTour);

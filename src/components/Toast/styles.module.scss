@@ -15,7 +15,7 @@
         margin-bottom: 12px;
         border-left: 4px solid currentColor;
         border-radius: 4px;
-        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
         &.error {
             color: var(--error);
         }
@@ -29,12 +29,12 @@
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
+            left: -1px;
             right: 0;
             width: 100%;
             height: 3px;
             background-color: currentColor;
-            animation: animateToast 1s linear;
+            animation: animateToastX 1s linear;
             transform-origin: left;
         }
     }
@@ -112,7 +112,7 @@
     }
 }
 
-@keyframes animateToast {
+@keyframes animateToastX {
     from {
         transform: scaleX(0);
     }

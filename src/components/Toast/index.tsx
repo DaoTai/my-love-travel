@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from 'react';
+import { memo, useRef, useLayoutEffect } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faClose, faInfo, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
@@ -27,20 +27,26 @@ export const Status: Record<STATUS_ICON, Object> = {
 };
 
 //
-const Toast = ({ status = Status.error, show, title = 'Thông báo', text = '...' }: Partial<ToastData>) => {
-    const [display, setDisplay] = useState(show);
+const Toast = ({ status = Status.error, show, title = 'Thông báo', text = '...', onHide }: Partial<ToastData>) => {
     const toastContainerRef = useRef<HTMLHeadingElement>(Object(null));
     const handleCloseToast = () => {
-        const timeHide = 2500;
-        toastContainerRef.current.animate([{ opacity: 0.3 }, { transform: 'translateX(300%)' }], {
+        const timeHide = 1500;
+        toastContainerRef.current.animate([{ opacity: 0.3 }, { transform: 'translateX(250%)' }], {
             duration: timeHide,
         });
-        setTimeout(() => setDisplay(false), timeHide);
+        setTimeout(() => onHide(), timeHide);
     };
+
+    useLayoutEffect(() => {
+        const timerId = setTimeout(handleCloseToast, 5000);
+        return () => {
+            clearTimeout(timerId);
+        };
+    }, []);
 
     return (
         <div id={cx('toast')}>
-            {display && (
+            {show && (
                 <div
                     ref={toastContainerRef}
                     className={cx('toast__container', {

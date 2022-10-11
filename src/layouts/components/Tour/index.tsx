@@ -13,7 +13,7 @@ const Tour = ({ tour }: { tour: ITour }) => {
     const [isFavTour, setFavTour] = useState<boolean>(false);
 
     return (
-        <Link to={`/tour/detail-tour/${tour.id}`} target="_blank" rel="noopener noreferrer" className={cx('wrap-tour')}>
+        <Link to={`/tour/detail-tour/${tour.id}`} className={cx('wrap-tour')}>
             <div className={cx('tour')}>
                 {/* Mark to fav tours */}
                 <div>
