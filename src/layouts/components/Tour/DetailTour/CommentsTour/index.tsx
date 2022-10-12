@@ -12,7 +12,7 @@ const CommentsTour = () => {
     const { id } = useParams();
     const [comments, setComments] = useState(FakeOtherComments.filter((comment) => comment.idTour === id));
     const [myComment, setMyComment] = useState<string>('');
-    const [myComments, setMyComments] = useState(FakeMyComments);
+    const [myComments, setMyComments] = useState(FakeMyComments.filter((comment) => comment.idTour === id));
     const [showWrapButtons, setShowWrapButtons] = useState<boolean>(false);
 
     // Submit comment

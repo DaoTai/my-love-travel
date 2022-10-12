@@ -47,7 +47,7 @@ const Search: React.FC = () => {
                     type="search"
                     name=""
                     id={cx('search-input')}
-                    placeholder="Search..."
+                    placeholder="Tìm kiếm..."
                     autoComplete="off"
                     onFocus={() => setShowResult(true)}
                 />

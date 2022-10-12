@@ -1,35 +1,37 @@
 import { useEffect, useState, useRef } from 'react';
-import classNames from 'classnames/bind';
+import { useDebounce } from '~/hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight, faClose, faSearch } from '@fortawesome/free-solid-svg-icons';
+import classNames from 'classnames/bind';
 import Tour from '~/layouts/components/Tour';
 import { data } from './FakeData';
+import { TYPE_SEARCH } from './constants';
+import { Tour as ITour } from '~/layouts/components/Tour/interface';
 import style from '../styles.module.scss';
-import { useDebounce } from '~/hooks';
 const cx = classNames.bind(style);
 
-enum TYPE_SEARCH {
-    HISTORY = 'Di tích lịch sử',
-    EXPLORE = 'Sinh thái khám phá',
-    RESORT = 'Nghỉ dưỡng',
-}
-
 const Search = () => {
-    const searchRef: any = useRef(Object(null));
+    const MAX_LENGTH = 4;
+    const [listTour, setListTour] = useState<ITour[] | []>(data);
     const [searchValue, setSearchValue] = useState<string>('');
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [typeSearch, setTypeSearch] = useState<TYPE_SEARCH | null>(null);
-    const MAX_LENGTH = 4;
-    const debounced = useDebounce(searchValue, 600);
+    const searchRef = useRef(Object(null));
+    const debounced: string = useDebounce(searchValue, 600);
+
     useEffect(() => {
         if (!debounced.trim()) {
-            console.log([]);
+            setListTour(data);
             return;
         }
-
+        const searchedTours = data.filter((tour: ITour) => {
+            if (typeSearch) {
+                return tour.place.includes(debounced) && tour.categories?.includes(typeSearch);
+            }
+            return tour.name.includes(debounced);
+        });
+        setListTour(searchedTours);
         // Call API
-        console.log('Call API');
-        console.log('Tìm kiếm theo: ', typeSearch);
     }, [debounced, typeSearch]);
 
     // On change search value
@@ -44,6 +46,7 @@ const Search = () => {
     const handleEmptySearchValue = () => {
         searchRef.current.focus();
         setSearchValue('');
+        setListTour(data);
     };
 
     // Handle prev / next page
@@ -76,7 +79,7 @@ const Search = () => {
                         autoComplete="off"
                         id={cx('input-search')}
                         type="text"
-                        placeholder="Tìm kiếm"
+                        placeholder="Tìm kiếm tên tour"
                         value={searchValue}
                         onChange={(e) => handleChangeSearchValue(e)}
                     />
@@ -91,10 +94,16 @@ const Search = () => {
             </div>
 
             {/* List tour */}
-            <div id={cx('list-tour')}>
-                {data.map((tour, i) => (
-                    <Tour key={i} tour={tour} />
-                ))}
+            <div className={cx('wrap-list-tour')}>
+                {listTour.length > 0 ? (
+                    <div id={cx('list-tour')}>
+                        {listTour.map((tour, i) => (
+                            <Tour key={i} tour={tour} />
+                        ))}
+                    </div>
+                ) : (
+                    <p className="text-center">Danh sách tour trống</p>
+                )}
             </div>
 
             {/* Pagination */}

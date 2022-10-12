@@ -10,19 +10,23 @@
     width: 25%;
     transition: all 0.3s linear;
     &:hover {
-        transform: scale(1.05);
+        transform: translateY(-6px);
+        .tour__image {
+            filter: contrast(110%);
+        }
     }
 }
 .tour {
     position: relative;
     border-radius: 8px;
     color: var(--text);
-    box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
     min-height: 380px;
     line-height: 1.8;
-
+    animation: showFade 0.5s linear;
     .mark-icon {
         position: absolute;
+        z-index: 2;
         top: 3px;
         right: 3%;
         fill: transparent;
@@ -40,10 +44,12 @@
         border-top-right-radius: 8px;
         object-fit: cover;
         cursor: default;
+        transition: all 0.3s ease-in-out;
     }
 
     .tour__content {
         padding: 12px;
+        text-overflow: ellipsis;
         .tour__name {
             font-size: 2rem;
             font-weight: 600;
@@ -62,5 +68,16 @@
                 padding-left: 8px;
             }
         }
+    }
+}
+
+@keyframes showFade {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
     }
 }

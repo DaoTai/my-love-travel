@@ -75,8 +75,8 @@
     box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
     border-radius: 8px;
     .intro__tour-content {
-        display: flex;
-        align-items: center;
+        display: flex !important;
+        align-items: center !important;
     }
 
     .fade {
@@ -123,6 +123,7 @@
             color: #fff;
             font-size: 1.8rem;
             position: absolute;
+            z-index: 1;
             top: 50%;
             transform: translateY(-50%);
             border: 1px solid transparent;

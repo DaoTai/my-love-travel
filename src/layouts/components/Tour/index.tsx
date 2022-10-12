@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
 import { HeartIcon } from '~/components/Icons';
@@ -11,7 +11,6 @@ const cx = classNames.bind(style);
 
 const Tour = ({ tour }: { tour: ITour }) => {
     const [isFavTour, setFavTour] = useState<boolean>(false);
-
     return (
         <Link to={`/tour/detail-tour/${tour.id}`} className={cx('wrap-tour')}>
             <div className={cx('tour')}>
@@ -57,4 +56,4 @@ const Tour = ({ tour }: { tour: ITour }) => {
     );
 };
 
-export default Tour;
+export default memo(Tour);

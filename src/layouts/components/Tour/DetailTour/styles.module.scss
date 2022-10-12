@@ -30,6 +30,7 @@
 
 .wrap-detail-tour {
     margin-top: var(--height-header-layout);
+    overflow: hidden;
 }
 
 .detail-tour {
@@ -40,10 +41,9 @@
 }
 .tour-image {
     width: 100%;
-    height: 60vh;
+    height: 70vh;
     object-fit: cover;
-    filter: contrast(120%);
-    object-position: cover;
+    filter: contrast(110%);
     margin-bottom: 12px;
 }
 .content-tour {

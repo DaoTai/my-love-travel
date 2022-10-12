@@ -8,6 +8,11 @@ export const data: Tour[] = [
         price: 1350000,
         timeStart: new Date(),
         timeEnd: new Date(),
+        images: [
+            'https://cdn.pixabay.com/photo/2017/12/15/13/51/polynesia-3021072_1280.jpg',
+            'https://cdn.pixabay.com/photo/2018/07/16/16/08/island-3542290_1280.jpg',
+            'https://cdn.pixabay.com/photo/2018/10/02/16/12/nature-3719233_1280.jpg',
+        ],
         status: 'Activing',
         limit: 50,
         currentCustomers: 40,
