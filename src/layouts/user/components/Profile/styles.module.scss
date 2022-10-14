@@ -1,7 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600&display=swap');
 #profile {
     margin: calc(var(--space-top-container) + 24px) auto 0;
     width: var(--width-header-layout);
     max-width: 100%;
     text-align: center;
     padding: 0 8px;
+    .title {
+        font-size: 4.2rem;
+        font-weight: 600;
+        font-family: 'Dancing Script';
+        margin: 24px 0;
+    }
+    .container {
+        padding: 12px 8px;
+        height: 50vh;
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        border-radius: 6px;
+        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+        .avatar {
+            // flex: 1 1 0;
+            padding: 0 8px;
+        }
+        .content {
+            flex: 2 1 0;
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            // gap: 0 24px;
+            border: 1px solid;
+            border-color: transparent var(--primary);
+            padding: 0 8px;
+        }
+    }
+    .avatar {
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
+    .content {
+        .form-group {
+            text-align: left;
+            width: 50%;
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 0 12px;
+            .form-label {
+                font-size: 1.8rem;
+                font-weight: 500;
+                padding: 0 4px 0 8px;
+                margin-left: 8px;
+                display: block;
+                position: relative;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    transform: translateY(-50%);
+                    border: 5px solid;
+                    border-color: transparent transparent transparent var(--primary);
+                }
+            }
+            .form-input {
+                font-size: 1.6rem;
+                text-align: right;
+                flex-grow: 1;
+                border-radius: 4px;
+                padding: 6px 8px 4px 4px;
+                margin-right: 8px;
+                caret-color: var(--primary);
+                border: 1px solid;
+                border-color: transparent transparent var(--primary) transparent;
+                outline: 1px solid transparent;
+                &[type='radio'] {
+                    margin-left: 12px !important;
+                    margin-right: 12px !important;
+                    transform: scale(1.1);
+                    accent-color: var(--primary);
+                }
+            }
+        }
+    }
+    .wrap-buttons {
+        display: flex;
+        flex-direction: column;
+        button {
+            font-size: 1.4rem;
+            padding: 8px 24px;
+            margin: 12px 8px;
+            border-radius: 6px;
+            background: #f9f9f9;
+            border: 1px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.3s linear;
+            &:hover {
+                color: #fff;
+                background: var(--primary);
+            }
+        }
+    }
 }
