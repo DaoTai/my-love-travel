@@ -53,7 +53,7 @@ const userRoutes: Array<Route> = [
         component: PrivateTours,
     },
     {
-        path: 'user/Coin',
+        path: 'user/coin',
         component: Coin,
     },
     {

@@ -6,23 +6,23 @@ import Toast, { Status } from '~/components/Toast';
 import { Tour } from '../../interface';
 import style from './styles.module.scss';
 const cx = classNames.bind(style);
-const data = {
-    id: 1,
-    name: 'Penth house Đà Lạt',
-    place: 'Lâm Đồng',
-    price: 1350000,
-    limit: 50,
-    currentCustomers: 40,
-    start: new Date(),
-    end: new Date(),
-};
+// const tour = {
+//     id: 1,
+//     name: 'Penth house Đà Lạt',
+//     place: 'Lâm Đồng',
+//     price: 1350000,
+//     limit: 50,
+//     currentCustomers: 40,
+//     start: new Date(),
+//     end: new Date(),
+// };
 const BookTour = ({ tour }: { tour: Tour }) => {
     const [showToast, setShowToast] = useState<boolean>(false);
     const [amount, setAmount] = useState<number>(0);
 
     // Total price
     const totalPrice = useMemo(() => {
-        return amount * data.price;
+        return amount * tour.price;
     }, [amount]);
 
     // Hide toast
@@ -43,7 +43,7 @@ const BookTour = ({ tour }: { tour: Tour }) => {
     // Handle increase amount tour
     const handleIncreaseAmount = () => {
         setAmount((prev) => {
-            return prev === data.limit - data.currentCustomers ? prev : prev + 1;
+            return prev === tour.limit - tour.currentCustomers ? prev : prev + 1;
         });
     };
 
@@ -101,7 +101,7 @@ const BookTour = ({ tour }: { tour: Tour }) => {
                     <input type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
                     <button
                         className={cx('plus-btn', {
-                            disabled: data.limit - data.currentCustomers <= amount,
+                            disabled: tour.limit - tour.currentCustomers <= amount,
                         })}
                         onClick={handleIncreaseAmount}
                     >
@@ -110,11 +110,11 @@ const BookTour = ({ tour }: { tour: Tour }) => {
                 </div>
                 <button
                     onClick={handleSubmit}
-                    disabled={data.limit - data.currentCustomers < amount}
+                    disabled={tour.limit - tour.currentCustomers < amount}
                     className={cx('book-tour-btn', {
                         disabled:
-                            data.limit - data.currentCustomers === 0 ||
-                            data.limit - data.currentCustomers < amount ||
+                            tour.limit - tour.currentCustomers === 0 ||
+                            tour.limit - tour.currentCustomers < amount ||
                             showToast,
                     })}
                 >

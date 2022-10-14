@@ -5,3 +5,4 @@ export { default as Event } from './Event';
 export { default as Footer } from './Categories';
 export { default as ErrorPage } from './ErrorPage';
 export { default as Home } from './Home';
+export { default as Suggestion } from './Suggestion';

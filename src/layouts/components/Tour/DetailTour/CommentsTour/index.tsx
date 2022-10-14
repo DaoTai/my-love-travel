@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import classNames from 'classnames/bind';
 import { useParams } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock } from '@fortawesome/free-solid-svg-icons';
-import { comments as FakeOtherComments, myComments as FakeMyComments, myAccount } from './FakeDatas';
+import { comments as FakeOtherComments, myComments as FakeMyComments, myAccount } from '~/data';
 import MyComment from './MyComment';
 import OtherComment from './OtherComment';
 import style from '../styles.module.scss';

@@ -44,22 +44,22 @@ const Actions = () => {
                 render={(attrs) => (
                     <div className={cx('actions')} {...attrs}>
                         <Tippy duration={[300, 250]} content="Tài khoản" placement="left">
-                            <Link className={cx('action')} to="/">
+                            <Link className={cx('action')} to="/user/profile">
                                 <FontAwesomeIcon icon={faUserAstronaut} />
                             </Link>
                         </Tippy>
                         <Tippy duration={[300, 250]} content="Tours của bạn" placement="left">
-                            <Link className={cx('action')} to="/">
+                            <Link className={cx('action')} to="/user/private-tours">
                                 <FontAwesomeIcon icon={faMap} />
                             </Link>
                         </Tippy>
                         <Tippy duration={[300, 250]} content="Coins" placement="left">
-                            <Link className={cx('action')} to="/">
+                            <Link className={cx('action')} to="/user/coin">
                                 <FontAwesomeIcon icon={faCoins} />
                             </Link>
                         </Tippy>
                         <Tippy duration={[300, 250]} content="Tour yêu thích" placement="left">
-                            <Link className={cx('action')} to="/">
+                            <Link className={cx('action')} to="/user/favourite-tours">
                                 <FontAwesomeIcon icon={faHeartCircleBolt} />
                             </Link>
                         </Tippy>

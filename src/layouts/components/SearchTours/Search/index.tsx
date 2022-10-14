@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight, faClose, faSearch } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 import Tour from '~/layouts/components/Tour';
-import { data } from './FakeData';
+import { data } from '~/data';
 import { TYPE_SEARCH } from './constants';
 import { Tour as ITour } from '~/layouts/components/Tour/interface';
 import style from '../styles.module.scss';

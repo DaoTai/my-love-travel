@@ -6,9 +6,11 @@ import InfoTour from './InfoTour';
 import BookTour from './BookTour';
 import CommentsTour from './CommentsTour';
 import { Tour } from '../interface';
-import { data as listTour } from '~/layouts/components/SearchTours/Search/FakeData';
+import { data as listTour } from '~/data';
 import { settings } from './config';
 import style from './styles.module.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 const cx = classNames.bind(style);
 const DetailTour = () => {
     const { id } = useParams();

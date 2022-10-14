@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600&display=swap');
+.suggestion {
+    margin: var(--space-top-container) auto 0;
+    width: var(--width-header-layout);
+    max-width: 100%;
+    text-align: center;
+    padding: 0 8px;
+    h1 {
+        font-size: 4.2rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 4px rgb(0 0 0 / 20%);
+    }
+
+    .wrap-suggest-tours {
+        margin-top: var(--space-top-container);
+    }
+    .card-tour {
+        display: flex !important;
+        align-items: center;
+        flex-direction: column;
+        padding: 0 12px;
+        .wrap-tour-img {
+            position: relative;
+            display: flex;
+            align-items: center;
+            &:hover {
+                cursor: pointer;
+
+                .tour-link {
+                    transform: scale(1);
+                    .tour-link-text {
+                        animation: spinner 15s linear infinite;
+                    }
+                }
+            }
+            .tour-img {
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
+            }
+
+            .tour-link {
+                position: absolute;
+                inset: 0 0 0 0;
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: 50%;
+                transform: scale(0);
+                transition: all 0.3s ease-in-out;
+                transform-origin: center;
+                h4 {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 100%;
+                    transform: translate(-50%, -50%);
+                    font-size: 2rem;
+                    color: #fff;
+                    svg {
+                        padding-left: 4px;
+                    }
+                }
+                .tour-link-text {
+                    position: absolute;
+                    width: 90%;
+                    height: 90%;
+                    border-radius: 50%;
+                    padding: 12px;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    border: 4px dotted #fff;
+                }
+            }
+        }
+
+        .tour-name {
+            padding-top: 12px;
+            font-size: 2.8rem;
+            font-family: 'Dancing Script';
+        }
+    }
+}
+
+@keyframes spinner {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
