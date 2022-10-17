@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600&display=swap');
+$colorButton: linear-gradient(to left, #7430e6, #f224a7);
 #profile {
     margin: calc(var(--space-top-container) + 24px) auto 0;
     width: var(--width-header-layout);
@@ -13,33 +14,60 @@
     }
     .container {
         padding: 12px 8px;
-        height: 50vh;
+        min-height: 50vh;
         display: flex;
         align-items: start;
         justify-content: space-between;
         border-radius: 6px;
         box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
         .avatar {
-            // flex: 1 1 0;
-            padding: 0 8px;
+            flex: 1 1 0;
         }
         .content {
-            flex: 2 1 0;
+            flex: 2 1 100%;
             display: flex;
             align-items: flex-start;
             flex-wrap: wrap;
-            // gap: 0 24px;
             border: 1px solid;
             border-color: transparent var(--primary);
             padding: 0 8px;
         }
+        .wrap-buttons {
+        }
     }
+
     .avatar {
+        #wrap-input-image {
+            display: flex;
+            justify-content: center;
+            .form-label {
+                font-size: 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 8px;
+                flex: none;
+                cursor: pointer;
+                color: var(--primary);
+                width: 40px;
+                height: 40px;
+                border-radius: 50px;
+                background-image: transparent;
+                &:hover {
+                    color: var(--white);
+                    background-image: $colorButton;
+                }
+            }
+        }
+        .form-input {
+            visibility: hidden;
+        }
         img {
             width: 200px;
             height: 200px;
             object-fit: cover;
             border-radius: 50%;
+            border: 2px solid #d53a9d;
         }
     }
 
@@ -52,7 +80,7 @@
             align-items: center;
             gap: 0 12px;
             .form-label {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
                 font-weight: 500;
                 padding: 0 4px 0 8px;
                 margin-left: 8px;
@@ -68,17 +96,28 @@
                     border-color: transparent transparent transparent var(--primary);
                 }
             }
-            .form-input {
-                font-size: 1.6rem;
-                text-align: right;
+            .wrap-input {
                 flex-grow: 1;
-                border-radius: 4px;
-                padding: 6px 8px 4px 4px;
-                margin-right: 8px;
-                caret-color: var(--primary);
-                border: 1px solid;
-                border-color: transparent transparent var(--primary) transparent;
-                outline: 1px solid transparent;
+                .form-input {
+                    font-size: 1.6rem;
+                    width: 100%;
+                    padding: 8px 8px 8px 4px;
+                    margin-right: 8px;
+                    caret-color: var(--primary);
+                    border: 1px solid;
+                    border-color: transparent transparent var(--primary) transparent;
+                    outline: 1px solid transparent;
+                    &:focus {
+                        border-radius: 8px;
+                        border-color: var(--primary);
+                        outline-color: var(--primary);
+                    }
+                }
+                p.error-msg {
+                    color: var(--primary);
+                }
+            }
+            .form-input {
                 &[type='radio'] {
                     margin-left: 12px !important;
                     margin-right: 12px !important;
@@ -91,18 +130,22 @@
     .wrap-buttons {
         display: flex;
         flex-direction: column;
+        gap: 24px;
         button {
-            font-size: 1.4rem;
-            padding: 8px 24px;
-            margin: 12px 8px;
-            border-radius: 6px;
-            background: #f9f9f9;
-            border: 1px solid var(--primary);
+            font-size: 1.8rem;
+            color: var(--white);
+            margin: 0 8px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background-image: linear-gradient(to left, #7430e6, #f224a7);
+            border: 1px solid transparent;
             cursor: pointer;
             transition: all 0.3s linear;
             &:hover {
-                color: #fff;
-                background: var(--primary);
+                opacity: 0.8;
+                background-color: var(--primary);
+                border-color: var(--primary);
             }
         }
     }

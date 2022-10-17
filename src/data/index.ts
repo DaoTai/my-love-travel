@@ -1,6 +1,6 @@
 import { Tour } from '~/layouts/components/Tour/interface';
 import { Comment } from '~/layouts/components/Tour/interface';
-
+import { Profile } from '~/layouts/user/components/Profile/interface';
 // Tour
 export const data: Tour[] = [
     {
@@ -125,13 +125,21 @@ export const data: Tour[] = [
 
 // Account
 export const myAccount = {
-    id: 24,
-    limit: 50,
-    currentCustomers: 40,
-    categories: ['Sinh thái khám phá'],
-    intro: 'Đà Lạt vẫn thuộc tỉnh Lâm Đồng',
+    id: 1,
     avatar: 'https://wallpaperaccess.com/full/1102530.jpg',
     nameAccount: 'A$AP Richy',
+};
+
+// Profile
+export const profile: Profile = {
+    id: 1,
+    avatar: 'https://wallpaperaccess.com/full/1102530.jpg',
+    fullName: 'Thomas Shelby',
+    gender: 'nam',
+    dob: '24/10/2001',
+    address: 'Ha Noi',
+    email: 'thomas123@gmail.com',
+    phone: '0868930418',
 };
 
 // My comments

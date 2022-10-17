@@ -8,6 +8,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { settings } from './config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import background from '~/assets/background-suggestion.jpg';
 const cx = classNames.bind(styles);
 
 const Suggestion: React.FC = () => {
@@ -52,11 +53,7 @@ const Suggestion: React.FC = () => {
                     </div>
                     <div className={cx('card-tour')}>
                         <div className={cx('wrap-tour-img')}>
-                            <img
-                                className={cx('tour-img')}
-                                src="https://cdn3.ivivu.com/2022/06/du-lich-da-lat-ivivu-1.jpg"
-                                alt=""
-                            />
+                            <img className={cx('tour-img')} src={background} alt="" />
                             <div className={cx('tour-link')}>
                                 <h4>
                                     Khám phá
@@ -65,7 +62,7 @@ const Suggestion: React.FC = () => {
                                 <div className={cx('tour-link-text')}></div>
                             </div>
                         </div>
-                        <h3 className={cx('tour-name')}>Đà Lạt</h3>
+                        <h3 className={cx('tour-name')}>Tràng An</h3>
                     </div>
                     <div className={cx('card-tour')}>
                         <div className={cx('wrap-tour-img')}>

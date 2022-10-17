@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import classNames from 'classnames/bind';
 import { useParams } from 'react-router-dom';
-import { comments as FakeOtherComments, myComments as FakeMyComments, myAccount } from '~/data';
+import { comments as FakeOtherComments, myComments as FakeMyComments, profile } from '~/data';
 import MyComment from './MyComment';
 import OtherComment from './OtherComment';
 import style from '../styles.module.scss';
@@ -18,9 +18,9 @@ const CommentsTour = () => {
         if (myComment.trim()) {
             setMyComments((prev: any) => {
                 const dataSend = {
-                    ...myAccount,
+                    ...profile,
                     idTour: id,
-                    idAccount: Number(myAccount.id),
+                    idAccount: Number(profile.id),
                     comment: myComment,
                     time: `${new Date().getDate()}  / ${new Date().getMonth() + 1} / ${new Date().getFullYear()}`,
                     id: Math.floor(Math.random() * 1000),
@@ -45,7 +45,7 @@ const CommentsTour = () => {
                 <div className={cx('wrap-comments')}>
                     {/* My comment input */}
                     <div className={cx('my-comment')}>
-                        <img srcSet={myAccount.avatar} alt="avatar" className={cx('avatar')} />
+                        <img srcSet={profile.avatar} alt="avatar" className={cx('avatar')} />
                         <div className={cx('wrap-input-comment')}>
                             <input
                                 type="text"
@@ -72,7 +72,7 @@ const CommentsTour = () => {
                     {/* My comments */}
                     <div className={cx('wrap-other-comments')}>
                         {myComments.map((myComment) => (
-                            <MyComment key={myComment.id} myComment={myComment as any} myAccount={myAccount} />
+                            <MyComment key={myComment.id} myComment={myComment as any} myAccount={profile} />
                         ))}
                     </div>
                     {/* Other comments */}
