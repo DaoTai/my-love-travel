@@ -2,7 +2,7 @@
     position: fixed;
     top: 5%;
     right: 1%;
-    z-index: 10;
+    z-index: 9999999;
     animation: fadeOut 1.4s ease-in-out;
     transition: all 0.3s linear;
     .toast__container {
@@ -67,8 +67,8 @@
     .toast__content {
         flex: 1 1 auto;
         padding-left: 12px;
+        text-align: left;
         .toast-content__heading {
-            text-align: left;
             font-family: var(--font-family);
             font-size: 1.9rem;
             text-shadow: none;

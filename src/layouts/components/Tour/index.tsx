@@ -1,4 +1,4 @@
-import { useState, memo } from 'react';
+import { useState, memo, useRef, useEffect } from 'react';
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
 import { HeartIcon } from '~/components/Icons';
@@ -10,7 +10,21 @@ import style from './styles.module.scss';
 const cx = classNames.bind(style);
 
 const Tour = ({ tour }: { tour: ITour }) => {
+    const favRef = useRef([]);
+
     const [isFavTour, setFavTour] = useState<boolean>(false);
+    const handleAddFavTour = (e: any) => {
+        setFavTour(!isFavTour);
+        e.preventDefault();
+        if (Array.isArray(favRef.current)) {
+            // tour.name && favRef!.current!.push(tour);
+        }
+    };
+
+    useEffect(() => {
+        console.log('Callback: ', favRef.current);
+    }, [favRef]);
+
     return (
         <Link to={`/tour/detail-tour/${tour.id}`} className={cx('wrap-tour')}>
             <div className={cx('tour')}>
@@ -18,10 +32,7 @@ const Tour = ({ tour }: { tour: ITour }) => {
                 <div>
                     <Tippy animation="fade" offset={[0, 16]} content="Thêm vào tour yêu thích" placement="top">
                         <div
-                            onClick={(e) => {
-                                setFavTour(!isFavTour);
-                                e.preventDefault();
-                            }}
+                            onClick={handleAddFavTour}
                             className={cx('mark-icon', {
                                 active: isFavTour,
                             })}

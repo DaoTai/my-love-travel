@@ -1,6 +1,7 @@
 import slide1 from '~/assets/da-lat.jpg';
 import slide2 from '~/assets/ha-noi.jpg';
 import slide3 from '~/assets/phu-quoc.jpg';
+import { Slide } from './interface';
 export const settings = {
     dots: true,
     infinite: true,
@@ -13,7 +14,7 @@ export const settings = {
     cssEase: 'linear',
 };
 
-export const slides = [
+export const slides: Slide[] = [
     {
         image: slide1,
         quote: 'Chốn thiên đàng mộng mơ giữa trần gian',

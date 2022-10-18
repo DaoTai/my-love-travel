@@ -1,29 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import classNames from 'classnames/bind';
-import { Register as RegisterData } from '../interface';
+
 import { vietNamProvinces, requestRegister } from '~/apis/auth';
 import Toast from '~/components/Toast';
 import { Status } from '~/components/Toast';
 import { ToastData } from '~/components/Toast/interface';
+import { init, registerOptions } from './config';
 import style from './styles.module.scss';
 const cx = classNames.bind(style);
-
-// Initial value formik
-const init: RegisterData = {
-    name: '',
-    dob: '',
-    address: 'Thành phố Hà Nội',
-    gender: 'Nam',
-    email: '',
-    phone: '',
-    username: '',
-    password: '',
-    repassword: '',
-};
 
 const Register = () => {
     const [provinces, setProvinces] = useState<any[]>([{ name: '' }]);
@@ -59,32 +45,7 @@ const Register = () => {
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
         initialValues: init,
-        validationSchema: Yup.object().shape({
-            name: Yup.string()
-                .required('Vui lòng nhập trường này')
-                .trim()
-                .matches(/^([^0-9]*)$/, 'Họ tên không hợp lệ'),
-            dob: Yup.string().required('Vui lòng nhập trường này'),
-            address: Yup.string().required('Vui lòng nhập trường này').trim(),
-            gender: Yup.string().required('Vui lòng nhập trường này'),
-            email: Yup.string().email('Email không hợp lệ').required('Vui lòng nhập trường này').trim(),
-            phone: Yup.string()
-                .min(10, 'Số điện thoại không hợp lệ')
-                .required('Vui lòng nhập trường này')
-                .matches(/^\S*$/, 'Vui lòng không để khoảng trắng')
-                .trim(),
-            username: Yup.string().required('Vui lòng nhập trường này').trim(),
-            password: Yup.string()
-                .required('Vui lòng nhập trường này')
-                .matches(/^\S*$/, 'Vui lòng không để khoảng trắng')
-                .min(6, 'Vui lòng nhập tối thiểu 6 ký tự')
-                .trim(),
-            repassword: Yup.string()
-                .required('Vui lòng nhập trường này')
-                .matches(/^\S*$/, 'Vui lòng không để khoảng trắng')
-                .oneOf([Yup.ref('password')], 'Mật khẩu không khớp')
-                .trim(),
-        }),
+        validationSchema: registerOptions,
         onSubmit: (values) => {
             // Call API
             const submitRegister = async () => {
@@ -106,7 +67,6 @@ const Register = () => {
                     hideToast();
                 }
             };
-
             // Send request
             submitRegister();
         },

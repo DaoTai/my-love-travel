@@ -20,10 +20,18 @@ const cx = classNames.bind(styles);
 const Actions = () => {
     const authContext = useContext(AuthContext);
     const [isShow, setShow] = useState<boolean>(false);
+    const localAccount = localStorage.getItem('account');
     useEffect(() => {
-        // console.log(authContext);
+        // console.log('Local storage: ', localAccount);
     }, []);
-    if (!authContext.auth) {
+
+    const handleLogOut = () => {
+        authContext.setAuth(null);
+        localStorage.removeItem('account');
+    };
+
+    // AuthContext is exist
+    if (!authContext.auth && !localAccount) {
         return (
             <div id={cx('auth-btns')} className="d-flex">
                 <Link className={cx('auth-btn')} to="/auth/register">
@@ -35,6 +43,8 @@ const Actions = () => {
             </div>
         );
     }
+
+    // AuthContext is not exist
     return (
         <>
             {/* is active  */}
@@ -64,7 +74,7 @@ const Actions = () => {
                             </Link>
                         </Tippy>
                         <Tippy duration={[300, 250]} content="Đăng xuất" placement="left">
-                            <Link className={cx('action')} to="/auth/login">
+                            <Link className={cx('action')} to="/auth/login" onClick={handleLogOut}>
                                 <FontAwesomeIcon icon={faArrowRightToBracket} />
                             </Link>
                         </Tippy>

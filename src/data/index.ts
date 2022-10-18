@@ -108,7 +108,6 @@ export const data: Tour[] = [
     },
     {
         id: 8,
-
         intro: 'Đà Lạt vẫn thuộc tỉnh Lâm Đồng',
         utilities: ['1 chai nước Lavie', '1 tấm bản đồ du lịch', '2 món quà lưu niệm'],
         name: 'Thung Nai',
@@ -136,7 +135,7 @@ export const profile: Profile = {
     avatar: 'https://wallpaperaccess.com/full/1102530.jpg',
     fullName: 'Thomas Shelby',
     gender: 'nam',
-    dob: '24/10/2001',
+    dob: '2001-10-24',
     address: 'Ha Noi',
     email: 'thomas123@gmail.com',
     phone: '0868930418',

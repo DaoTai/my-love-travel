@@ -7,7 +7,7 @@ import { AuthContext } from '~/Contexts';
 import { Auth } from '~/Contexts/interface';
 import Spinner from '~/components/Spinner';
 import styles from './styles.module.scss';
-
+import { init, loginOptions } from './config';
 const cx = classNames.bind(styles);
 
 const user: Auth = {
@@ -21,18 +21,13 @@ const Login: React.FC = () => {
     const [showSpinner, setShowSpinner] = useState<boolean>(false);
     const navigate = useNavigate();
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
-        initialValues: {
-            username: '',
-            password: '',
-        },
-        validationSchema: Yup.object().shape({
-            username: Yup.string().required('Vui lòng nhập trường này'),
-            password: Yup.string().required('Vui lòng nhập trường này').min(6, 'Vui lòng nhập tối thiểu 6 ký tự'),
-        }),
+        initialValues: init,
+        validationSchema: loginOptions,
         onSubmit: (values) => {
             setShowSpinner(true);
             setTimeout(() => {
                 context?.setAuth(user);
+                localStorage.setItem('account', JSON.stringify(user));
                 setShowSpinner(false);
                 navigate('/home');
             }, 3000);
@@ -49,6 +44,7 @@ const Login: React.FC = () => {
             <div className={cx('container')}>
                 <h1 className={cx('heading')}>Love Travel</h1>
                 <h2 className={cx('sub-heading')}>Đăng nhập</h2>
+                {/* Form */}
                 <form onSubmit={handleSubmit} className={cx('login-form')} action="">
                     <div className={cx('form-group')}>
                         <input

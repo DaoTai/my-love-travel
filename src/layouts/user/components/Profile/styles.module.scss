@@ -1,25 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600&display=swap');
 $colorButton: linear-gradient(to left, #7430e6, #f224a7);
+@mixin button {
+    font-size: 1.8rem;
+    color: var(--white);
+    margin: 0 8px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-image: linear-gradient(to left, #7430e6, #f224a7);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    &:hover {
+        opacity: 0.8;
+        background-color: var(--primary);
+        border-color: var(--primary);
+    }
+}
 #profile {
-    margin: calc(var(--space-top-container) + 24px) auto 0;
+    margin: calc(var(--space-top-container) + 24px) auto 36px;
     width: var(--width-header-layout);
     max-width: 100%;
     text-align: center;
     padding: 0 8px;
     .title {
         font-size: 4.2rem;
-        font-weight: 600;
         font-family: 'Dancing Script';
-        margin: 24px 0;
+        font-weight: 600;
+        margin: 24px 0 12px;
     }
     .container {
-        padding: 12px 8px;
-        min-height: 50vh;
+        padding: 12px 8px 24px;
         display: flex;
         align-items: start;
         justify-content: space-between;
         border-radius: 6px;
-        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
         .avatar {
             flex: 1 1 0;
         }
@@ -28,9 +44,17 @@ $colorButton: linear-gradient(to left, #7430e6, #f224a7);
             display: flex;
             align-items: flex-start;
             flex-wrap: wrap;
-            border: 1px solid;
-            border-color: transparent var(--primary);
+
             padding: 0 8px;
+        }
+
+        .submit-btn {
+            @include button;
+            font-size: 1.6rem;
+            width: inherit;
+            float: right;
+            padding: 6px 20px;
+            border-radius: 4px;
         }
         .wrap-buttons {
         }
@@ -68,6 +92,9 @@ $colorButton: linear-gradient(to left, #7430e6, #f224a7);
             object-fit: cover;
             border-radius: 50%;
             border: 2px solid #d53a9d;
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 
@@ -132,21 +159,7 @@ $colorButton: linear-gradient(to left, #7430e6, #f224a7);
         flex-direction: column;
         gap: 24px;
         button {
-            font-size: 1.8rem;
-            color: var(--white);
-            margin: 0 8px;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background-image: linear-gradient(to left, #7430e6, #f224a7);
-            border: 1px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s linear;
-            &:hover {
-                opacity: 0.8;
-                background-color: var(--primary);
-                border-color: var(--primary);
-            }
+            @include button;
         }
     }
 }

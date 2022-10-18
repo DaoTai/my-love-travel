@@ -1,3 +1,4 @@
+import { Suggestion } from './interface';
 export const settings = {
     infinite: true,
     dots: true,
@@ -9,3 +10,46 @@ export const settings = {
     autoplaySpeed: 3000,
     cssEase: 'linear',
 };
+
+export const suggestions: Suggestion[] = [
+    {
+        image: 'https://cdn3.ivivu.com/2022/06/du-lich-da-lat-ivivu-1.jpg',
+        place: 'Đà Lạt',
+        link: '/',
+    },
+    {
+        image: 'https://cdn3.ivivu.com/2022/06/du-lich-da-lat-ivivu-1.jpg',
+        place: 'Đà Lạt',
+        link: '/',
+    },
+    {
+        image: 'https://cdn3.ivivu.com/2022/06/du-lich-da-lat-ivivu-1.jpg',
+        place: 'Đà Lạt',
+        link: '/',
+    },
+    {
+        image: 'https://cdn3.ivivu.com/2022/06/du-lich-da-lat-ivivu-1.jpg',
+        place: 'Đà Lạt',
+        link: '/',
+    },
+    {
+        image: 'https://cdn3.ivivu.com/2022/06/du-lich-da-lat-ivivu-1.jpg',
+        place: 'Đà Lạt',
+        link: '/',
+    },
+    {
+        image: 'https://cdn3.ivivu.com/2022/06/du-lich-da-lat-ivivu-1.jpg',
+        place: 'Đà Lạt',
+        link: '/',
+    },
+    {
+        image: 'https://cdn3.ivivu.com/2022/06/du-lich-da-lat-ivivu-1.jpg',
+        place: 'Đà Lạt',
+        link: '/',
+    },
+    {
+        image: 'https://cdn3.ivivu.com/2022/06/du-lich-da-lat-ivivu-1.jpg',
+        place: 'Đà Lạt',
+        link: '/',
+    },
+];

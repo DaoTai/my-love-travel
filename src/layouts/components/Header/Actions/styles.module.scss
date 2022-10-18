@@ -31,7 +31,7 @@
         width: 100%;
         text-align: left;
         text-decoration: none;
-        color: var(--text);
+        color: #2323249e;
         position: relative;
         transition: border-color 0.1s ease-out;
         &:hover {
@@ -55,7 +55,7 @@
         }
 
         &:hover:last-child {
-            color: var(--black);
+            color: rgb(255, 10, 10);
         }
 
         &:hover::after {

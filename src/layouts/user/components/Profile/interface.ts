@@ -8,3 +8,7 @@ export interface Profile {
     email: string;
     phone: string;
 }
+
+export interface Avatar {
+    pre?: string;
+}
