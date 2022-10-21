@@ -1,29 +1,19 @@
-import { useState, memo, useRef, useEffect } from 'react';
+import { memo } from 'react';
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
 import { HeartIcon } from '~/components/Icons';
 import { Link } from 'react-router-dom';
-import { Tour as ITour } from './interface';
+import { TourProps } from './interface';
 import DaLat from '~/assets/da-lat.jpg';
 import 'tippy.js/dist/tippy.css';
 import style from './styles.module.scss';
 const cx = classNames.bind(style);
 
-const Tour = ({ tour }: { tour: ITour }) => {
-    const favRef = useRef([]);
-
-    const [isFavTour, setFavTour] = useState<boolean>(false);
-    const handleAddFavTour = (e: any) => {
-        setFavTour(!isFavTour);
+const Tour = ({ tour, onAddFavTour, favIdTours }: TourProps) => {
+    const handkeAddFavTour = (e: any) => {
         e.preventDefault();
-        if (Array.isArray(favRef.current)) {
-            // tour.name && favRef!.current!.push(tour);
-        }
+        onAddFavTour(tour.id);
     };
-
-    useEffect(() => {
-        console.log('Callback: ', favRef.current);
-    }, [favRef]);
 
     return (
         <Link to={`/tour/detail-tour/${tour.id}`} className={cx('wrap-tour')}>
@@ -32,9 +22,9 @@ const Tour = ({ tour }: { tour: ITour }) => {
                 <div>
                     <Tippy animation="fade" offset={[0, 16]} content="Thêm vào tour yêu thích" placement="top">
                         <div
-                            onClick={handleAddFavTour}
+                            onClick={handkeAddFavTour}
                             className={cx('mark-icon', {
-                                active: isFavTour,
+                                active: favIdTours.includes(tour.id),
                             })}
                         >
                             <HeartIcon width="3.2rem" height="3.2rem" />

@@ -14,6 +14,12 @@ export interface Tour {
     currentCustomers: number;
 }
 
+export interface TourProps {
+    tour: Tour;
+    favIdTours: number[];
+    onAddFavTour: (id: number) => void;
+}
+
 export interface Comment {
     id: number;
     idTour: string;

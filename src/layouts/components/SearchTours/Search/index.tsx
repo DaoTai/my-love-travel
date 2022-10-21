@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { useDebounce } from '~/hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight, faClose, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -12,10 +12,15 @@ const cx = classNames.bind(style);
 
 const Search = () => {
     const MAX_LENGTH = 4;
+    const [favIdTours, setFavIdTours] = useState<any>(() => {
+        const parseLocal = JSON.parse(`${localStorage.getItem('favTours')}`);
+        return parseLocal ?? [];
+    });
     const [listTour, setListTour] = useState<ITour[] | []>(data);
     const [searchValue, setSearchValue] = useState<string>('');
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [typeSearch, setTypeSearch] = useState<TYPE_SEARCH | null>(null);
+
     const searchRef = useRef(Object(null));
     const debounced: string = useDebounce(searchValue, 600);
 
@@ -60,6 +65,19 @@ const Search = () => {
             return prev < MAX_LENGTH ? prev + 1 : prev;
         });
     };
+
+    // Handle add favourite tours
+    const handleAddFavTour = useCallback((idFavTour: any) => {
+        setFavIdTours((prev: any) => {
+            const isExistFavTour = prev.includes(idFavTour);
+            let newFavTours;
+            isExistFavTour
+                ? (newFavTours = prev.filter((id: number) => id !== idFavTour))
+                : (newFavTours = [...prev, idFavTour]);
+            localStorage.setItem('favTours', JSON.stringify(newFavTours));
+            return newFavTours;
+        });
+    }, []);
     return (
         <>
             {/* Search input */}
@@ -98,7 +116,7 @@ const Search = () => {
                 {listTour.length > 0 ? (
                     <div id={cx('list-tour')}>
                         {listTour.map((tour, i) => (
-                            <Tour key={i} tour={tour} />
+                            <Tour key={i} tour={tour} favIdTours={favIdTours} onAddFavTour={handleAddFavTour} />
                         ))}
                     </div>
                 ) : (
