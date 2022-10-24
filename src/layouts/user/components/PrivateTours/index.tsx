@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PrivateTours = () => {
-    return <div>PrivateTours</div>;
+    return <div className="main">PrivateTours</div>;
 };
 
 export default PrivateTours;

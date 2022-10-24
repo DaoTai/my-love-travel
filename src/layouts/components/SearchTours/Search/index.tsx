@@ -67,8 +67,8 @@ const Search = () => {
     };
 
     // Handle add favourite tours
-    const handleAddFavTour = useCallback((idFavTour: any) => {
-        setFavIdTours((prev: any) => {
+    const handleAddFavTour = useCallback((idFavTour: number) => {
+        setFavIdTours((prev: number[]) => {
             const isExistFavTour = prev.includes(idFavTour);
             let newFavTours;
             isExistFavTour

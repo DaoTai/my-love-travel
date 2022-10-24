@@ -1,0 +1,10 @@
+#favourite-tours-page {
+    margin: calc(var(--height-header-layout) + 24px) auto 0;
+}
+
+.wrap-list-fav-tour {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 36px 0;
+}

@@ -10,7 +10,7 @@ import style from './styles.module.scss';
 const cx = classNames.bind(style);
 
 const Tour = ({ tour, onAddFavTour, favIdTours }: TourProps) => {
-    const handkeAddFavTour = (e: any) => {
+    const handleAddFavTour = (e: any) => {
         e.preventDefault();
         onAddFavTour(tour.id);
     };
@@ -22,7 +22,7 @@ const Tour = ({ tour, onAddFavTour, favIdTours }: TourProps) => {
                 <div>
                     <Tippy animation="fade" offset={[0, 16]} content="Thêm vào tour yêu thích" placement="top">
                         <div
-                            onClick={handkeAddFavTour}
+                            onClick={handleAddFavTour}
                             className={cx('mark-icon', {
                                 active: favIdTours.includes(tour.id),
                             })}
@@ -32,7 +32,12 @@ const Tour = ({ tour, onAddFavTour, favIdTours }: TourProps) => {
                     </Tippy>
                 </div>
                 {/* Content */}
-                <img className={cx('tour__image')} srcSet={DaLat} alt="tour-img" onClick={(e) => e.preventDefault()} />
+                <img
+                    className={cx('tour__image')}
+                    srcSet={tour.images ? tour.images[0] : DaLat}
+                    alt="tour-img"
+                    onClick={(e) => e.preventDefault()}
+                />
                 <div className={cx('tour__content')}>
                     <h3 className={cx('tour__name')}>{tour.name}</h3>
                     <h4 className={cx('tour__place')}>{tour.place}</h4>

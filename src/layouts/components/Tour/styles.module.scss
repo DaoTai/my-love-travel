@@ -28,7 +28,8 @@
         position: absolute;
         z-index: 2;
         top: 3px;
-        right: 3%;
+        right: 0;
+        padding: 4px 8px 4px 20px;
         fill: transparent;
         stroke: var(--white);
         cursor: pointer;
@@ -68,6 +69,18 @@
                 padding-left: 8px;
             }
         }
+    }
+}
+
+@media (max-width: 1023px) and (min-width: 740px) {
+    .wrap-tour {
+        width: 33.3333%;
+    }
+}
+
+@media (max-width: 739px) {
+    .wrap-tour {
+        width: 100%;
     }
 }
 

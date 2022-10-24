@@ -21,22 +21,24 @@ const DetailTour = () => {
     return (
         <>
             {data && (
-                <div className={cx('wrap-detail-tour')}>
-                    <Slider {...settings}>
-                        {data.images?.map((image, i) => (
-                            <img key={i} className={cx('tour-image')} srcSet={image} alt="Ảnh tour" />
-                        ))}
-                    </Slider>
-                    <div className={cx('detail-tour')}>
-                        <div className={cx('content-tour')}>
-                            {/* Info about tour */}
-                            <InfoTour tour={data} />
+                <div className="main">
+                    <div className={cx('wrap-detail-tour')}>
+                        <Slider {...settings}>
+                            {data.images?.map((image, i) => (
+                                <img key={i} className={cx('tour-image')} srcSet={image} alt="Ảnh tour" />
+                            ))}
+                        </Slider>
+                        <div className={cx('detail-tour')}>
+                            <div className={cx('content-tour')}>
+                                {/* Info about tour */}
+                                <InfoTour tour={data} />
 
-                            {/* Book tour */}
-                            <BookTour tour={data} />
+                                {/* Book tour */}
+                                <BookTour tour={data} />
+                            </div>
+                            {/* Comments about tour */}
+                            <CommentsTour />
                         </div>
-                        {/* Comments about tour */}
-                        <CommentsTour />
                     </div>
                 </div>
             )}
