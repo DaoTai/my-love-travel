@@ -2,7 +2,7 @@ import { useState, useCallback, useMemo } from 'react';
 import classNames from 'classnames/bind';
 import Tour from '~/layouts/components/Tour';
 import { Tour as ITour } from '~/layouts/components/Tour/interface';
-import { data as tours } from '~/data';
+import { tours } from '~/data';
 import styles from './styles.module.scss';
 const cx = classNames.bind(styles);
 const FavouriteTours = () => {
@@ -14,7 +14,7 @@ const FavouriteTours = () => {
     // Get list favourite tours
     const favTours = useMemo(() => {
         const favTours = favIdTours.reduce((acc: [], id: number) => {
-            const favTour = tours.filter((tour) => {
+            const favTour = tours[0].filter((tour) => {
                 return tour.id === id;
             });
             return [...acc, ...favTour];

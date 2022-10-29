@@ -6,7 +6,7 @@ import InfoTour from './InfoTour';
 import BookTour from './BookTour';
 import CommentsTour from './CommentsTour';
 import { Tour } from '../interface';
-import { data as listTour } from '~/data';
+import { tours } from '~/data';
 import { settings } from './config';
 import style from './styles.module.scss';
 import 'slick-carousel/slick/slick.css';
@@ -16,7 +16,7 @@ const DetailTour = () => {
     const { id } = useParams();
 
     const data: Tour | undefined = useMemo(() => {
-        return listTour.find((tour) => tour.id === Number(id));
+        return tours[0].find((tour) => tour.id === Number(id));
     }, [id]);
     return (
         <>

@@ -4,5 +4,5 @@ export interface ToastData {
     title?: string;
     text: string;
     show: boolean;
-    onHide?: any;
+    onHide?: () => void;
 }

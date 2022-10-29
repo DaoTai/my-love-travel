@@ -10,7 +10,7 @@ import style from './styles.module.scss';
 const cx = classNames.bind(style);
 
 const Tour = ({ tour, onAddFavTour, favIdTours }: TourProps) => {
-    const handleAddFavTour = (e: any) => {
+    const handleAddFavTour = (e: any): void => {
         e.preventDefault();
         onAddFavTour(tour.id);
     };
@@ -42,19 +42,24 @@ const Tour = ({ tour, onAddFavTour, favIdTours }: TourProps) => {
                     <h3 className={cx('tour__name')}>{tour.name}</h3>
                     <h4 className={cx('tour__place')}>{tour.place}</h4>
                     <p className={cx('tour__price')}>
-                        {tour.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
+                        {tour.price && tour.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                     </p>
                     <p className={cx('tour__start')}>
                         Ngày khởi hành:
-                        <b>
-                            {tour.timeStart.getDate()}/{tour.timeStart.getMonth() + 1}/{tour.timeStart.getFullYear()}
-                        </b>
+                        {tour.timeStart && (
+                            <b>
+                                {tour.timeStart.getDate()}/{tour.timeStart.getMonth() + 1}/
+                                {tour.timeStart.getFullYear()}
+                            </b>
+                        )}
                     </p>
                     <p className={cx('tour__end')}>
                         Ngày kết thúc:
-                        <b>
-                            {tour.timeEnd.getDate()}/{tour.timeEnd.getMonth() + 1}/{tour.timeEnd.getFullYear()}
-                        </b>
+                        {tour.timeEnd && (
+                            <b>
+                                {tour.timeEnd.getDate()}/{tour.timeEnd.getMonth() + 1}/{tour.timeEnd.getFullYear()}
+                            </b>
+                        )}
                     </p>
                 </div>
             </div>

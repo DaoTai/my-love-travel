@@ -1,46 +1,56 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
-import { useDebounce } from '~/hooks';
+import { useEffect, useState, useRef, useCallback, ChangeEvent } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight, faClose, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useDebounce } from '~/hooks';
 import classNames from 'classnames/bind';
 import Tour from '~/layouts/components/Tour';
-import { data } from '~/data';
 import { TYPE_SEARCH } from './constants';
 import { Tour as ITour } from '~/layouts/components/Tour/interface';
+import { getListTour } from '../actions';
 import style from '../styles.module.scss';
 const cx = classNames.bind(style);
 
 const Search = () => {
-    const MAX_LENGTH = 4;
+    const listTourSelector = useSelector((state: any) => state.listTour);
+    const dispatch = useDispatch();
     const [favIdTours, setFavIdTours] = useState<any>(() => {
         const parseLocal = JSON.parse(`${localStorage.getItem('favTours')}`);
         return parseLocal ?? [];
     });
-    const [listTour, setListTour] = useState<ITour[] | []>(data);
+    const [listTour, setListTour] = useState<ITour[] | []>(listTourSelector);
     const [searchValue, setSearchValue] = useState<string>('');
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [typeSearch, setTypeSearch] = useState<TYPE_SEARCH | null>(null);
 
     const searchRef = useRef(Object(null));
+    const wrapListTour = useRef(Object(null));
     const debounced: string = useDebounce(searchValue, 600);
 
     useEffect(() => {
+        // Get selector
+        setListTour(listTourSelector[currentPage - 1]);
+    }, [listTourSelector, currentPage]);
+
+    useEffect(() => {
+        // When data search empty
         if (!debounced.trim()) {
-            setListTour(data);
+            dispatch(getListTour());
             return;
         }
-        const searchedTours = data.filter((tour: ITour) => {
+
+        // When data search exist
+        const searchedTours = listTour.filter((tour: ITour) => {
             if (typeSearch) {
                 return tour.place.includes(debounced) && tour.categories?.includes(typeSearch);
             }
             return tour.name.includes(debounced);
         });
         setListTour(searchedTours);
-        // Call API
     }, [debounced, typeSearch]);
 
     // On change search value
-    const handleChangeSearchValue = (e: any) => {
+    const handleChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
         const valueInput = e.target.value;
         if (!valueInput.startsWith(' ')) {
             setSearchValue(valueInput);
@@ -51,18 +61,20 @@ const Search = () => {
     const handleEmptySearchValue = () => {
         searchRef.current.focus();
         setSearchValue('');
-        setListTour(data);
+        dispatch(getListTour());
     };
 
     // Handle prev / next page
     const handlePrevPage = () => {
+        wrapListTour.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
         setCurrentPage((prev) => {
             return prev > 1 ? prev - 1 : prev;
         });
     };
     const handleNextPage = () => {
+        wrapListTour.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
         setCurrentPage((prev) => {
-            return prev < MAX_LENGTH ? prev + 1 : prev;
+            return prev < listTourSelector.length ? prev + 1 : prev;
         });
     };
 
@@ -112,7 +124,7 @@ const Search = () => {
             </div>
 
             {/* List tour */}
-            <div className={cx('wrap-list-tour')}>
+            <div className={cx('wrap-list-tour')} ref={wrapListTour}>
                 {listTour.length > 0 ? (
                     <div id={cx('list-tour')}>
                         {listTour.map((tour, i) => (
@@ -130,7 +142,10 @@ const Search = () => {
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </button>
                 <span className={cx('current-page')}>{currentPage}</span>
-                <button onClick={handleNextPage} className={currentPage === MAX_LENGTH ? cx('disabled') : ''}>
+                <button
+                    onClick={handleNextPage}
+                    className={currentPage === listTourSelector.length ? cx('disabled') : ''}
+                >
                     <FontAwesomeIcon icon={faArrowRight} />
                 </button>
             </div>

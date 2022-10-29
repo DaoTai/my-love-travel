@@ -1,29 +1,42 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { data as tours } from '~/data';
 import { useDebounce } from '~/hooks';
 import { Tour } from '~/layouts/components/Tour/interface';
+import { getListTour } from '~/layouts/components/SearchTours/actions';
 import 'tippy.js/dist/tippy.css';
 import styles from './styles.module.scss';
 const cx = classNames.bind(styles);
 
 const Search: React.FC = () => {
+    const listTourSelector = useSelector((state: any) => state.listTour);
+    const dispatch = useDispatch();
     const [showResult, setShowResult] = useState<boolean>(false);
     const [searchValue, setSearchValue] = useState<string>('');
     const [listTour, setListTour] = useState<Tour[]>([]);
     const debounced: string = useDebounce(searchValue, 600);
 
     useEffect(() => {
+        // Get selector
+        setListTour(listTourSelector[0]);
+    }, [listTourSelector]);
+
+    useEffect(() => {
+        // When data search empty
         if (!debounced.trim()) {
-            setListTour([]);
-        } else {
-            const searchedTour = tours.filter((tour) => tour.name.includes(debounced));
-            setListTour(searchedTour);
+            dispatch(getListTour());
+            return;
         }
+
+        // When data search exist
+        const searchedTours = listTour.filter((tour: Tour) => {
+            return tour.name.includes(debounced);
+        });
+        setListTour(searchedTours);
     }, [debounced]);
     return (
         <HeadlessTippy
