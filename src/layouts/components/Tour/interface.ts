@@ -3,7 +3,7 @@ export interface Tour {
     name: string;
     place: string;
     categories: string[];
-    images?: string[];
+    images: string[];
     price: number;
     timeStart: Date;
     timeEnd: Date;

@@ -1,42 +1,45 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
+import { useDebounce } from '~/hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { useDebounce } from '~/hooks';
 import { Tour } from '~/layouts/components/Tour/interface';
-import { getListTour } from '~/layouts/components/SearchTours/actions';
+import { getListTour } from '~/layouts/components/Tour/actions';
+import { listTourSelector } from '~/layouts/components/Tour/selector';
 import 'tippy.js/dist/tippy.css';
 import styles from './styles.module.scss';
 const cx = classNames.bind(styles);
 
 const Search: React.FC = () => {
-    const listTourSelector = useSelector((state: any) => state.listTour);
+    const listTour: Array<Tour[]> = useSelector(listTourSelector);
     const dispatch = useDispatch();
     const [showResult, setShowResult] = useState<boolean>(false);
     const [searchValue, setSearchValue] = useState<string>('');
-    const [listTour, setListTour] = useState<Tour[]>([]);
+    const [listSearchTour, setListSearchTour] = useState<Tour[]>([]);
     const debounced: string = useDebounce(searchValue, 600);
 
+    const allTour = useMemo(() => {
+        return listTour.reduce((acc: Tour[], tour: Tour[]) => [...acc, ...tour], []);
+    }, [listTour]);
+
+    // dispatch action
     useEffect(() => {
-        // Get selector
-        setListTour(listTourSelector[0]);
-    }, [listTourSelector]);
+        dispatch(getListTour());
+    }, []);
 
     useEffect(() => {
         // When data search empty
         if (!debounced.trim()) {
-            dispatch(getListTour());
             return;
         }
-
         // When data search exist
-        const searchedTours = listTour.filter((tour: Tour) => {
+        const searchedTours = allTour.filter((tour: Tour) => {
             return tour.name.includes(debounced);
         });
-        setListTour(searchedTours);
+        setListSearchTour(searchedTours);
     }, [debounced]);
     return (
         <HeadlessTippy
@@ -44,29 +47,30 @@ const Search: React.FC = () => {
             visible={showResult}
             onClickOutside={() => setShowResult(false)}
             render={(attrs) => (
-                <div className={cx('search-result')} {...attrs}>
-                    {listTour.length > 0 ? (
-                        listTour.map((tour) => {
-                            return (
-                                <Link key={tour.id} to={`tour/detail-tour/${tour.id}`} className={cx('tour-item')}>
-                                    <img
-                                        className={cx('tour-item__img')}
-                                        src={tour.images && tour.images[0]}
-                                        alt="Ảnh tour"
-                                    />
-                                    <div className={cx('tour-item__content')}>
-                                        <h3>{tour.name}</h3>
-                                        <p>
-                                            Giá:
-                                            {tour.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
-                                        </p>
-                                    </div>
-                                </Link>
-                            );
-                        })
-                    ) : (
-                        <p className="text-center">Tìm kiếm tour</p>
-                    )}
+                <div
+                    className={cx('search-result', {
+                        exist: listSearchTour.length,
+                    })}
+                    {...attrs}
+                >
+                    {listSearchTour.map((tour) => {
+                        return (
+                            <Link key={tour.id} to={`tour/detail-tour/${tour.id}`} className={cx('tour-item')}>
+                                <img
+                                    className={cx('tour-item__img')}
+                                    src={tour.images && tour.images[0]}
+                                    alt="Ảnh tour"
+                                />
+                                <div className={cx('tour-item__content')}>
+                                    <h3 className={cx('tour-item__name')}>{tour.name}</h3>
+                                    <p>
+                                        Giá:
+                                        {tour.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
+                                    </p>
+                                </div>
+                            </Link>
+                        );
+                    })}
                 </div>
             )}
         >
@@ -80,6 +84,7 @@ const Search: React.FC = () => {
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
                     onFocus={() => setShowResult(true)}
+                    onBlur={() => setListSearchTour([])}
                 />
                 <button id={cx('icon-search')}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />

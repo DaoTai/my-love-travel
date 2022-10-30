@@ -7,18 +7,19 @@ import classNames from 'classnames/bind';
 import Tour from '~/layouts/components/Tour';
 import { TYPE_SEARCH } from './constants';
 import { Tour as ITour } from '~/layouts/components/Tour/interface';
-import { getListTour } from '../actions';
+import { getListTour } from '~/layouts/components/Tour/actions';
+import { listTourSelector as storeListTour } from '~/layouts/components/Tour/selector';
 import style from '../styles.module.scss';
 const cx = classNames.bind(style);
 
 const Search = () => {
-    const listTourSelector = useSelector((state: any) => state.listTour);
+    const listTourSelector: Array<ITour[]> = useSelector(storeListTour);
     const dispatch = useDispatch();
-    const [favIdTours, setFavIdTours] = useState<any>(() => {
+    const [favIdTours, setFavIdTours] = useState<number[]>(() => {
         const parseLocal = JSON.parse(`${localStorage.getItem('favTours')}`);
         return parseLocal ?? [];
     });
-    const [listTour, setListTour] = useState<ITour[] | []>(listTourSelector);
+    const [listTour, setListTour] = useState<ITour[] | []>([]);
     const [searchValue, setSearchValue] = useState<string>('');
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [typeSearch, setTypeSearch] = useState<TYPE_SEARCH | null>(null);
@@ -36,11 +37,14 @@ const Search = () => {
         // When data search empty
         if (!debounced.trim()) {
             dispatch(getListTour());
+            setCurrentPage(1);
             return;
         }
 
+        const flatTours = listTourSelector.reduce((acc: ITour[], tours: ITour[]) => [...acc, ...tours], []);
+
         // When data search exist
-        const searchedTours = listTour.filter((tour: ITour) => {
+        const searchedTours = flatTours.filter((tour: ITour) => {
             if (typeSearch) {
                 return tour.place.includes(debounced) && tour.categories?.includes(typeSearch);
             }
@@ -116,7 +120,7 @@ const Search = () => {
                 </div>
                 {/* Select options */}
                 <select id={cx('select-tour')} name="" onChange={(e) => setTypeSearch(e.target.value as TYPE_SEARCH)}>
-                    <option value=""></option>
+                    <option value="">...</option>
                     <option value="Di tích lịch sử">Di tích lịch sử</option>
                     <option value="Sinh thái khám phá">Sinh thái khám phá</option>
                     <option value="Nghỉ dưỡng">Nghỉ dưỡng</option>

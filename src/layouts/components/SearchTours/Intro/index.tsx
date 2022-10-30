@@ -20,17 +20,17 @@ const Intro = () => {
                     <div className={cx('category-item')}>
                         <PagodaIcon />
                         <div className={cx('category-item__name')}>Lịch sử</div>
-                        <div className={cx('category-item__amount')}>3000</div>
+                        <div className={cx('category-item__amount')}></div>
                     </div>
                     <div className={cx('category-item')}>
                         <ForestIcon />
                         <div className={cx('category-item__name')}>Sinh thái</div>
-                        <div className={cx('category-item__amount')}>1400</div>
+                        <div className={cx('category-item__amount')}></div>
                     </div>
                     <div className={cx('category-item')}>
                         <BeachIcon />
                         <div className={cx('category-item__name')}>Nghỉ dưỡng</div>
-                        <div className={cx('category-item__amount')}>5123</div>
+                        <div className={cx('category-item__amount')}></div>
                     </div>
                 </div>
             </div>

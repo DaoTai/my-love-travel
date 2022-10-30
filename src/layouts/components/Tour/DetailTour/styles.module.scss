@@ -41,9 +41,10 @@
 .tour-image {
     width: 100%;
     height: 85vh;
+    overflow: hidden;
     object-fit: cover;
-    filter: contrast(110%);
     margin-bottom: 12px;
+    filter: contrast(110%);
 }
 .content-tour {
     display: flex;

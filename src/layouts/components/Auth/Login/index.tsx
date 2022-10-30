@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import classNames from 'classnames/bind';
-import * as Yup from 'yup';
 import { AuthContext } from '~/Contexts';
 import { Auth } from '~/Contexts/interface';
 import Spinner from '~/components/Spinner';
@@ -43,7 +42,7 @@ const Login: React.FC = () => {
             {showSpinner && <Spinner />}
             <div className={cx('container')}>
                 <h1 className={cx('heading')}>Love Travel</h1>
-                <h2 className={cx('sub-heading')}>Đăng nhập</h2>
+                {/* <h2 className={cx('sub-heading')}>Đăng nhập</h2> */}
                 {/* Form */}
                 <form onSubmit={handleSubmit} className={cx('login-form')} action="">
                     <div className={cx('form-group')}>
@@ -84,7 +83,7 @@ const Login: React.FC = () => {
                 </form>
                 <div className="d-flex justify-content-between">
                     <Link to="/auth/register">Đăng ký</Link>
-                    {/* <a href="/">Quên mật khẩu</a> */}
+                    <a href="*">Quên mật khẩu</a>
                 </div>
             </div>
         </div>

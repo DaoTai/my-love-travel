@@ -32,12 +32,14 @@ const Tour = ({ tour, onAddFavTour, favIdTours }: TourProps) => {
                     </Tippy>
                 </div>
                 {/* Content */}
-                <img
-                    className={cx('tour__image')}
-                    srcSet={tour.images ? tour.images[0] : DaLat}
-                    alt="tour-img"
-                    onClick={(e) => e.preventDefault()}
-                />
+                <div className={cx('tour__wrap-image')}>
+                    <img
+                        className={cx('tour__image')}
+                        srcSet={tour.images ? tour.images[0] : DaLat}
+                        alt="tour-img"
+                        onClick={(e) => e.preventDefault()}
+                    />
+                </div>
                 <div className={cx('tour__content')}>
                     <h3 className={cx('tour__name')}>{tour.name}</h3>
                     <h4 className={cx('tour__place')}>{tour.place}</h4>
