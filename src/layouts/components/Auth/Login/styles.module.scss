@@ -3,7 +3,7 @@
 // When focus input
 @mixin muatedLabel {
     transform: scale(1);
-    text-shadow: 4px 3px 3px rgba(0, 0, 0, 0.3);
+    // text-shadow: 4px 3px 3px rgba(0, 0, 0, 0.3);
     animation: showFromBottom 0.2s linear;
 }
 
@@ -72,9 +72,24 @@
         }
     }
     .login-form {
+        padding: 32px 20px 0;
         margin: 20px 0;
         width: 380px;
         max-width: 100%;
+        border-radius: 8px;
+        // background: var(--white);
+        &:focus-within {
+            box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.3);
+            background-color: var(--white);
+            label {
+                color: var(--text);
+            }
+            .form-input {
+                background-color: transparent;
+                box-shadow: none;
+                border-color: var(--text);
+            }
+        }
     }
     .form-group {
         padding: 12px 0;
@@ -137,7 +152,7 @@
         .error-msg {
             color: var(--primary);
             font-weight: 400;
-            text-shadow: 4px 4px 4px var(--text);
+            padding: 0 0 12px 12px;
         }
     }
 

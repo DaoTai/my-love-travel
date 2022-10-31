@@ -4,7 +4,7 @@ import SearchTours from '~/layouts/components/SearchTours';
 import DetailTour from '~/layouts/components/Tour/DetailTour';
 import Fragment from '~/components/Fragment';
 // import about Auth
-import { Login, Register } from '~/layouts/components/Auth';
+import { Login, Register, ConfirmAccount, ConfirmOTP } from '~/layouts/components/Auth';
 //import about User
 import { Profile, PrivateTours, Coin, FavouriteTours } from '~/layouts/user/components';
 
@@ -39,6 +39,14 @@ const authRoutes: Array<Route> = [
     {
         path: 'auth/register',
         component: Register,
+    },
+    {
+        path: 'auth/confirm-account',
+        component: ConfirmAccount,
+    },
+    {
+        path: 'auth/confirm-OTP',
+        component: ConfirmOTP,
     },
 ];
 

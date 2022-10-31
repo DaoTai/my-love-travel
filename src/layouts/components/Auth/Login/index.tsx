@@ -83,7 +83,7 @@ const Login: React.FC = () => {
                 </form>
                 <div className="d-flex justify-content-between">
                     <Link to="/auth/register">Đăng ký</Link>
-                    <a href="*">Quên mật khẩu</a>
+                    <Link to="/auth/confirm-account">Quên mật khẩu</Link>
                 </div>
             </div>
         </div>

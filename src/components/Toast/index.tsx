@@ -1,7 +1,7 @@
 import { memo, useState, useRef, useLayoutEffect } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faClose, faInfo, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faCircleExclamation, faInfoCircle, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { ToastData } from './interface';
 import styles from './styles.module.scss';
 import { STATUS_ICON } from './constants';
@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 export const Status: Record<STATUS_ICON, Object> = {
     [STATUS_ICON.SUCCESS]: (
         <span className={cx('icon-status--success')}>
-            <FontAwesomeIcon icon={faCheck} />
+            <FontAwesomeIcon icon={faCheckCircle} />
         </span>
     ),
     [STATUS_ICON.ERROR]: (
@@ -21,7 +21,7 @@ export const Status: Record<STATUS_ICON, Object> = {
     ),
     [STATUS_ICON.WARNING]: (
         <span className={cx('icon-status--warning')}>
-            <FontAwesomeIcon icon={faInfo} />
+            <FontAwesomeIcon icon={faInfoCircle} />
         </span>
     ),
 };
@@ -32,7 +32,7 @@ const Toast = ({ status = Status.error, show, title = 'Thông báo', text = '...
     const toastContainerRef = useRef<HTMLHeadingElement>(Object(null));
     const handleCloseToast = () => {
         const timeHide = 1500;
-        toastContainerRef.current.animate([{ opacity: 0.3 }, { transform: 'translateX(250%)' }], {
+        toastContainerRef?.current.animate([{ opacity: 0.3 }, { transform: 'translateX(250%)' }], {
             duration: timeHide,
         });
         onHide ? setTimeout(() => onHide(), timeHide) : setTimeout(() => setShow(false), timeHide);

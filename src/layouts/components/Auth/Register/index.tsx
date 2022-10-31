@@ -11,7 +11,7 @@ import { init, registerOptions } from './config';
 import style from './styles.module.scss';
 const cx = classNames.bind(style);
 
-const Register = () => {
+const Register: React.FC = () => {
     const [provinces, setProvinces] = useState<any[]>([{ name: '' }]);
     const [showToast, setShowToast] = useState<boolean>(false);
     const [contentToast, setContentToast] = useState<Partial<ToastData>>({
