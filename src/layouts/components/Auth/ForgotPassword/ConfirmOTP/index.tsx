@@ -27,7 +27,7 @@ const ConfirmOTP: React.FC = () => {
                 title: 'Thành công',
                 show: showToast,
                 status: Status.success,
-                text: 'Mật khẩu mới sắp được gửi',
+                text: 'Mật khẩu mới đã được gửi',
                 onHide: () => {
                     setShowToast(false);
                 },

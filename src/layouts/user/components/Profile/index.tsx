@@ -1,38 +1,41 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
+import Tippy from '@tippyjs/react';
+import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames/bind';
 import { useFormik } from 'formik';
-import Tippy from '@tippyjs/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKey } from '@fortawesome/free-solid-svg-icons';
 import { profile as profileData } from '~/data';
 import { updateProfileOptions } from './config';
-import { Avatar } from './interface';
+import { Avatar, Profile as IProfile } from './interface';
+import { profileSelector as profileStore } from './selectors';
+import { getProfile, updateProfile } from './actions';
+import { ToastData } from '~/components/Toast/interface';
 import NewPassword from './NewPassword';
 import Toast, { Status } from '~/components/Toast';
-import { ToastData } from '~/components/Toast/interface';
 import styles from './styles.module.scss';
 const cx = classNames.bind(styles);
 
 const Profile = () => {
+    const profileSelector: any = useSelector(profileStore);
+    const dispatch = useDispatch();
     const [showToast, setShowToast] = useState<boolean>(false);
-    const [profile, setProfile] = useState(profileData);
-    const [avatar, setAvatar] = useState(profileData.avatar as Avatar);
+    const [avatar, setAvatar] = useState(Object(null));
     const [showNewPasswordModal, setshowNewPasswordModal] = useState<boolean>(false);
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue } = useFormik({
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue, setValues } = useFormik({
         initialValues: {
-            avatar: profile.avatar,
-            fullName: profile.fullName,
-            gender: profile.gender,
-            dob: profile.dob,
-            address: profile.address,
-            email: profile.email,
-            phone: profile.phone,
+            avatar: '',
+            fullName: '',
+            gender: '',
+            dob: '',
+            address: '',
+            email: '',
+            phone: '',
         },
         validationSchema: updateProfileOptions,
         onSubmit: (values) => {
             setShowToast(true);
-            setProfile((prev) => ({ ...prev, values }));
-            console.log('Values: ', values);
+            dispatch(updateProfile(values as IProfile));
         },
     });
 
@@ -41,7 +44,7 @@ const Profile = () => {
         const file = e.target.files[0];
         file.pre = URL.createObjectURL(file);
         setAvatar(file);
-        setFieldValue('avatar', file);
+        setFieldValue('avatar', file.pre);
         e.target.value = null;
     };
 
@@ -70,8 +73,26 @@ const Profile = () => {
         };
     }, [showToast]);
 
+    // Dispatch get data
     useEffect(() => {
-        console.log('Callback');
+        dispatch(getProfile());
+    }, []);
+
+    // Set values when profileSelector change
+    useEffect(() => {
+        setValues({
+            avatar: profileSelector.avatar,
+            fullName: profileSelector.fullName,
+            gender: profileSelector.gender,
+            dob: profileSelector.dob,
+            address: profileSelector.address,
+            email: profileSelector.email,
+            phone: profileSelector.phone,
+        });
+    }, [profileSelector]);
+
+    // When change avatar
+    useEffect(() => {
         return () => {
             avatar.pre && URL.revokeObjectURL(avatar.pre);
         };

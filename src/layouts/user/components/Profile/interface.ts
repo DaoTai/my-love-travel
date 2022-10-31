@@ -1,3 +1,8 @@
+export interface Action {
+    type: string;
+    payload: Profile;
+}
+
 export interface Profile {
     id: number;
     avatar: string;

@@ -1,3 +1,8 @@
+export interface Action {
+    type: string;
+    payload: Tour[];
+}
+
 export interface Tour {
     id: number;
     name: string;

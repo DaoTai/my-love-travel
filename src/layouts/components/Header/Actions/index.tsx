@@ -10,6 +10,7 @@ import {
     faCoins,
     faArrowRightToBracket,
     faHeartCircleBolt,
+    faMoneyBillTransfer,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '~/Contexts';
 import classNames from 'classnames/bind';
@@ -63,9 +64,9 @@ const Actions = () => {
                                 <FontAwesomeIcon icon={faMap} />
                             </Link>
                         </Tippy>
-                        <Tippy duration={[300, 250]} content="Coins" placement="left">
-                            <Link className={cx('action')} to="/user/coin">
-                                <FontAwesomeIcon icon={faCoins} />
+                        <Tippy duration={[300, 250]} content="Lịch sử giao dịch" placement="left">
+                            <Link className={cx('action')} to="/user/history">
+                                <FontAwesomeIcon icon={faMoneyBillTransfer} />
                             </Link>
                         </Tippy>
                         <Tippy duration={[300, 250]} content="Tour yêu thích" placement="left">

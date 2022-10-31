@@ -15,7 +15,7 @@ function* getListTourSaga(): Generator {
     }
 }
 
-function* listTourSaga() {
+function* listTourSaga(): Generator {
     yield takeLatest(TYPE.GET_LIST_TOUR, getListTourSaga);
 }
 

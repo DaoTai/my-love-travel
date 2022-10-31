@@ -1,5 +1,5 @@
 import { TYPE } from './constants';
-import { Action } from '~/Redux-Saga/Redux/interface';
+import { Action } from './interface';
 
 const listTourReducer = (state = [], action: Action) => {
     switch (action.type) {
