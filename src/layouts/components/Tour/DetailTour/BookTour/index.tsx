@@ -6,16 +6,7 @@ import Toast, { Status } from '~/components/Toast';
 import { Tour } from '../../interface';
 import style from './styles.module.scss';
 const cx = classNames.bind(style);
-// const tour = {
-//     id: 1,
-//     name: 'Penth house Đà Lạt',
-//     place: 'Lâm Đồng',
-//     price: 1350000,
-//     limit: 50,
-//     currentCustomers: 40,
-//     start: new Date(),
-//     end: new Date(),
-// };
+
 const BookTour = ({ tour }: { tour: Tour }) => {
     const [showToast, setShowToast] = useState<boolean>(false);
     const [amount, setAmount] = useState<number>(0);
@@ -78,10 +69,13 @@ const BookTour = ({ tour }: { tour: Tour }) => {
                     </span>
                 </p>
                 <p>
-                    Thời gian khởi hành: <span className={cx('tour-start')}>{timeStart}</span>
+                    Giờ khởi hành: <span className={cx('tour-start')}>{tour.hourStart}</span>
                 </p>
                 <p>
-                    Thời gian kết thúc: <span className={cx('tour-end')}>{timeEnd}</span>
+                    Ngày khởi hành: <span className={cx('tour-start')}>{timeStart}</span>
+                </p>
+                <p>
+                    Ngày kết thúc: <span className={cx('tour-end')}>{timeEnd}</span>
                 </p>
                 <p>
                     Tổng:

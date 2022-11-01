@@ -47,7 +47,15 @@ root.render(
                             <Route path="/" element={<App />}>
                                 {userRoutes?.map((route, i) => {
                                     const Page = route.component;
-                                    return <Route key={i} path={route.path} element={<Page />} />;
+                                    const children = route.children;
+                                    return (
+                                        <Route key={i} path={route.path} element={<Page />}>
+                                            {children?.map((child, i) => {
+                                                const ChildrenPage = child.component;
+                                                return <Route key={i} path={child.path} element={<ChildrenPage />} />;
+                                            })}
+                                        </Route>
+                                    );
                                 })}
                             </Route>
 

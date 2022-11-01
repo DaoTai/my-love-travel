@@ -6,7 +6,7 @@ import Fragment from '~/components/Fragment';
 // import about Auth
 import { Login, Register, ConfirmAccount, ConfirmOTP } from '~/layouts/components/Auth';
 //import about User
-import { Profile, PrivateTours, History, FavouriteTours } from '~/layouts/user/components';
+import { Profile, PrivateTours, History, FavouriteTours, DetailPrivateTour } from '~/layouts/user/components';
 
 // Public routes
 const publicRoutes: Array<Route> = [
@@ -59,6 +59,12 @@ const userRoutes: Array<Route> = [
     {
         path: 'user/private-tours',
         component: PrivateTours,
+        // children: [
+        //     {
+        //         path: 'detail-private-tour/:id',
+        //         component: DetailPrivateTour,
+        //     },
+        // ],
     },
     {
         path: 'user/history',

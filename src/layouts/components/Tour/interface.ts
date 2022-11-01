@@ -10,6 +10,7 @@ export interface Tour {
     categories: string[];
     images: string[];
     price: number;
+    hourStart?: string;
     timeStart: Date;
     timeEnd: Date;
     intro: string;
@@ -17,6 +18,8 @@ export interface Tour {
     status: 'Activing' | 'Ending' | 'Pending';
     limit: number;
     currentCustomers: number;
+    guide?: string;
+    bookedTours?: number;
 }
 
 export interface TourProps {

@@ -10,6 +10,7 @@ export const tours: Array<Tour[]> = [
             place: 'Lâm Đồng',
             price: 1350000,
             timeStart: new Date(),
+            hourStart: '9h45',
             timeEnd: new Date(),
             images: [
                 'https://disantrangan.vn/wp-content/uploads/2021/02/du-lich-da-lat-19-700x450.jpg',
@@ -34,6 +35,7 @@ export const tours: Array<Tour[]> = [
             place: 'Ba Đình - Hoàn Kiếm',
             price: 380000,
             timeStart: new Date(),
+            hourStart: '9h45',
             timeEnd: new Date(2022, 11, 24),
             images: [
                 'https://img4.thuthuatphanmem.vn/uploads/2020/08/27/hinh-nen-pho-ha-noi-hien-dai_054024464.jpg',
@@ -50,6 +52,7 @@ export const tours: Array<Tour[]> = [
             place: 'Hà Nam',
             price: 580000,
             timeStart: new Date(),
+            hourStart: '9h45',
             timeEnd: new Date(),
             status: 'Activing',
             images: [
@@ -69,6 +72,7 @@ export const tours: Array<Tour[]> = [
             place: 'Hoà Bình',
             price: 280000,
             timeStart: new Date(),
+            hourStart: '9h45',
             timeEnd: new Date(),
             status: 'Activing',
             images: [
@@ -87,6 +91,7 @@ export const tours: Array<Tour[]> = [
             place: 'Khánh Hoà',
             price: 3350000,
             timeStart: new Date(),
+            hourStart: '9h45',
             timeEnd: new Date(),
             status: 'Activing',
             limit: 50,
@@ -108,6 +113,7 @@ export const tours: Array<Tour[]> = [
             place: 'Đồng Hới, Quảng Bình',
             price: 500000,
             timeStart: new Date(),
+            hourStart: '9h45',
             timeEnd: new Date(2022, 11, 24),
             images: [
                 'https://www.quangbinhtravel.vn/wp-content/uploads/2019/06/phong-nha-10.jpg',
@@ -123,6 +129,7 @@ export const tours: Array<Tour[]> = [
             place: 'Phú Quốc',
             price: 5800000,
             timeStart: new Date(),
+            hourStart: '9h45',
             timeEnd: new Date(),
             status: 'Activing',
             limit: 50,
@@ -141,6 +148,7 @@ export const tours: Array<Tour[]> = [
             place: 'Hạ Long, Quảng Ninh',
             price: 480000,
             timeStart: new Date(),
+            hourStart: '9h45',
             timeEnd: new Date(),
             status: 'Activing',
             images: [
@@ -159,6 +167,7 @@ export const tours: Array<Tour[]> = [
             place: 'Ninh Bình',
             price: 1450000,
             timeStart: new Date(),
+            hourStart: '9h45',
             timeEnd: new Date(),
             images: [
                 'https://wecheckin.vn/wp-content/uploads/2021/02/trang-an-ninh-binh-wecheckin.jpg',
@@ -183,6 +192,7 @@ export const tours: Array<Tour[]> = [
             place: 'Ba Đình - Hoàn Kiếm',
             price: 380000,
             timeStart: new Date(2022, 10, 24),
+            hourStart: '9h45',
             timeEnd: new Date(2022, 11, 26),
             images: [
                 'https://img4.thuthuatphanmem.vn/uploads/2020/08/27/hinh-nen-pho-ha-noi-hien-dai_054024464.jpg',
@@ -199,6 +209,7 @@ export const tours: Array<Tour[]> = [
             place: 'Hà Nam',
             price: 580000,
             timeStart: new Date(),
+            hourStart: '9h45',
             timeEnd: new Date(),
             status: 'Activing',
             images: [
@@ -218,6 +229,7 @@ export const tours: Array<Tour[]> = [
             place: 'Hoà Bình',
             price: 280000,
             timeStart: new Date(),
+            hourStart: '9h45',
             timeEnd: new Date(),
             status: 'Activing',
             images: [
@@ -236,6 +248,7 @@ export const tours: Array<Tour[]> = [
             place: 'Khánh Hoà',
             price: 3350000,
             timeStart: new Date(),
+            hourStart: '9h45',
             timeEnd: new Date(),
             status: 'Activing',
             limit: 50,
@@ -257,6 +270,7 @@ export const tours: Array<Tour[]> = [
             place: 'Đồng Hới, Quảng Bình',
             price: 500000,
             timeStart: new Date(),
+            hourStart: '9h45',
             timeEnd: new Date(2022, 11, 24),
             images: [
                 'https://www.quangbinhtravel.vn/wp-content/uploads/2019/06/phong-nha-10.jpg',
@@ -272,6 +286,7 @@ export const tours: Array<Tour[]> = [
             place: 'Phú Quốc',
             price: 5800000,
             timeStart: new Date(),
+            hourStart: '9h45',
             timeEnd: new Date(),
             status: 'Activing',
             limit: 50,
@@ -290,6 +305,7 @@ export const tours: Array<Tour[]> = [
             place: 'Hạ Long, Quảng Ninh',
             price: 480000,
             timeStart: new Date(),
+            hourStart: '9h45',
             timeEnd: new Date(),
             status: 'Activing',
             images: [
@@ -301,6 +317,73 @@ export const tours: Array<Tour[]> = [
             categories: ['Sinh thái khám phá', 'Nghỉ dưỡng'],
         },
     ],
+];
+
+// Private tour
+export const privateTours: Tour[] = [
+    {
+        id: 5,
+        intro: 'Bãi biển xanh cát trắng',
+        utilities: [],
+        name: 'Nha Trang',
+        place: 'Khánh Hoà',
+        price: 3350000,
+        timeStart: new Date(),
+        hourStart: '9h45',
+        timeEnd: new Date(),
+        status: 'Activing',
+        limit: 50,
+        images: [
+            'https://image.thanhnien.vn/w1024/Uploaded/2022/bfznsfyr-bn/2022_03_27/the-aston-residence-1-7474.jpg',
+            'http://xaviahotel.com/vnt_upload/news/11_2017/nha-trang_1.jpg',
+        ],
+        currentCustomers: 40,
+        categories: ['Nghỉ dưỡng'],
+        guide: 'Đào Tài',
+        bookedTours: 2,
+    },
+    {
+        id: 8,
+        intro: 'Vịnh Hạ Long được UNESCO công nhận là di sản thiên nhiên thế giới',
+        utilities: ['1 chai nước Lavie', '1 tấm bản đồ du lịch', '2 món quà lưu niệm'],
+        name: 'Vịnh Hạ Long',
+        place: 'Hạ Long, Quảng Ninh',
+        price: 480000,
+        timeStart: new Date(),
+        hourStart: '9h45',
+        timeEnd: new Date(),
+        status: 'Activing',
+        images: [
+            'http://halongcity.gov.vn/ckfinder/userfiles/images/2022/05/Loan/hanh/ltdl%20vinh%20HL.jpg',
+            'https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2020/02/vinh-ha-long-1.jpg',
+        ],
+        limit: 50,
+        currentCustomers: 40,
+        categories: ['Sinh thái khám phá', 'Nghỉ dưỡng'],
+        guide: 'Đào Tài',
+        bookedTours: 2,
+    },
+    {
+        id: 1,
+        name: 'Penth house Đà Lạt',
+        place: 'Lâm Đồng',
+        price: 1350000,
+        timeStart: new Date(),
+        hourStart: '9h45',
+        timeEnd: new Date(),
+        images: [
+            'https://disantrangan.vn/wp-content/uploads/2021/02/du-lich-da-lat-19-700x450.jpg',
+            'https://cdn.pixabay.com/photo/2018/07/16/16/08/island-3542290_1280.jpg',
+            'https://cdn.pixabay.com/photo/2018/10/02/16/12/nature-3719233_1280.jpg',
+        ],
+        status: 'Activing',
+        limit: 50,
+        currentCustomers: 40,
+        categories: ['Nghỉ dưỡng'],
+        intro: 'Đà Lạt vẫn thuộc tỉnh Lâm Đồng',
+        utilities: ['1 chai nước Lavie', '1 tấm bản đồ du lịch', '2 món quà lưu niệm'],
+        bookedTours: 4,
+    },
 ];
 
 // Account

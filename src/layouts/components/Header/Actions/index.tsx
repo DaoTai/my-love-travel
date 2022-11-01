@@ -31,6 +31,10 @@ const Actions = () => {
         localStorage.removeItem('account');
     };
 
+    const handleHideShow = () => {
+        setShow(!isShow);
+    };
+
     // AuthContext is exist
     if (!authContext.auth && !localAccount) {
         return (
@@ -55,22 +59,22 @@ const Actions = () => {
                 render={(attrs) => (
                     <div className={cx('actions')} {...attrs}>
                         <Tippy duration={[300, 250]} content="Tài khoản" placement="left">
-                            <Link className={cx('action')} to="/user/profile">
+                            <Link className={cx('action')} to="/user/profile" onClick={handleHideShow}>
                                 <FontAwesomeIcon icon={faUserAstronaut} />
                             </Link>
                         </Tippy>
                         <Tippy duration={[300, 250]} content="Tours của bạn" placement="left">
-                            <Link className={cx('action')} to="/user/private-tours">
+                            <Link className={cx('action')} to="/user/private-tours" onClick={handleHideShow}>
                                 <FontAwesomeIcon icon={faMap} />
                             </Link>
                         </Tippy>
                         <Tippy duration={[300, 250]} content="Lịch sử giao dịch" placement="left">
-                            <Link className={cx('action')} to="/user/history">
+                            <Link className={cx('action')} to="/user/history" onClick={handleHideShow}>
                                 <FontAwesomeIcon icon={faMoneyBillTransfer} />
                             </Link>
                         </Tippy>
                         <Tippy duration={[300, 250]} content="Tour yêu thích" placement="left">
-                            <Link className={cx('action')} to="/user/favourite-tours">
+                            <Link className={cx('action')} to="/user/favourite-tours" onClick={handleHideShow}>
                                 <FontAwesomeIcon icon={faHeartCircleBolt} />
                             </Link>
                         </Tippy>
