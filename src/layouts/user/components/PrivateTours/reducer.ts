@@ -1,12 +1,14 @@
 import { TYPE } from './constants';
-import { Action } from '~/layouts/components/Tour/interface';
+import { Action } from './interface';
 
 const privateToursReducer = (state = [], action: Action) => {
     switch (action.type) {
         case TYPE.GET_PRIVATE_TOURS:
             return [...state];
         case TYPE.GET_PRIVATE_TOURS_SUCCESS:
-            return [...action.payload];
+            return [...(action.payload as [])];
+        case TYPE.DELETE_PRIVATE_TOUR:
+            return action.payload;
         default:
             return state;
     }

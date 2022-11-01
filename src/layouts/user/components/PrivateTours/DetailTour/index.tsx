@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import className from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,6 +21,15 @@ const DetailPrivateTour = ({ tour, onHide }: DetailPrivateTourProps) => {
         (Number(tour?.timeEnd.getUTCMonth()) + 1) +
         '/' +
         tour?.timeEnd.getUTCFullYear();
+    useEffect(() => {
+        const handleHide = (e: any) => {
+            e.which === 27 && onHide();
+        };
+        window.addEventListener('keydown', handleHide);
+        return () => {
+            window.removeEventListener('keydown', handleHide);
+        };
+    }, []);
     return (
         <div id={cx('detail-private-tour')}>
             <div className={cx('modal')}>

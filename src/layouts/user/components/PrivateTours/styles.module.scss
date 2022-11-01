@@ -26,6 +26,12 @@
             background-color: azure;
         }
     }
+    tr:nth-child(even) {
+        background-color: #f5f5f5;
+        &:hover {
+            background-color: azure;
+        }
+    }
     td {
         text-align: center;
         padding: 12px 0;

@@ -1,12 +1,27 @@
-import { memo } from 'react';
+import { memo, useEffect, ChangeEvent } from 'react';
+import { useDispatch } from 'react-redux';
 import className from 'classnames/bind';
+import { deletePrivateTour } from '../actions';
 import { CanceledTourProps } from './interface';
 import styles from './styles.module.scss';
 const cx = className.bind(styles);
 
 const CanceledTour = ({ id, name, onHide }: CanceledTourProps) => {
-    console.log('Id: ', id);
+    const dispatch = useDispatch();
 
+    const handleDeleteTour = () => {
+        dispatch(deletePrivateTour(id));
+        onHide();
+    };
+    useEffect(() => {
+        const handleHide = (e: any) => {
+            e.which === 27 && onHide();
+        };
+        window.addEventListener('keydown', handleHide);
+        return () => {
+            window.removeEventListener('keydown', handleHide);
+        };
+    }, []);
     return (
         <div id={cx('cancel-tour')}>
             <div className={cx('modal-cancel-tour')}>
@@ -21,7 +36,9 @@ const CanceledTour = ({ id, name, onHide }: CanceledTourProps) => {
                         <button className={cx('close-btn')} onClick={onHide}>
                             Thoát
                         </button>
-                        <button className={cx('execute-btn')}> Tôi đồng ý</button>
+                        <button className={cx('execute-btn')} onClick={handleDeleteTour}>
+                            Tôi đồng ý
+                        </button>
                     </div>
                 </div>
             </div>

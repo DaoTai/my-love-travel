@@ -12,3 +12,19 @@ export const getPrivateToursSuccess = (payload: Tour) => {
         payload,
     };
 };
+
+export const deletePrivateTour = (payload: number) => {
+    return {
+        type: TYPE.DELETE_PRIVATE_TOUR,
+        payload,
+    };
+};
+
+export const deletePrivateTourSuccess = (result: string) => {
+    console.log('Result: ', result);
+
+    return {
+        type: TYPE.DELETE_PRIVATE_TOUR_SUCCESS,
+        status: result,
+    };
+};

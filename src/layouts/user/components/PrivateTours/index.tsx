@@ -60,16 +60,12 @@ const PrivateTours = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {privateTours.map((tour: Tour, index) => {
+                        {privateTours.map((tour: Tour, index: number) => {
                             const { id, name, place, timeStart } = tour;
-                            const timeStartFormat =
-                                tour.hourStart +
-                                'h: ' +
-                                timeStart.getUTCDate() +
-                                '/' +
-                                (timeStart.getUTCMonth() + 1) +
-                                '/' +
-                                timeStart.getUTCFullYear();
+                            const timeStartFormat = `(${tour.hourStart})  ${timeStart.getUTCDate()}/${
+                                timeStart.getUTCMonth() + 1
+                            }/${timeStart.getUTCFullYear()}`;
+
                             return (
                                 <tr key={id}>
                                     <td>{index + 1}</td>
