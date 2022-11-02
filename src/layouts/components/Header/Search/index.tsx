@@ -84,7 +84,6 @@ const Search: React.FC = () => {
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
                     onFocus={() => setShowResult(true)}
-                    onBlur={() => setListSearchTour([])}
                 />
                 <button id={cx('icon-search')}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />

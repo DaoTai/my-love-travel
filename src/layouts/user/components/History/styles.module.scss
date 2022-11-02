@@ -16,6 +16,7 @@
     padding: 12px 12px;
     width: 500px;
     max-width: 100%;
+    line-height: 1.8;
     border: 1px solid transparent;
     border-radius: 8px;
     box-shadow: 1px 1px 4px rgb(0 0 0 / 30%);
@@ -28,18 +29,35 @@
     }
     .bill-icon {
         font-size: 3.2rem;
-        color: var(--success);
+        color: var(--error);
         display: block;
         transition: all 0.3s ease-in;
         &:hover {
             opacity: 0.8;
             transform: rotate(180deg);
         }
+        &.booked {
+            color: var(--success);
+        }
     }
     .bill-text {
         .bill-time {
+            font-weight: 400;
         }
         .bill-content {
+            .bill-name-tour {
+                font-size: 1.7rem;
+                letter-spacing: 1px;
+                color: var(--primary);
+                text-decoration: underline;
+            }
+        }
+        .bill-total {
+            color: var(--error);
+            font-weight: 600;
+            &.booked {
+                color: var(--success);
+            }
         }
     }
 }

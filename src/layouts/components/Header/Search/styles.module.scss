@@ -63,17 +63,18 @@ $primaryColor: #ff385c;
 }
 
 .search-result {
-    display: flex;
     flex-direction: column;
     width: 100%;
     min-width: 300px;
     max-height: min(50vh);
     overflow: overlay;
     border-radius: 8px;
-    background-color: transparent;
+    display: none;
     box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
     padding: 8px;
     &.exist {
+        display: flex;
+
         background-color: rgb(255, 255, 255);
     }
 }
@@ -90,6 +91,9 @@ $primaryColor: #ff385c;
     &:hover {
         background-color: rgba(107, 108, 114, 0.12);
         border-radius: 6px;
+    }
+    & + .tour-item {
+        margin-top: 8px;
     }
     .tour-item__img {
         width: 52px;

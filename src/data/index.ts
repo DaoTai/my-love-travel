@@ -1,6 +1,7 @@
 import { Tour } from '~/layouts/components/Tour/interface';
 import { Comment } from '~/layouts/components/Tour/interface';
 import { Profile } from '~/layouts/user/components/Profile/interface';
+import { PrivateBill } from '~/layouts/user/components/History/interface';
 // Tour
 export const tours: Array<Tour[]> = [
     [
@@ -54,7 +55,7 @@ export const tours: Array<Tour[]> = [
             timeStart: new Date(),
             hourStart: '9h45',
             timeEnd: new Date(),
-            status: 'Activing',
+            status: 'Ending',
             images: [
                 'https://img5.thuthuatphanmem.vn/uploads/2022/01/16/hinh-anh-chua-tam-chuc-dep-tuyet_031724605.png',
                 'https://img5.thuthuatphanmem.vn/uploads/2022/01/16/anh-chua-tam-chuc-nghe-thuat_031721357.jpg',
@@ -461,5 +462,44 @@ export const comments: Comment[] = [
         nameAccount: 'Thành Cry',
         comment: 'Ra gì đấy !!',
         time: '6 phút trước',
+    },
+];
+
+// Private bills
+export const privateBills: PrivateBill[] = [
+    {
+        id: 1,
+        idTour: 1,
+        idAccount: 1,
+        status: 'Đặt tour',
+        date: new Date('2022-10-17T03:24:00'),
+    },
+    {
+        id: 2,
+        idTour: 5,
+        idAccount: 1,
+        status: 'Đặt tour',
+        date: new Date('2022-10-17T03:24:00'),
+    },
+    {
+        id: 3,
+        idTour: 8,
+        idAccount: 1,
+        status: 'Đặt tour',
+        date: new Date('2022-10-17T03:24:00'),
+    },
+    {
+        id: 4,
+        idTour: 8,
+        idAccount: 1,
+        status: 'Huỷ tour',
+        date: new Date('2022-10-18'),
+    },
+    {
+        id: 5,
+        idTour: 8,
+        idAccount: 3,
+        status: 'Huỷ tour',
+        date: new Date('2022-10-18T03:24:00'),
     },
 ];

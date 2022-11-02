@@ -23,10 +23,12 @@ const BookTour = ({ tour }: { tour: Tour }) => {
 
     // toastOptions
     const toastOptions = useMemo(() => {
+        const endingTourMessage = tour.status === 'Ending' && 'Tour đã kết thúc';
         return {
             show: showToast,
-            text: amount ? 'Đặt tour thành công' : 'Đặt tour thất bại',
-            status: amount ? Status.success : Status.error,
+            text:
+                amount && tour.status === 'Activing' ? 'Đặt tour thành công' : endingTourMessage || 'Đặt tour thất bại',
+            status: amount && tour.status === 'Activing' ? Status.success : Status.error,
             onHide: hideToast,
         };
     }, [showToast]);
