@@ -1,0 +1,22 @@
+.body {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: calc(var(--height-header-layout) + 12px);
+    .nav-bar {
+        max-width: 15%;
+        flex: 1 1 15%;
+        position: fixed;
+        z-index: 1;
+        top: var(--height-header-layout);
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #091023;
+        box-shadow: 4px 0 4px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s linear;
+    }
+    .container {
+        max-width: 80%;
+        flex: 1 1 80%;
+    }
+}

@@ -5,8 +5,9 @@ import { Provider } from 'react-redux';
 import GlobalStyles from '~/components/GlobalStyles';
 import { AuthProvider } from '~/Provider';
 import App from '~/App';
-import { publicRoutes, authRoutes, userRoutes } from '~/routes';
+import { publicRoutes, authRoutes, userRoutes, adminRoutes } from '~/routes';
 import { Home, ErrorPage } from '~/layouts/components';
+import { Admin } from '~/layouts/admin/components';
 import store from './Redux-Saga/Redux/store';
 import reportWebVitals from './reportWebVitals';
 
@@ -18,13 +19,15 @@ root.render(
                 <GlobalStyles>
                     <Router>
                         <Routes>
-                            {/* Auth page */}
-                            {authRoutes?.map((route, i) => {
-                                const Page = route.component;
-                                return <Route key={i} path={route.path} element={<Page />} />;
-                            })}
+                            {/* Auth pages */}
+                            <Route path="/auth">
+                                {authRoutes?.map((route, i) => {
+                                    const Page = route.component;
+                                    return <Route key={i} path={route.path} element={<Page />} />;
+                                })}
+                            </Route>
 
-                            {/* Public page */}
+                            {/* Public pages */}
                             <Route path="/" element={<App />}>
                                 {publicRoutes?.map((route, i) => {
                                     const Page = route.component;
@@ -43,8 +46,8 @@ root.render(
                                 <Route index element={<Home />} />
                             </Route>
 
-                            {/* User page */}
-                            <Route path="/" element={<App />}>
+                            {/* User pages */}
+                            <Route path="/user" element={<App />}>
                                 {userRoutes?.map((route, i) => {
                                     const Page = route.component;
                                     const children = route.children;
@@ -59,6 +62,13 @@ root.render(
                                 })}
                             </Route>
 
+                            {/* Admin pages */}
+                            <Route path="/admin" element={<Admin />}>
+                                {adminRoutes.map((route, i) => {
+                                    const Page = route.component;
+                                    return <Route key={i} path={route.path} element={<Page />}></Route>;
+                                })}
+                            </Route>
                             {/* Error page */}
                             <Route path="/*" element={<ErrorPage />} />
                         </Routes>

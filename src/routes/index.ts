@@ -7,7 +7,8 @@ import Fragment from '~/components/Fragment';
 import { Login, Register, ConfirmAccount, ConfirmOTP } from '~/layouts/components/Auth';
 //import about User
 import { Profile, PrivateTours, History, FavouriteTours, DetailPrivateTour } from '~/layouts/user/components';
-
+// import about Admin
+import { Admin, AccountCreator, Chart, ManageUsers, ManageTours } from '~/layouts/admin/components';
 // Public routes
 const publicRoutes: Array<Route> = [
     {
@@ -33,19 +34,19 @@ const publicRoutes: Array<Route> = [
 // Auth routes
 const authRoutes: Array<Route> = [
     {
-        path: 'auth/login',
+        path: 'login',
         component: Login,
     },
     {
-        path: 'auth/register',
+        path: 'register',
         component: Register,
     },
     {
-        path: 'auth/confirm-account',
+        path: 'confirm-account',
         component: ConfirmAccount,
     },
     {
-        path: 'auth/confirm-OTP',
+        path: 'confirm-OTP',
         component: ConfirmOTP,
     },
 ];
@@ -53,11 +54,11 @@ const authRoutes: Array<Route> = [
 // User routes
 const userRoutes: Array<Route> = [
     {
-        path: 'user/profile',
+        path: 'profile',
         component: Profile,
     },
     {
-        path: 'user/private-tours',
+        path: 'private-tours',
         component: PrivateTours,
         // children: [
         //     {
@@ -67,13 +68,33 @@ const userRoutes: Array<Route> = [
         // ],
     },
     {
-        path: 'user/history',
+        path: 'history',
         component: History,
     },
     {
-        path: 'user/favourite-tours',
+        path: 'favourite-tours',
         component: FavouriteTours,
     },
 ];
 
-export { publicRoutes, authRoutes, userRoutes };
+// Admin routes
+const adminRoutes: Array<Route> = [
+    {
+        path: 'chart',
+        component: Chart,
+    },
+    {
+        path: 'account-creator',
+        component: AccountCreator,
+    },
+    {
+        path: 'manage-tours',
+        component: ManageTours,
+    },
+    {
+        path: 'manage-users',
+        component: ManageUsers,
+    },
+];
+
+export { publicRoutes, authRoutes, userRoutes, adminRoutes };

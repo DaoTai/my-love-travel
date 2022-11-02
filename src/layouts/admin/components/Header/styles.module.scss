@@ -1,0 +1,63 @@
+.header {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--height-header-layout);
+    background-color: #091023;
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+    transition: all 0.3s linear;
+    nav {
+        height: 100%;
+        max-width: 100%;
+        flex-wrap: nowrap;
+        gap: 0 24px;
+        width: var(--width-header-layout);
+        margin: 0 auto;
+        padding: 0 4px;
+    }
+    .logo {
+        svg {
+            transition: filter 0.3s ease-in, transform 0.3s linear;
+            &:hover {
+                filter: contrast(150%);
+                transform: rotate(-45deg);
+            }
+        }
+    }
+    .title {
+        font-size: 4.2rem;
+        color: var(--white);
+        font-weight: 600;
+        font-family: 'Dancing Script';
+        transition: all 0.3s ease-out;
+        &:hover {
+            color: var(--primary);
+            cursor: default;
+        }
+    }
+    .wrap-btns {
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        a {
+            text-decoration: none;
+            color: var(--text);
+            padding: 6px 14px;
+            background-color: var(--white);
+            border-radius: 4px;
+            color: var(--primary);
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+            &:hover {
+                cursor: pointer;
+                background: var(--primary);
+                color: var(--white);
+                border-color: var(--primary);
+                opacity: 0.9;
+            }
+        }
+    }
+}
