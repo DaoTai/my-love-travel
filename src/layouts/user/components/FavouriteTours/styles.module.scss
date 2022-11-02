@@ -3,8 +3,16 @@
 }
 
 .wrap-list-fav-tour {
-    margin-top: 32px;
     display: flex;
     flex-wrap: wrap;
     gap: 36px 0;
+}
+
+.title {
+    font-size: 4.2rem;
+    font-family: 'Dancing Script';
+    font-weight: 600;
+    margin: 24px 0 12px;
+    position: relative;
+    text-align: center;
 }

@@ -45,6 +45,7 @@ const FavouriteTours = () => {
 
     return (
         <div className="main">
+            <h1 className={cx('title')}>Tour yêu thích</h1>
             <div className={cx('wrap-list-fav-tour')}>
                 {favTours.map((favTour: ITour) => {
                     return (

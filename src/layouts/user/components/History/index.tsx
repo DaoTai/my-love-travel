@@ -18,6 +18,7 @@ function History() {
     return (
         <div className="main">
             <div className={cx('container')}>
+                <h1 className={cx('title')}>Lịch sử giao dịch</h1>
                 <div className={cx('wrap-history')}>
                     {privateBills?.map((bill: PrivateBill) => {
                         const dateFormat =

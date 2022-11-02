@@ -47,6 +47,7 @@ const PrivateTours = () => {
         <div className="main">
             {/* Container */}
             <div className={cx('container')}>
+                <h1 className={cx('title')}>Tour của bạn</h1>
                 <table className={cx('table-private-tours')}>
                     <thead>
                         <tr>

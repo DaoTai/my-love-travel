@@ -42,54 +42,56 @@ const Search: React.FC = () => {
         setListSearchTour(searchedTours);
     }, [debounced]);
     return (
-        <HeadlessTippy
-            interactive
-            visible={showResult}
-            onClickOutside={() => setShowResult(false)}
-            render={(attrs) => (
-                <div
-                    className={cx('search-result', {
-                        exist: listSearchTour.length,
-                    })}
-                    {...attrs}
-                >
-                    {listSearchTour.map((tour) => {
-                        return (
-                            <Link key={tour.id} to={`tour/detail-tour/${tour.id}`} className={cx('tour-item')}>
-                                <img
-                                    className={cx('tour-item__img')}
-                                    src={tour.images && tour.images[0]}
-                                    alt="Ảnh tour"
-                                />
-                                <div className={cx('tour-item__content')}>
-                                    <h3 className={cx('tour-item__name')}>{tour.name}</h3>
-                                    <p>
-                                        Giá:
-                                        {tour.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
-                                    </p>
-                                </div>
-                            </Link>
-                        );
-                    })}
+        <div>
+            <HeadlessTippy
+                interactive
+                visible={showResult}
+                onClickOutside={() => setShowResult(false)}
+                render={(attrs) => (
+                    <div
+                        className={cx('search-result', {
+                            exist: listSearchTour.length,
+                        })}
+                        {...attrs}
+                    >
+                        {listSearchTour.map((tour) => {
+                            return (
+                                <Link key={tour.id} to={`tour/detail-tour/${tour.id}`} className={cx('tour-item')}>
+                                    <img
+                                        className={cx('tour-item__img')}
+                                        src={tour.images && tour.images[0]}
+                                        alt="Ảnh tour"
+                                    />
+                                    <div className={cx('tour-item__content')}>
+                                        <h3 className={cx('tour-item__name')}>{tour.name}</h3>
+                                        <p>
+                                            Giá:
+                                            {tour.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
+                                        </p>
+                                    </div>
+                                </Link>
+                            );
+                        })}
+                    </div>
+                )}
+            >
+                <div className={cx('wrap-search-input')}>
+                    <input
+                        type="search"
+                        name=""
+                        id={cx('search-input')}
+                        placeholder="Tìm kiếm..."
+                        autoComplete="off"
+                        value={searchValue}
+                        onChange={(e) => setSearchValue(e.target.value)}
+                        onFocus={() => setShowResult(true)}
+                    />
+                    <button id={cx('icon-search')}>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </button>
                 </div>
-            )}
-        >
-            <div className={cx('wrap-search-input')}>
-                <input
-                    type="search"
-                    name=""
-                    id={cx('search-input')}
-                    placeholder="Tìm kiếm..."
-                    autoComplete="off"
-                    value={searchValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
-                    onFocus={() => setShowResult(true)}
-                />
-                <button id={cx('icon-search')}>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                </button>
-            </div>
-        </HeadlessTippy>
+            </HeadlessTippy>
+        </div>
     );
 };
 
