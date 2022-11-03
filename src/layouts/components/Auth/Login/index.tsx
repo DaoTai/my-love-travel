@@ -11,8 +11,14 @@ const cx = classNames.bind(styles);
 
 const user: Auth = {
     id: '123',
-    username: 'Đào Tài',
+    username: 'user123',
     role: 'user',
+};
+
+const admin: Auth = {
+    id: '12',
+    username: 'admin123',
+    role: 'admin',
 };
 
 const Login: React.FC = () => {
@@ -23,12 +29,30 @@ const Login: React.FC = () => {
         initialValues: init,
         validationSchema: loginOptions,
         onSubmit: (values) => {
-            setShowSpinner(true);
-            setTimeout(() => {
+            console.log(values);
+            if (values.username === 'user123') {
                 context?.setAuth(user);
                 localStorage.setItem('account', JSON.stringify(user));
+            } else {
+                if (values.username === 'admin123') {
+                    context?.setAuth(admin);
+                    localStorage.setItem('account', JSON.stringify(admin));
+                } else {
+                    console.log('Hello');
+                }
+            }
+            setShowSpinner(true);
+            setTimeout(() => {
                 setShowSpinner(false);
-                navigate('/home');
+                if (context.auth?.role === 'admin') {
+                    navigate('/admin');
+                } else {
+                    if (context.auth?.role === 'user') {
+                        navigate('/home');
+                    } else {
+                        console.log(context.auth?.role);
+                    }
+                }
             }, 3000);
         },
     });

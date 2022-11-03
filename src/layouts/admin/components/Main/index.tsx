@@ -14,7 +14,6 @@ const Admin = () => {
                     <Navbar />
                 </div>
                 <div className={cx('container')}>
-                    Hello
                     <Outlet />
                 </div>
             </div>

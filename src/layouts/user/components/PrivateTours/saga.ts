@@ -7,7 +7,8 @@ import { Tour } from '~/layouts/components/Tour/interface';
 const getPrivateToursData = () => privateTours;
 
 const deletePrivateTourData = (id: number) => {
-    return privateTours.filter((tour) => tour.id !== id);
+    const newTours = privateTours;
+    return newTours.filter((tour) => tour.id !== id);
 };
 
 function* getPrivateToursSaga(): Generator {

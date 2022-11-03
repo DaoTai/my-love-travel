@@ -12,6 +12,7 @@ export const init: RegisterData = {
     username: '',
     password: '',
     repassword: '',
+    role: 'customer',
 };
 
 export const registerOptions = Yup.object().shape({

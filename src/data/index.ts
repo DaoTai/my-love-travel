@@ -2,6 +2,7 @@ import { Tour } from '~/layouts/components/Tour/interface';
 import { Comment } from '~/layouts/components/Tour/interface';
 import { Profile } from '~/layouts/user/components/Profile/interface';
 import { PrivateBill } from '~/layouts/user/components/History/interface';
+import { AccountUser } from '~/layouts/components/Auth/interface';
 // Tour
 export const tours: Array<Tour[]> = [
     [
@@ -501,5 +502,89 @@ export const privateBills: PrivateBill[] = [
         idAccount: 3,
         status: 'Huỷ tour',
         date: new Date('2022-10-18T03:24:00'),
+    },
+];
+
+// Data about admin
+// ===============================
+// List accounts
+export const customers: AccountUser[] = [
+    {
+        idUser: 1,
+        name: 'Rhymastic',
+        dob: '11/2/1991',
+        address: 'Hà Nội',
+        gender: 'Nam',
+        email: 'rhymastic@gmail.com',
+        phone: '0868940172',
+        idAccount: 1,
+        username: 'rhymastic123',
+        password: '123123',
+        role: 'customer',
+    },
+    {
+        idUser: 2,
+        name: 'Thanh Bảo',
+        dob: '24/10/2002',
+        address: 'Hồ Chí Minh',
+        gender: 'Nam',
+        email: 'bray@gmail.com',
+        phone: '0868940172',
+        idAccount: 2,
+        username: 'bray123',
+        password: '123123',
+        role: 'customer',
+    },
+    {
+        idUser: 3,
+        name: 'Hoàng Sang',
+        dob: '1/3/1997',
+        address: 'Đà Lạt',
+        gender: 'Nam',
+        email: 'rick@gmail.com',
+        phone: '0863340172',
+        idAccount: 3,
+        username: 'rick123',
+        password: '123123',
+        role: 'customer',
+    },
+    {
+        idUser: 4,
+        name: 'Hoàng Hà',
+        dob: '1/3/1997',
+        address: 'Đà Lạt',
+        gender: 'Nữ',
+        email: 'ha@gmail.com',
+        phone: '0863340172',
+        idAccount: 4,
+        username: 'ha123',
+        password: '123123',
+        role: 'admin',
+    },
+    {
+        idUser: 5,
+        name: 'Phan Linh',
+        dob: '15/3/1997',
+        address: 'Đà Lạt',
+        gender: 'Nữ',
+        email: 'ha@gmail.com',
+        phone: '0863340172',
+        idAccount: 5,
+        username: 'ha123',
+        password: '123123',
+        role: 'admin',
+    },
+    {
+        idUser: 6,
+        name: 'An Nhiên',
+        dob: '15/3/1997',
+        address: 'Đà Nẵng',
+        gender: 'Nữ',
+        email: 'nhien@gmail.com',
+        phone: '0863340172',
+        idAccount: 6,
+        username: 'ha123',
+        password: '123123',
+        role: 'admin',
     },
 ];

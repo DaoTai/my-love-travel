@@ -80,6 +80,10 @@ const userRoutes: Array<Route> = [
 // Admin routes
 const adminRoutes: Array<Route> = [
     {
+        path: '',
+        component: Chart,
+    },
+    {
         path: 'chart',
         component: Chart,
     },
