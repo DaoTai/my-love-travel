@@ -508,7 +508,7 @@ export const privateBills: PrivateBill[] = [
 // Data about admin
 // ===============================
 // List accounts
-export const customers: AccountUser[] = [
+export const users: AccountUser[] = [
     {
         idUser: 1,
         name: 'Rhymastic',
@@ -520,7 +520,7 @@ export const customers: AccountUser[] = [
         idAccount: 1,
         username: 'rhymastic123',
         password: '123123',
-        role: 'customer',
+        role: 'Khách hàng',
     },
     {
         idUser: 2,
@@ -533,7 +533,7 @@ export const customers: AccountUser[] = [
         idAccount: 2,
         username: 'bray123',
         password: '123123',
-        role: 'customer',
+        role: 'Khách hàng',
     },
     {
         idUser: 3,
@@ -546,7 +546,7 @@ export const customers: AccountUser[] = [
         idAccount: 3,
         username: 'rick123',
         password: '123123',
-        role: 'customer',
+        role: 'Khách hàng',
     },
     {
         idUser: 4,
@@ -559,7 +559,7 @@ export const customers: AccountUser[] = [
         idAccount: 4,
         username: 'ha123',
         password: '123123',
-        role: 'admin',
+        role: 'Admin',
     },
     {
         idUser: 5,
@@ -572,7 +572,7 @@ export const customers: AccountUser[] = [
         idAccount: 5,
         username: 'ha123',
         password: '123123',
-        role: 'admin',
+        role: 'Admin',
     },
     {
         idUser: 6,
@@ -585,6 +585,6 @@ export const customers: AccountUser[] = [
         idAccount: 6,
         username: 'ha123',
         password: '123123',
-        role: 'admin',
+        role: 'Admin',
     },
 ];

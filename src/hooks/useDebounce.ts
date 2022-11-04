@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useDebounce = (value: string, delay: number) => {
+const useDebounce = (value: string, delay = 1000) => {
     // Initial: chỉ lần 1 lần duy nhất - là lần đầu " "
     const [debouncedValue, setDebouncedValue] = useState(value);
 
