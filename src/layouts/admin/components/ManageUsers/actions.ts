@@ -12,3 +12,17 @@ export const getUsersSuccess = (payload: AccountUser) => {
         payload,
     };
 };
+
+export const updateUser = (payload: AccountUser) => {
+    return {
+        type: TYPE.UPDATE_USER,
+        payload,
+    };
+};
+
+export const deleteUser = (payload: number) => {
+    return {
+        type: TYPE.DELETE_USER,
+        payload,
+    };
+};

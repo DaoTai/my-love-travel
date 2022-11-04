@@ -28,6 +28,7 @@ export const Status: Record<STATUS_ICON, Object> = {
 
 //
 const Toast = ({ status = Status.error, show, title = 'Thông báo', text = '...', onHide }: Partial<ToastData>) => {
+    console.log(show);
     const [isShow, setShow] = useState<boolean>(show as boolean);
     const toastContainerRef = useRef<HTMLHeadingElement>(Object(null));
     const handleCloseToast = () => {

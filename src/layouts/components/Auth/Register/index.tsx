@@ -96,12 +96,14 @@ const Register: React.FC = () => {
                                     type="text"
                                     placeholder="VD: Đào Đức Tài"
                                     name="name"
-                                    value={values.name}
+                                    value={values.fullName}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     className={cx('form-input')}
                                 />
-                                <p className={cx('error-msg')}>{errors.name && touched.name ? errors.name : null}</p>
+                                <p className={cx('error-msg')}>
+                                    {errors.fullName && touched.fullName ? errors.fullName : null}
+                                </p>
                             </div>
                             <div className={cx('form-group')}>
                                 <label className={cx('form-label')} htmlFor="">

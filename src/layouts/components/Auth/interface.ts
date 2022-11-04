@@ -1,7 +1,7 @@
 // Interface value register
 export interface User {
     idUser?: number;
-    name: string;
+    fullName: string;
     dob: string;
     address: string;
     gender: 'Nam' | 'Nữ';

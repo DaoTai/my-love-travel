@@ -82,6 +82,9 @@ li {
     &.justify-content-evenly {
         justify-content: space-evenly;
     }
+    &.justify-content-around {
+        justify-content: space-around;
+    }
 }
 
 .main {

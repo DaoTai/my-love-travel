@@ -1,7 +1,8 @@
 import { TYPE } from './constants';
-interface Action {
+import { AccountUser } from '~/layouts/components/Auth/interface';
+export interface Action {
     type: TYPE;
-    payload: [];
+    payload: AccountUser[] | number;
 }
 
 const manageUsersReducer = (state = [], action: Action) => {
@@ -9,7 +10,11 @@ const manageUsersReducer = (state = [], action: Action) => {
         case TYPE.GET_USERS:
             return [...state];
         case TYPE.GET_USERS_SUCCESS:
-            return [...action.payload];
+            return [...(action.payload as AccountUser[])];
+        case TYPE.UPDATE_USER:
+            return { ...(action.payload as AccountUser) };
+        case TYPE.DELETE_USER:
+            return action.payload;
         default:
             return state;
     }

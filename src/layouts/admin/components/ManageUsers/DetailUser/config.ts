@@ -1,8 +1,9 @@
 import * as Yup from 'yup';
-import { Register as RegisterData } from '../interface';
+import { AccountUser } from '~/layouts/components/Auth/interface';
 
 // Initial value formik
-export const init: RegisterData = {
+export const init: Partial<AccountUser> = {
+    avatar: '',
     fullName: '',
     dob: '',
     address: 'Thành phố Hà Nội',
@@ -10,12 +11,9 @@ export const init: RegisterData = {
     email: '',
     phone: '',
     username: '',
-    password: '',
-    repassword: '',
-    role: 'customer',
 };
 
-export const registerOptions = Yup.object().shape({
+export const detailUserOptions = Yup.object().shape({
     fullName: Yup.string()
         .required('Vui lòng nhập trường này')
         .trim()
@@ -28,16 +26,5 @@ export const registerOptions = Yup.object().shape({
         .min(10, 'Số điện thoại không hợp lệ')
         .required('Vui lòng nhập trường này')
         .matches(/^\S*$/, 'Vui lòng không để khoảng trắng')
-        .trim(),
-    username: Yup.string().required('Vui lòng nhập trường này').trim(),
-    password: Yup.string()
-        .required('Vui lòng nhập trường này')
-        .matches(/^\S*$/, 'Vui lòng không để khoảng trắng')
-        .min(6, 'Vui lòng nhập tối thiểu 6 ký tự')
-        .trim(),
-    repassword: Yup.string()
-        .required('Vui lòng nhập trường này')
-        .matches(/^\S*$/, 'Vui lòng không để khoảng trắng')
-        .oneOf([Yup.ref('password')], 'Mật khẩu không khớp')
         .trim(),
 });

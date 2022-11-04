@@ -511,7 +511,8 @@ export const privateBills: PrivateBill[] = [
 export const users: AccountUser[] = [
     {
         idUser: 1,
-        name: 'Rhymastic',
+        avatar: 'https://bazaarvietnam.vn/wp-content/uploads/2021/11/Rhymastic-Rap-Viet-e1637645662294.jpg',
+        fullName: 'Rhymastic',
         dob: '11/2/1991',
         address: 'Hà Nội',
         gender: 'Nam',
@@ -524,7 +525,8 @@ export const users: AccountUser[] = [
     },
     {
         idUser: 2,
-        name: 'Thanh Bảo',
+        avatar: 'https://i.pinimg.com/736x/0e/10/99/0e1099278733b72db376129ff3629649.jpg',
+        fullName: 'Thanh Bảo',
         dob: '24/10/2002',
         address: 'Hồ Chí Minh',
         gender: 'Nam',
@@ -537,7 +539,8 @@ export const users: AccountUser[] = [
     },
     {
         idUser: 3,
-        name: 'Hoàng Sang',
+        avatar: '',
+        fullName: 'Hoàng Sang',
         dob: '1/3/1997',
         address: 'Đà Lạt',
         gender: 'Nam',
@@ -550,7 +553,8 @@ export const users: AccountUser[] = [
     },
     {
         idUser: 4,
-        name: 'Hoàng Hà',
+        avatar: 'https://phano.org.vn/uploads/images/bai-goc/2020/11/10/suboi-lam-dep-tap-dau-tien-ck-1.jpg',
+        fullName: 'Hoàng Hà',
         dob: '1/3/1997',
         address: 'Đà Lạt',
         gender: 'Nữ',
@@ -563,7 +567,8 @@ export const users: AccountUser[] = [
     },
     {
         idUser: 5,
-        name: 'Phan Linh',
+        avatar: 'https://phano.org.vn/uploads/images/bai-goc/2020/11/10/suboi-lam-dep-tap-dau-tien-ck-1.jpg',
+        fullName: 'Phan Linh',
         dob: '15/3/1997',
         address: 'Đà Lạt',
         gender: 'Nữ',
@@ -576,7 +581,8 @@ export const users: AccountUser[] = [
     },
     {
         idUser: 6,
-        name: 'An Nhiên',
+        avatar: 'https://phano.org.vn/uploads/images/bai-goc/2020/11/10/suboi-lam-dep-tap-dau-tien-ck-1.jpg',
+        fullName: 'An Nhiên',
         dob: '15/3/1997',
         address: 'Đà Nẵng',
         gender: 'Nữ',
@@ -586,5 +592,19 @@ export const users: AccountUser[] = [
         username: 'ha123',
         password: '123123',
         role: 'Admin',
+    },
+    {
+        idUser: 7,
+        avatar: 'https://vtv1.mediacdn.vn/thumb_w/650/2019/5/14/batchduc4124-15578034036461530699309-crop-15578034398791955277382.jpg',
+        fullName: 'Lê Nguyễn Trung Đan',
+        dob: '4/2/1988',
+        address: 'Gia Lai',
+        gender: 'Nam',
+        email: 'binz@gmail.com',
+        phone: '0863340172',
+        idAccount: 7,
+        username: 'binz123',
+        password: '123123',
+        role: 'Khách hàng',
     },
 ];
