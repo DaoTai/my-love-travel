@@ -7,10 +7,9 @@ import { users } from '~/data';
 
 const getUsersData = () => users;
 
-const deleteUserData = (id: number) => {
-    console.log('Delete user id: ', id);
-
-    return users.filter((user) => user.idUser !== id);
+const addUserData = (user: AccountUser) => {
+    console.log('Data add user: ', user);
+    return [...users, user];
 };
 
 const updateUserData = (user: AccountUser) => {
@@ -18,9 +17,23 @@ const updateUserData = (user: AccountUser) => {
     return users;
 };
 
+const deleteUserData = (id: number) => {
+    console.log('Delete user id: ', id);
+    return users.filter((user) => user.idUser !== id);
+};
+
 function* getUsersSaga(): Generator {
     try {
         const res = yield call(getUsersData);
+        yield put(getUsersSuccess(res as AccountUser));
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+function* addUserSaga(action: Action): Generator {
+    try {
+        const res = yield call(addUserData, action.payload as AccountUser);
         yield put(getUsersSuccess(res as AccountUser));
     } catch (err) {
         console.log(err);
@@ -50,6 +63,7 @@ function* ManageUsersSaga(): Generator {
         takeLatest(TYPE.GET_USERS, getUsersSaga),
         takeLatest(TYPE.UPDATE_USER, updateUserSaga),
         takeLatest(TYPE.DELETE_USER, deleteUserSaga),
+        takeLatest(TYPE.ADD_USER, addUserSaga),
     ]);
 }
 

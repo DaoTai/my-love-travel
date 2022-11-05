@@ -38,15 +38,6 @@ const Profile = () => {
         },
     });
 
-    // Preview Avatar
-    const handlePreviewAvatar = (e: any) => {
-        const file = e.target.files[0];
-        file.pre = URL.createObjectURL(file);
-        setAvatar(file);
-        setFieldValue('avatar', file.pre);
-        e.target.value = null;
-    };
-
     // Show newpassword modal
     const showModal = () => {
         setshowNewPasswordModal(true);
@@ -96,6 +87,23 @@ const Profile = () => {
             avatar.pre && URL.revokeObjectURL(avatar.pre);
         };
     }, [avatar]);
+
+    // Preview Avatar
+    const handlePreviewAvatar = (e: any) => {
+        const file = e.target.files[0];
+        file.pre = URL.createObjectURL(file);
+        setAvatar(file);
+        setFieldValue('avatar', file.pre);
+        e.target.value = null;
+    };
+
+    // Validate when on change phone input
+    const handleOnChangePhone = (e: any) => {
+        const regex = /^[0-9\b]+$/;
+        if (regex.test(e.target.value)) {
+            handleChange(e);
+        }
+    };
 
     return (
         <>
@@ -236,7 +244,7 @@ const Profile = () => {
                                             className={cx('form-input')}
                                             type="text"
                                             value={values.phone}
-                                            onChange={handleChange}
+                                            onChange={handleOnChangePhone}
                                             onBlur={handleBlur}
                                         />
                                         <p className={cx('error-msg')}>

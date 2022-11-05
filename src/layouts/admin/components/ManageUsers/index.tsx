@@ -9,6 +9,7 @@ import { getUsers } from './actions';
 import { AccountUser } from '~/layouts/components/Auth/interface';
 import ModalDetail from './DetailUser';
 import ModalDelete from './DeleteUser';
+import 'tippy.js/dist/tippy.css';
 import styles from './styles.module.scss';
 const cx = className.bind(styles);
 const ManageUsers = () => {

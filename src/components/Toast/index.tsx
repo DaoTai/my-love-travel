@@ -28,13 +28,13 @@ export const Status: Record<STATUS_ICON, Object> = {
 
 //
 const Toast = ({ status = Status.error, show, title = 'Thông báo', text = '...', onHide }: Partial<ToastData>) => {
-    console.log(show);
     const [isShow, setShow] = useState<boolean>(show as boolean);
     const toastContainerRef = useRef<HTMLHeadingElement>(Object(null));
+
     const handleCloseToast = () => {
         const timeHide = 1500;
-        toastContainerRef?.current.animate([{ opacity: 0.3 }, { transform: 'translateX(250%)' }], {
-            duration: timeHide,
+        toastContainerRef?.current.animate([{ transform: 'translateX(250%)' }], {
+            duration: timeHide + 1000,
         });
         onHide ? setTimeout(() => onHide(), timeHide) : setTimeout(() => setShow(false), timeHide);
     };
@@ -44,7 +44,7 @@ const Toast = ({ status = Status.error, show, title = 'Thông báo', text = '...
         return () => {
             clearTimeout(timerId);
         };
-    }, []);
+    }, [status]);
 
     return (
         <>

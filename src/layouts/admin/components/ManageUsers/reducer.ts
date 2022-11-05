@@ -11,6 +11,8 @@ const manageUsersReducer = (state = [], action: Action) => {
             return [...state];
         case TYPE.GET_USERS_SUCCESS:
             return [...(action.payload as AccountUser[])];
+        case TYPE.ADD_USER:
+            return { ...(action.payload as AccountUser) };
         case TYPE.UPDATE_USER:
             return { ...(action.payload as AccountUser) };
         case TYPE.DELETE_USER:

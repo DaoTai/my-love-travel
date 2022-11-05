@@ -95,7 +95,7 @@ const Register: React.FC = () => {
                                 <input
                                     type="text"
                                     placeholder="VD: Đào Đức Tài"
-                                    name="name"
+                                    name="fullName"
                                     value={values.fullName}
                                     onChange={handleChange}
                                     onBlur={handleBlur}

@@ -3,8 +3,7 @@
     top: 5%;
     right: 1%;
     z-index: 9999999;
-    animation: fadeOut 1.4s ease-in-out;
-    transition: all 0.3s linear;
+
     .toast__container {
         position: relative;
         display: flex;
@@ -16,6 +15,7 @@
         border-left: 4px solid currentColor;
         border-radius: 4px;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        animation: fadeOut 1.4s ease-in-out;
         &.error {
             color: var(--error);
         }

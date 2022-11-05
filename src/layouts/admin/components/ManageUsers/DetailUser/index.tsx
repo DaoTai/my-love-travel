@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import Tippy from '@tippyjs/react';
 import className from 'classnames/bind';
@@ -10,17 +10,20 @@ import { init, detailUserOptions } from './config';
 import { updateUser } from '../actions';
 import Toast, { Status } from '~/components/Toast';
 import { ToastData } from '~/components/Toast/interface';
+import 'tippy.js/dist/tippy.css';
 import styles from './styles.module.scss';
 const cx = className.bind(styles);
 const DetailUser = ({ user, onHide }: DetailUserProps) => {
     const dispatch = useDispatch();
     const [avatar, setAvatar] = useState(Object(null));
     const [showToast, setShowToast] = useState<boolean>(false);
+
     const userRef = useRef(Object(null));
     const { values, errors, touched, handleBlur, handleChange, handleSubmit, setValues, setFieldValue } = useFormik({
         initialValues: init,
         validationSchema: detailUserOptions,
         onSubmit: (values) => {
+            setShowToast(true);
             dispatch(updateUser(values));
         },
     });
@@ -54,6 +57,18 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
         };
     }, [avatar]);
 
+    const toastOptions: ToastData = useMemo(() => {
+        return {
+            title: 'Thành công',
+            show: showToast,
+            status: Status.success,
+            text: 'Cập nhật thành công',
+            onHide: () => {
+                setShowToast(false);
+            },
+        };
+    }, [showToast]);
+
     // Preview Avatar
     const handlePreviewAvatar = (e: any) => {
         const file = e.target.files[0];
@@ -61,6 +76,14 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
         setAvatar(file);
         setFieldValue('avatar', file.pre);
         e.target.value = null;
+    };
+
+    // Validate when on change phone input
+    const handleOnChangePhone = (e: any) => {
+        const regex = /^[0-9\b]+$/;
+        if (regex.test(e.target.value)) {
+            handleChange(e);
+        }
     };
 
     // Handle reset values
@@ -211,7 +234,7 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                                 name="phone"
                                 className={cx('detail-value')}
                                 value={values.phone}
-                                onChange={handleChange}
+                                onChange={handleOnChangePhone}
                                 onBlur={handleBlur}
                             />
                             <p className={cx('error-msg')}>{errors.phone && touched.phone ? errors.phone : null}</p>
@@ -266,6 +289,7 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
             </div>
 
             {/* Toast */}
+            {showToast && <Toast {...toastOptions} />}
         </>
     );
 };

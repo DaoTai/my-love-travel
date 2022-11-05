@@ -13,6 +13,13 @@ export const getUsersSuccess = (payload: AccountUser) => {
     };
 };
 
+export const addUser = (payload: AccountUser) => {
+    return {
+        type: TYPE.ADD_USER,
+        payload,
+    };
+};
+
 export const updateUser = (payload: AccountUser) => {
     return {
         type: TYPE.UPDATE_USER,
