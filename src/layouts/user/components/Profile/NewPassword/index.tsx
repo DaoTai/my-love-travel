@@ -5,6 +5,7 @@ import { init, newPasswordOptions } from './config';
 import { NewPasswordData } from './interface';
 import Toast, { Status } from '~/components/Toast';
 import { ToastData } from '~/components/Toast/interface';
+import Modal from '~/components/Modal';
 import styles from './styles.module.scss';
 const cx = classNames.bind(styles);
 const NewPassword = ({ onHide }: { onHide: () => void }) => {
@@ -38,11 +39,11 @@ const NewPassword = ({ onHide }: { onHide: () => void }) => {
     }, [showToast]);
 
     return (
-        <div id={cx('wrap-modal')}>
-            {/* Modal */}
-            <div className={cx('modal')}>
+        <>
+            <Modal>
+                {/* Modal */}
                 {/* Title */}
-                <h1 className={cx('title')}>Đổi mật khẩu</h1>
+                <h1 className={cx('heading')}>Đổi mật khẩu</h1>
                 {/* Form */}
                 <form onSubmit={handleSubmit}>
                     {/* Email */}
@@ -159,10 +160,10 @@ const NewPassword = ({ onHide }: { onHide: () => void }) => {
                         Xác nhận
                     </label>
                 </div>
-            </div>
-            {/* Toast */}
+                {/* Toast */}
+            </Modal>
             {showToast && <Toast {...toastOptions} />}
-        </div>
+        </>
     );
 };
 

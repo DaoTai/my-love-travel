@@ -14,10 +14,12 @@
 
 .wrap-history {
     display: flex;
-    flex-direction: column;
-    gap: 24px 0;
+    flex-wrap: wrap;
+    gap: 24px 12px;
 }
 .history-bill-item {
+    max-width: 50%;
+    flex: 1 1 auto;
     display: flex;
     align-items: center;
     gap: 0 32px;
@@ -33,7 +35,7 @@
         border-color: var(--primary);
         box-shadow: none;
         cursor: pointer;
-        transform: translateX(4px);
+        transform: scale(0.98);
     }
     .bill-icon {
         font-size: 3.2rem;

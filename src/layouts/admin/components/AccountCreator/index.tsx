@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState, useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
@@ -68,6 +67,8 @@ const AccountCreator = () => {
     const handleSetRole = (role: string) => {
         setFieldValue('role', role);
         setSelectedType(role);
+        setShowSelectTypes(false);
+        handleReset();
     };
 
     // Handle reset values
