@@ -4,12 +4,14 @@ import profileReducer from '~/layouts/user/components/Profile/reducer';
 import privateToursReducer from '~/layouts/user/components/PrivateTours/reducer';
 import historyReducer from '~/layouts/user/components/History/reducer';
 import manageUsersReducer from '~/layouts/admin/components/ManageUsers/reducer';
+import manageToursReducer from '~/layouts/admin/components/ManageTours/reducer';
 const state = combineReducers({
     listTour: listTourReducer,
     profile: profileReducer,
     privateTours: privateToursReducer,
     history: historyReducer,
     manageUsers: manageUsersReducer,
+    manageTours: manageToursReducer,
 });
 
 export type RootState = ReturnType<typeof state>;

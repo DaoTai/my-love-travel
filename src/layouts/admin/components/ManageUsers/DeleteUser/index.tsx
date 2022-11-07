@@ -15,7 +15,7 @@ const DeleteUser = ({ id, name, onHide }: DeleteUserProps) => {
     // Handle delete user
     const handleDeleteUser = () => {
         dispatch(deleteUser(id));
-        setTimeout(() => {});
+        onHide();
     };
 
     useEffect(() => {

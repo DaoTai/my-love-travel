@@ -50,6 +50,12 @@ const ManageUsers = () => {
         searchInputRef.current.focus();
     };
 
+    // Handle select type
+    const handleSelectType = (type: string) => {
+        setSelectedType(type);
+        setShowSelectTypes(false);
+    };
+
     // Show detail user
     const handleShowDetail = (user: AccountUser) => {
         setShowModalDetail(true);
@@ -87,13 +93,13 @@ const ManageUsers = () => {
                             onClickOutside={() => setShowSelectTypes(false)}
                             render={(attrs) => (
                                 <ul className={cx('list-type-select')} {...attrs}>
-                                    <li className={cx('type')} onClick={() => setSelectedType('Khách hàng')}>
+                                    <li className={cx('type')} onClick={() => handleSelectType('Khách hàng')}>
                                         Khách hàng
                                     </li>
-                                    <li className={cx('type')} onClick={() => setSelectedType('Admin')}>
+                                    <li className={cx('type')} onClick={() => handleSelectType('Admin')}>
                                         Admin
                                     </li>
-                                    <li className={cx('type')} onClick={() => setSelectedType('Người dẫn tour')}>
+                                    <li className={cx('type')} onClick={() => handleSelectType('Người dẫn tour')}>
                                         Người dẫn tour
                                     </li>
                                 </ul>

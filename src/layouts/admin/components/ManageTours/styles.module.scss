@@ -1,4 +1,5 @@
-$widthSelectType: 150px;
+$widthSelectStatus: 150px;
+
 .wrap-search-options {
     display: flex;
     align-items: center;
@@ -44,12 +45,13 @@ $widthSelectType: 150px;
             }
         }
     }
-    .select-type-user {
+    .select-status-tour {
         flex: 0 1 auto;
         button {
+            font-size: 1.4rem;
+            letter-spacing: 1px;
             max-width: 100%;
-            width: $widthSelectType;
-            font-size: 1.3rem;
+            width: $widthSelectStatus;
             border: 1px solid var(--primary);
             background-color: var(--white);
             padding: 8px;
@@ -64,13 +66,14 @@ $widthSelectType: 150px;
         }
     }
 }
-.list-type-select {
-    width: $widthSelectType;
+.list-status-select {
+    width: $widthSelectStatus;
     background-color: var(--white);
     box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
     border-radius: 4px;
-    .type {
-        padding: 6px 8px 8px;
+    .status {
+        font-size: 1.6rem;
+        padding: 6px 24px 8px;
         cursor: pointer;
         transition: all 0.2s ease;
         &:hover {
@@ -78,8 +81,13 @@ $widthSelectType: 150px;
         }
     }
 }
+
 .wrap-table {
-    table#table-manage-users {
+    table#table-manage-tours {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid rgb(200, 200, 200);
+        letter-spacing: 1px;
         thead {
             font-size: 1.6rem;
             color: var(--white);
@@ -95,7 +103,7 @@ $widthSelectType: 150px;
         }
         tbody {
             tr {
-                animation: showFromLeft 0.3s linear;
+                animation: showFromBottom 0.3s linear;
             }
             tr:nth-child(even) {
                 background-color: #f5f5f5;
@@ -123,20 +131,13 @@ $widthSelectType: 150px;
         }
     }
 }
-#table-manage-users {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid rgb(200, 200, 200);
-    letter-spacing: 1px;
-}
-
-@keyframes showFromLeft {
+@keyframes showFromBottom {
     from {
         opacity: 0;
-        transform: translateX(-10%);
+        transform: translateY(30%);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
     }
 }
