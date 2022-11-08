@@ -11,8 +11,8 @@ export interface Tour {
     images: string[];
     price: number;
     hourStart?: string;
-    timeStart: Date;
-    timeEnd: Date;
+    timeStart: string;
+    timeEnd: string;
     intro: string;
     utilities: string[];
     status: 'Activing' | 'Ending' | 'Pending';

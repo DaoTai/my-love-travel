@@ -9,19 +9,6 @@ import styles from './styles.module.scss';
 const cx = className.bind(styles);
 
 const DetailPrivateTour = ({ tour, onHide }: DetailPrivateTourProps) => {
-    const timeStartFormat =
-        tour?.timeStart.getUTCDate() +
-        '/' +
-        (Number(tour?.timeStart.getUTCMonth()) + 1) +
-        '/' +
-        tour?.timeStart.getUTCFullYear();
-
-    const timeEndFormat =
-        tour?.timeEnd.getUTCDate() +
-        '/' +
-        (Number(tour?.timeEnd.getUTCMonth()) + 1) +
-        '/' +
-        tour?.timeEnd.getUTCFullYear();
     useEffect(() => {
         const handleHide = (e: any) => {
             e.which === 27 && onHide();
@@ -59,11 +46,11 @@ const DetailPrivateTour = ({ tour, onHide }: DetailPrivateTourProps) => {
             </div>
             <div className={cx('private-tour-infor')}>
                 <label htmlFor="">Ngày khởi hành: </label>
-                <span>{timeStartFormat}</span>
+                <span>{tour?.timeStart}</span>
             </div>
             <div className={cx('private-tour-infor')}>
                 <label htmlFor="">Ngày kết thúc: </label>
-                <span>{timeEndFormat}</span>
+                <span>{tour?.timeEnd}</span>
             </div>
             <div className={cx('private-tour-infor')}>
                 <label htmlFor="">Thể loại: </label>

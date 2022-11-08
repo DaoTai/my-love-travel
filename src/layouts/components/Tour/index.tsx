@@ -48,20 +48,11 @@ const Tour = ({ tour, onAddFavTour, favIdTours }: TourProps) => {
                     </p>
                     <p className={cx('tour__start')}>
                         Ngày khởi hành:
-                        {tour.timeStart && (
-                            <b>
-                                {tour.timeStart.getDate()}/{tour.timeStart.getMonth() + 1}/
-                                {tour.timeStart.getFullYear()}
-                            </b>
-                        )}
+                        <b>{tour.timeStart}</b>
                     </p>
                     <p className={cx('tour__end')}>
                         Ngày kết thúc:
-                        {tour.timeEnd && (
-                            <b>
-                                {tour.timeEnd.getDate()}/{tour.timeEnd.getMonth() + 1}/{tour.timeEnd.getFullYear()}
-                            </b>
-                        )}
+                        <b>{tour.timeEnd}</b>
                     </p>
                 </div>
             </div>

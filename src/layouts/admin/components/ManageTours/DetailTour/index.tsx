@@ -1,38 +1,55 @@
-import { memo, useState, useEffect, useRef, useMemo } from 'react';
+import { memo, useState, useEffect, useRef, useMemo, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
+import HeadlessTippy from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import className from 'classnames/bind';
 import { useFormik } from 'formik';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClose, faPenToSquare, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import {
+    faChevronDown,
+    faClose,
+    faMinus,
+    faPenToSquare,
+    faPlus,
+    faRotateLeft,
+} from '@fortawesome/free-solid-svg-icons';
 import { DetailTourProps } from './interface';
 import { init, detailTourOptions } from './config';
 import { updateTour } from '../actions';
 import Toast, { Status } from '~/components/Toast';
 import { ToastData } from '~/components/Toast/interface';
 import Modal from '~/components/Modal';
+import { STATUS } from '../constants';
+import { Tour } from '~/layouts/components/Tour/interface';
 import 'tippy.js/dist/tippy.css';
 import styles from './styles.module.scss';
-import { tours } from '~/data';
 const cx = className.bind(styles);
 const DetailTour = ({ tour, onHide }: DetailTourProps) => {
     const dispatch = useDispatch();
-    const [avatar, setAvatar] = useState(Object(null));
     const [showToast, setShowToast] = useState<boolean>(false);
+    const [showSelectStatus, setShowSelectStatus] = useState<boolean>(false);
+    const [selectedStatus, setSelectedStatus] = useState<string>(tour?.status as STATUS);
+    const [utility, setUtility] = useState<string>('');
+    const [utilities, setUtilities] = useState<string[]>([...(tour?.utilities as string[])]);
+    const [images, setImages] = useState<string[]>([...(tour?.images as [])]);
     const tourRef = useRef(Object(null));
     const { values, errors, touched, handleBlur, handleChange, handleSubmit, setValues, setFieldValue } = useFormik({
         initialValues: init,
         validationSchema: detailTourOptions,
         onSubmit: (values) => {
             setShowToast(true);
-            // dispatch(updateTour(values));
+            dispatch(
+                updateTour({
+                    id: tour?.id,
+                    ...values,
+                } as Tour),
+            );
         },
     });
 
-    // Set value form
+    // Set values for form
     useEffect(() => {
-        console.log('Tour:', tour);
-
+        // console.log('Tour:', tour);
         tourRef.current = tour;
         setValues({
             id: tour?.id,
@@ -59,12 +76,20 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
         };
     }, [tour]);
 
-    // When change avatar
-    // useEffect(() => {
-    //     return () => {
-    //         avatar.pre && URL.revokeObjectURL(avatar.pre);
-    //     };
-    // }, [avatar]);
+    // When change images
+    useEffect(() => {
+        setFieldValue('images', images);
+        return () => {
+            images.forEach((image) => {
+                image && URL.revokeObjectURL(image);
+            });
+        };
+    }, [images]);
+
+    // Set field values
+    useEffect(() => {
+        setFieldValue('utilities', utilities);
+    }, [utilities]);
 
     const toastOptions: ToastData = useMemo(() => {
         return {
@@ -78,36 +103,63 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
         };
     }, [showToast]);
 
-    // Preview Avatar
-    // const handlePreviewAvatar = (e: any) => {
-    //     const file = e.target.files[0];
-    //     file.pre = URL.createObjectURL(file);
-    //     setAvatar(file);
-    //     setFieldValue('avatar', file.pre);
-    //     e.target.value = null;
-    // };
-
-    // Validate when on change phone input
-    const handleOnChangePhone = (e: any) => {
-        const regex = /^[0-9\b]+$/;
-        if (regex.test(e.target.value)) {
-            handleChange(e);
-        }
+    // Handle reset values
+    const handleReset = () => {
+        setValues({
+            id: tourRef.current.id,
+            name: tourRef.current.name,
+            place: tourRef.current.place,
+            price: tourRef.current.price,
+            timeStart: tourRef.current.timeStart,
+            hourStart: tourRef.current.hourStart,
+            timeEnd: tourRef.current.timeEnd,
+            images: tourRef.current.images,
+            status: tourRef.current.status,
+            limit: tourRef.current.limit,
+            currentCustomers: tourRef.current.currentCustomers,
+            categories: tourRef.current.categories,
+            intro: tourRef.current.intro,
+            utilities: tourRef.current.utilities,
+        });
+        setImages(tourRef.current.images);
     };
 
-    // Handle reset values
-    // const handleReset = () => {
-    //     setValues({
-    //         avatar: tourRef.current?.avatar,
-    //         fullName: tourRef.current?.fullName,
-    //         gender: tourRef.current?.gender,
-    //         dob: tourRef.current?.dob,
-    //         address: tourRef.current?.address,
-    //         email: tourRef.current?.email,
-    //         phone: tourRef.current?.phone,
-    //         role: tourRef.current?.role,
-    //     });
-    // };
+    // Handle select type
+    const handleSelectStatus = (status: string) => {
+        setSelectedStatus(status);
+        setShowSelectStatus(false);
+        setFieldValue('status', status);
+    };
+
+    // Handle add utility
+    const handleAddUtility = () => {
+        utility && setUtilities((prev) => [...prev, utility]);
+        setUtility('');
+    };
+
+    // Handle remove utility
+    const handleRemoveUtility = (index: number) => {
+        const newUtilities = [...utilities];
+        newUtilities.splice(index, 1);
+        setUtilities(newUtilities);
+    };
+
+    // Handle add new img
+    const handlePreviewImg = (e: any) => {
+        const files = e.target.files;
+        Array.from(files).forEach((file: any) => {
+            file.pre = URL.createObjectURL(file);
+            setImages((prev) => [...prev, file.pre]);
+        });
+        e.target.value = null;
+    };
+
+    // Handle remove img
+    const handleRemoveImg = (index: number) => {
+        const newImages = [...images];
+        newImages.splice(index, 1);
+        setImages(newImages);
+    };
     return (
         <>
             {/* Detail user */}
@@ -115,7 +167,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                 <button id={cx('close-btn')}>
                     <FontAwesomeIcon icon={faClose} onClick={onHide} />
                 </button>
-                <h1 className={cx('heading')}>Thông tin người dùng</h1>
+                <h1 className={cx('heading')}>Chi tiết tour</h1>
                 {/* Form detail */}
                 <form onSubmit={handleSubmit} action="" className={cx('wrap-detail-info')}>
                     <div className={cx('detail-item')}>
@@ -131,7 +183,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                         <input
                             type="text"
                             name="name"
-                            value={tour?.name}
+                            value={values.name}
                             className={cx('detail-value')}
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -145,8 +197,8 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                         <input
                             type="text"
                             name="place"
-                            value={tour?.place}
                             className={cx('detail-value')}
+                            value={values.place}
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
@@ -159,11 +211,12 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                         <input
                             type="number"
                             name="price"
-                            value={tour?.price}
+                            value={values.price}
                             className={cx('detail-value')}
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
+                        <span>({values.price?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })})</span>
                         <p className={cx('error-msg')}>{errors.price && touched.price ? errors.price : null}</p>
                     </div>
                     <div className={cx('detail-item')}>
@@ -174,7 +227,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                             type="text"
                             name="timeStart"
                             className={cx('detail-value')}
-                            value={values.timeStart?.toLocaleDateString()}
+                            value={values.timeStart as string}
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
@@ -190,7 +243,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                             type="text"
                             name="timeEnd"
                             className={cx('detail-value')}
-                            value={values.timeEnd?.toLocaleDateString()}
+                            value={values.timeEnd as string}
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
@@ -216,17 +269,35 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                         <label htmlFor="" className={cx('detail-label')}>
                             Trạng thái
                         </label>
-                        <select
-                            name="status"
-                            className={cx('detail-value')}
-                            value={values.status}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        >
-                            <option value="Activiting">Activiting</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Ending">Ending</option>
-                        </select>
+                        <div className={cx('select-status-tour')}>
+                            <HeadlessTippy
+                                placement="bottom"
+                                interactive
+                                visible={showSelectStatus}
+                                onClickOutside={() => setShowSelectStatus(false)}
+                                render={(attrs) => (
+                                    <ul className={cx('list-status-select')} {...attrs}>
+                                        <li
+                                            className={cx('status')}
+                                            onClick={() => handleSelectStatus(STATUS.ACTIVITING)}
+                                        >
+                                            {STATUS.ACTIVITING}
+                                        </li>
+                                        <li className={cx('status')} onClick={() => handleSelectStatus(STATUS.PENDING)}>
+                                            {STATUS.PENDING}
+                                        </li>
+                                        <li className={cx('status')} onClick={() => handleSelectStatus(STATUS.ENDING)}>
+                                            {STATUS.ENDING}
+                                        </li>
+                                    </ul>
+                                )}
+                            >
+                                <button type="button" onClick={() => setShowSelectStatus(!showSelectStatus)}>
+                                    <span>{selectedStatus}</span>
+                                    <FontAwesomeIcon icon={faChevronDown} />
+                                </button>
+                            </HeadlessTippy>
+                        </div>
                         <p className={cx('error-msg')}>{errors.status && touched.status ? errors.status : null}</p>
                     </div>
                     <div className={cx('detail-item')}>
@@ -234,7 +305,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                             Số lượng giới hạn
                         </label>
                         <input
-                            type="text"
+                            type="number"
                             name="limit"
                             className={cx('detail-value')}
                             value={values.limit}
@@ -248,7 +319,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                             Số khách hiện tại
                         </label>
                         <input
-                            type="text"
+                            type="number"
                             name="currentCustomers"
                             className={cx('detail-value')}
                             value={values.currentCustomers}
@@ -259,26 +330,85 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                             {errors.currentCustomers && touched.currentCustomers ? errors.currentCustomers : null}
                         </p>
                     </div>
-                    {/* <div className={cx('detail-item')}>
+                    <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
                             Thể loại
                         </label>
-                        <input type="text" name="categories" className={cx('detail-value')} value={values.categories}
+                        <div className={cx('categories')}>
+                            <p className={cx('category')}>
+                                <input
+                                    id="category-1"
+                                    type="checkbox"
+                                    name="categories"
+                                    className={cx('detail-value')}
+                                    value="Di tích lịch sử"
+                                    checked={values?.categories && values?.categories.includes('Di tích lịch sử')}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                <label htmlFor="category-1">Di tích lịch sử</label>
+                            </p>
+                            <p className={cx('category')}>
+                                <input
+                                    id="category-2"
+                                    type="checkbox"
+                                    name="categories"
+                                    className={cx('detail-value')}
+                                    value="Sinh thái"
+                                    checked={values?.categories && values?.categories.includes('Sinh thái')}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                <label htmlFor="category-2">Sinh thái</label>
+                            </p>
+                            <p className={cx('category')}>
+                                <input
+                                    id="category-3"
+                                    type="checkbox"
+                                    name="categories"
+                                    className={cx('detail-value')}
+                                    value="Nghỉ dưỡng"
+                                    checked={values?.categories && values?.categories.includes('Nghỉ dưỡng')}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                <label htmlFor="category-3">Nghỉ dưỡng</label>
+                            </p>
+                        </div>
 
-                        />
                         <p className={cx('error-msg')}>{errors.limit && touched.limit ? errors.limit : null}</p>
-                    </div> */}
+                    </div>
 
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
                             Dịch vụ / tiện ích
                         </label>
                         <ul className={cx('utilities')}>
-                            {values.utilities?.map((utility, i) => (
-                                <li key={i} value={utility}>
-                                    {utility}
-                                </li>
-                            ))}
+                            {utilities.length > 0 ? (
+                                utilities?.map((utility, i) => (
+                                    <li key={i} value={utility} className={cx('utility')}>
+                                        {utility}
+                                        <Tippy content="Xoá" placement="right" animation="fade">
+                                            <span className={cx('remove-icon')} onClick={() => handleRemoveUtility(i)}>
+                                                <FontAwesomeIcon icon={faMinus} />
+                                            </span>
+                                        </Tippy>
+                                    </li>
+                                ))
+                            ) : (
+                                <p className={cx('error-msg')}>Chưa cập nhật</p>
+                            )}
+                            <li className={cx('utility')}>
+                                <input
+                                    type="text"
+                                    value={utility}
+                                    placeholder="Thêm dịch vụ, tiện ích"
+                                    onChange={(e) => setUtility(e.target.value.trim())}
+                                />
+                                <button type="button" className={cx('add-icon')} onClick={handleAddUtility}>
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </button>
+                            </li>
                         </ul>
                     </div>
                     <div className={cx('detail-item')}>
@@ -295,9 +425,42 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                         ></textarea>
                         <p className={cx('error-msg')}>{errors.intro && touched.intro ? errors.intro : null}</p>
                     </div>
+                    <div className={cx('detail-item')}>
+                        <label htmlFor="" className={cx('detail-label')}>
+                            Ảnh
+                        </label>
+                        <ul className={cx('list-img')}>
+                            {images.map((img, i) => (
+                                <li key={i} className={cx('img-tour')} style={{ backgroundImage: `url(${img})` }}>
+                                    <button
+                                        type="button"
+                                        className={cx('remove-img')}
+                                        onClick={() => handleRemoveImg(i)}
+                                    >
+                                        <FontAwesomeIcon icon={faClose} />
+                                    </button>
+                                </li>
+                            ))}
+                            <label htmlFor="file-img" className={cx('img-tour')}>
+                                <span className={cx('add-img')}>
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </span>
+                                <input
+                                    type="file"
+                                    multiple
+                                    name=""
+                                    id="file-img"
+                                    accept="image/png, image/gif, image/jpeg"
+                                    hidden
+                                    onChange={(e) => handlePreviewImg(e)}
+                                />
+                            </label>
+                        </ul>
+                        <p className={cx('error-msg')}>{errors.intro && touched.intro ? errors.intro : null}</p>
+                    </div>
                     {/* Wrap buttons */}
                     <div className={cx('wrap-btns')}>
-                        <button type="button" id={cx('btn-reset')}>
+                        <button type="button" id={cx('btn-reset')} onClick={handleReset}>
                             Hoàn tác
                             <FontAwesomeIcon icon={faRotateLeft} />
                         </button>

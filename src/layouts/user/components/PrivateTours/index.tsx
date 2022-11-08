@@ -63,9 +63,6 @@ const PrivateTours = () => {
                     <tbody>
                         {privateTours.map((tour: Tour, index: number) => {
                             const { id, name, place, timeStart } = tour;
-                            const timeStartFormat = `(${tour.hourStart})  ${timeStart.getUTCDate()}/${
-                                timeStart.getUTCMonth() + 1
-                            }/${timeStart.getUTCFullYear()}`;
 
                             return (
                                 <tr key={id}>
@@ -73,7 +70,7 @@ const PrivateTours = () => {
                                     <td>{id}</td>
                                     <td>{name}</td>
                                     <td>{place}</td>
-                                    <td>{timeStartFormat}</td>
+                                    <td>{timeStart}</td>
                                     <td>
                                         <span className={cx('detail-icon')} onClick={() => handleShowDetailModal(tour)}>
                                             <FontAwesomeIcon icon={faEye} />

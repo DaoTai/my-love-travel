@@ -54,9 +54,9 @@ const BookTour = ({ tour }: { tour: Tour }) => {
         setShowToast(true);
     };
 
-    const timeStart =
-        tour.timeStart.getDate() + '/' + (tour.timeStart.getMonth() + 1) + '/' + tour.timeStart.getFullYear();
-    const timeEnd = tour.timeEnd.getDate() + '/' + (tour.timeEnd.getMonth() + 1) + '/' + tour.timeEnd.getFullYear();
+    // const timeStart =
+    //     tour.timeStart.getDate() + '/' + (tour.timeStart.getMonth() + 1) + '/' + tour.timeStart.getFullYear();
+    // const timeEnd = tour.timeEnd.getDate() + '/' + (tour.timeEnd.getMonth() + 1) + '/' + tour.timeEnd.getFullYear();
 
     return (
         <>
@@ -74,10 +74,10 @@ const BookTour = ({ tour }: { tour: Tour }) => {
                     Giờ khởi hành: <span className={cx('tour-start')}>{tour.hourStart}</span>
                 </p>
                 <p>
-                    Ngày khởi hành: <span className={cx('tour-start')}>{timeStart}</span>
+                    Ngày khởi hành: <span className={cx('tour-start')}>{tour.timeStart}</span>
                 </p>
                 <p>
-                    Ngày kết thúc: <span className={cx('tour-end')}>{timeEnd}</span>
+                    Ngày kết thúc: <span className={cx('tour-end')}>{tour.timeEnd}</span>
                 </p>
                 <p>
                     Tổng:
