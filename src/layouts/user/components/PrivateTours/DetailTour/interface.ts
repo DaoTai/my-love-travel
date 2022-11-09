@@ -1,6 +1,6 @@
-import { Tour } from '~/layouts/components/Tour/interface';
+import { PrivateTour } from '../interface';
 
 export interface DetailPrivateTourProps {
-    tour: Tour | undefined;
+    tour: PrivateTour | undefined;
     onHide: () => void;
 }

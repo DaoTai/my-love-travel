@@ -1,9 +1,9 @@
 import { memo, useState, useEffect, useRef, useMemo, ChangeEvent } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useFormik } from 'formik';
 import HeadlessTippy from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import className from 'classnames/bind';
-import { useFormik } from 'formik';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faChevronDown,
@@ -14,21 +14,27 @@ import {
     faRotateLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import { DetailTourProps } from './interface';
-import { init, detailTourOptions } from './config';
+import { init, detailTourOptions, statuses, categories } from './config';
 import { updateTour } from '../actions';
+import { STATUS } from '../constants';
 import Toast, { Status } from '~/components/Toast';
 import { ToastData } from '~/components/Toast/interface';
 import Modal from '~/components/Modal';
-import { STATUS } from '../constants';
+import { manageUsersSelector } from '~/layouts/admin/components/ManageUsers/selector';
+import { getUsers } from '~/layouts/admin/components/ManageUsers/actions';
+import { AccountUser } from '~/layouts/components/Auth/interface';
 import { Tour } from '~/layouts/components/Tour/interface';
 import 'tippy.js/dist/tippy.css';
 import styles from './styles.module.scss';
 const cx = className.bind(styles);
 const DetailTour = ({ tour, onHide }: DetailTourProps) => {
     const dispatch = useDispatch();
+    const listUser: AccountUser[] = useSelector(manageUsersSelector);
     const [showToast, setShowToast] = useState<boolean>(false);
     const [showSelectStatus, setShowSelectStatus] = useState<boolean>(false);
+    const [showSelectGuide, setShowSelectGuide] = useState<boolean>(false);
     const [selectedStatus, setSelectedStatus] = useState<string>(tour?.status as STATUS);
+    const [selectedGuide, setSelectedGuide] = useState(tour?.guide);
     const [utility, setUtility] = useState<string>('');
     const [utilities, setUtilities] = useState<string[]>([...(tour?.utilities as string[])]);
     const [images, setImages] = useState<string[]>([...(tour?.images as [])]);
@@ -49,11 +55,15 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
 
     // Set values for form
     useEffect(() => {
-        // console.log('Tour:', tour);
+        // Get users to filter guide
+        dispatch(getUsers());
+        // Assign to reset data tour
         tourRef.current = tour;
+        // Set values
         setValues({
             id: tour?.id,
             name: tour?.name,
+            guide: tour?.guide,
             place: tour?.place,
             price: tour?.price,
             timeStart: tour?.timeStart,
@@ -103,6 +113,10 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
         };
     }, [showToast]);
 
+    const listGuide = useMemo(() => {
+        return listUser.filter((user) => user.role === 'Người dẫn tour');
+    }, [listUser]);
+
     // Handle reset values
     const handleReset = () => {
         setValues({
@@ -122,6 +136,20 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
             utilities: tourRef.current.utilities,
         });
         setImages(tourRef.current.images);
+        setSelectedGuide(tourRef.current.guide);
+        setSelectedStatus(tourRef.current.status);
+    };
+
+    // Handle select guide
+    const handleSelectGuide = (guide: AccountUser | null) => {
+        if (guide) {
+            setSelectedGuide(guide.fullName);
+            setFieldValue('guide', guide.fullName);
+        } else {
+            setSelectedGuide('Chưa xác định');
+            setFieldValue('guide', '');
+        }
+        setShowSelectGuide(false);
     };
 
     // Handle select type
@@ -172,13 +200,55 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                 <form onSubmit={handleSubmit} action="" className={cx('wrap-detail-info')}>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            ID tour
+                            ID tour:
                         </label>
                         <input type="text" value={values?.id} readOnly className={cx('detail-value')} />
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Tên tour
+                            Người dẫn tour:
+                        </label>
+                        <div className={cx('select-guide-tour')}>
+                            <HeadlessTippy
+                                placement="bottom"
+                                interactive
+                                visible={showSelectGuide}
+                                onClickOutside={() => setShowSelectGuide(false)}
+                                render={(attrs) => (
+                                    <ul className={cx('list-guide-select')} {...attrs}>
+                                        <li className={cx('item')} onClick={() => handleSelectGuide(null)}>
+                                            Chưa xác định
+                                        </li>
+                                        {listGuide.map((guide) => {
+                                            return (
+                                                <li
+                                                    key={guide.idUser}
+                                                    className={cx('item', {
+                                                        active: guide.fullName === tour?.guide,
+                                                    })}
+                                                    onClick={() => handleSelectGuide(guide)}
+                                                >
+                                                    <div className="d-flex justify-space-between">
+                                                        <span>ID: {guide.idUser}</span>
+                                                        <span>{guide.fullName}</span>
+                                                    </div>
+                                                </li>
+                                            );
+                                        })}
+                                    </ul>
+                                )}
+                            >
+                                <button type="button" onClick={() => setShowSelectGuide(!showSelectGuide)}>
+                                    <span>{selectedGuide}</span>
+                                    <FontAwesomeIcon icon={faChevronDown} />
+                                </button>
+                            </HeadlessTippy>
+                        </div>
+                        <p className={cx('error-msg')}>{errors.guide && touched.guide ? errors.guide : null}</p>
+                    </div>
+                    <div className={cx('detail-item')}>
+                        <label htmlFor="" className={cx('detail-label')}>
+                            Tên tour:
                         </label>
                         <input
                             type="text"
@@ -192,7 +262,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Địa điểm
+                            Địa điểm:
                         </label>
                         <input
                             type="text"
@@ -206,7 +276,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Đơn giá
+                            Đơn giá:
                         </label>
                         <input
                             type="number"
@@ -221,7 +291,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Ngày bắt đầu
+                            Ngày bắt đầu:
                         </label>
                         <input
                             type="text"
@@ -231,13 +301,14 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
+                        <span>(dd/mm/YYYY)</span>
                         <p className={cx('error-msg')}>
                             {errors.timeStart && touched.timeStart ? errors.timeStart : null}
                         </p>
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Ngày kết thúc
+                            Ngày kết thúc:
                         </label>
                         <input
                             type="text"
@@ -247,11 +318,12 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
+                        <span>(dd/mm/YYYY)</span>
                         <p className={cx('error-msg')}>{errors.timeEnd && touched.timeEnd ? errors.timeEnd : null}</p>
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Giờ khởi hành
+                            Giờ khởi hành:
                         </label>
                         <input
                             type="text"
@@ -267,7 +339,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Trạng thái
+                            Trạng thái:
                         </label>
                         <div className={cx('select-status-tour')}>
                             <HeadlessTippy
@@ -277,18 +349,15 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                                 onClickOutside={() => setShowSelectStatus(false)}
                                 render={(attrs) => (
                                     <ul className={cx('list-status-select')} {...attrs}>
-                                        <li
-                                            className={cx('status')}
-                                            onClick={() => handleSelectStatus(STATUS.ACTIVITING)}
-                                        >
-                                            {STATUS.ACTIVITING}
-                                        </li>
-                                        <li className={cx('status')} onClick={() => handleSelectStatus(STATUS.PENDING)}>
-                                            {STATUS.PENDING}
-                                        </li>
-                                        <li className={cx('status')} onClick={() => handleSelectStatus(STATUS.ENDING)}>
-                                            {STATUS.ENDING}
-                                        </li>
+                                        {statuses.map((status, index) => (
+                                            <li
+                                                key={index}
+                                                className={cx('item')}
+                                                onClick={() => handleSelectStatus(status)}
+                                            >
+                                                {status}
+                                            </li>
+                                        ))}
                                     </ul>
                                 )}
                             >
@@ -302,7 +371,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Số lượng giới hạn
+                            Số lượng giới hạn:
                         </label>
                         <input
                             type="number"
@@ -316,7 +385,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Số khách hiện tại
+                            Số khách hiện tại:
                         </label>
                         <input
                             type="number"
@@ -332,48 +401,24 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Thể loại
+                            Thể loại:
                         </label>
                         <div className={cx('categories')}>
-                            <p className={cx('category')}>
-                                <input
-                                    id="category-1"
-                                    type="checkbox"
-                                    name="categories"
-                                    className={cx('detail-value')}
-                                    value="Di tích lịch sử"
-                                    checked={values?.categories && values?.categories.includes('Di tích lịch sử')}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                <label htmlFor="category-1">Di tích lịch sử</label>
-                            </p>
-                            <p className={cx('category')}>
-                                <input
-                                    id="category-2"
-                                    type="checkbox"
-                                    name="categories"
-                                    className={cx('detail-value')}
-                                    value="Sinh thái"
-                                    checked={values?.categories && values?.categories.includes('Sinh thái')}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                <label htmlFor="category-2">Sinh thái</label>
-                            </p>
-                            <p className={cx('category')}>
-                                <input
-                                    id="category-3"
-                                    type="checkbox"
-                                    name="categories"
-                                    className={cx('detail-value')}
-                                    value="Nghỉ dưỡng"
-                                    checked={values?.categories && values?.categories.includes('Nghỉ dưỡng')}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                <label htmlFor="category-3">Nghỉ dưỡng</label>
-                            </p>
+                            {categories.map((category, index) => (
+                                <p key={index} className={cx('category')}>
+                                    <input
+                                        id={`category-${index}`}
+                                        type="checkbox"
+                                        name="categories"
+                                        className={cx('detail-value')}
+                                        value={category}
+                                        checked={values?.categories && values?.categories.includes(category)}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                    <label htmlFor={`category-${index}`}>{category}</label>
+                                </p>
+                            ))}
                         </div>
 
                         <p className={cx('error-msg')}>{errors.limit && touched.limit ? errors.limit : null}</p>
@@ -381,7 +426,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
 
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Dịch vụ / tiện ích
+                            Dịch vụ / tiện ích:
                         </label>
                         <ul className={cx('utilities')}>
                             {utilities.length > 0 ? (
@@ -413,7 +458,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Giới thiệu
+                            Giới thiệu:
                         </label>
                         <textarea
                             id={cx('intro')}
@@ -427,7 +472,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Ảnh
+                            Ảnh:
                         </label>
                         <ul className={cx('list-img')}>
                             {images.map((img, i) => (

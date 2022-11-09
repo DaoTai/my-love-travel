@@ -19,7 +19,6 @@ export interface Tour {
     limit: number;
     currentCustomers: number;
     guide?: string;
-    bookedTours?: number;
 }
 
 export interface TourProps {

@@ -1,11 +1,11 @@
 import { call, put, takeLatest, all } from 'redux-saga/effects';
 import { getPrivateBillsSuccess } from './actions';
 import { PrivateBill } from './interface';
-import { Tour } from '~/layouts/components/Tour/interface';
+import { PrivateTour } from '~/layouts/user/components/PrivateTours/interface';
 import { privateBills, privateTours } from '~/data';
 import { TYPE } from './constants';
 const getPrivateBillsData = () => {
-    const total = privateTours.map((tour: Tour) => ({
+    const total = privateTours.map((tour: PrivateTour) => ({
         idTour: tour.id,
         total: Number(tour.bookedTours) * tour.price,
         nameTour: tour.name,

@@ -1,4 +1,5 @@
 import { Tour } from '~/layouts/components/Tour/interface';
+import { PrivateTour } from '~/layouts/user/components/PrivateTours/interface';
 import { Comment } from '~/layouts/components/Tour/interface';
 import { Profile } from '~/layouts/user/components/Profile/interface';
 import { PrivateBill } from '~/layouts/user/components/History/interface';
@@ -25,6 +26,7 @@ export const tours: Array<Tour[]> = [
             categories: ['Nghỉ dưỡng'],
             intro: 'Đà Lạt vẫn thuộc tỉnh Lâm Đồng',
             utilities: ['1 chai nước Lavie', '1 tấm bản đồ du lịch', '2 món quà lưu niệm'],
+            guide: 'Thu Trang',
         },
         {
             id: 2,
@@ -33,6 +35,7 @@ export const tours: Array<Tour[]> = [
             categories: ['Di tích lịch sử'],
             intro: 'Hà Nội nghìn năm văn hiến',
             utilities: ['1 chai nước Lavie', '1 tấm bản đồ du lịch', '3 món quà lưu niệm'],
+            guide: 'Thu Hà',
             name: 'Phố cổ Hà Nội',
             place: 'Ba Đình - Hoàn Kiếm',
             price: 380000,
@@ -50,6 +53,7 @@ export const tours: Array<Tour[]> = [
             id: 3,
             intro: 'Ngôi chùa lớn nhất Đông Nam Á. Vùng đất của tâm linh cửa Phật, gột rửa muộn phiền tìm tới sự an nhiên trong tâm hồn',
             utilities: ['1 chai nước Lavie', '1 tấm bản đồ du lịch', '2 món quà lưu niệm'],
+            guide: 'Kim Dung',
             name: 'Chùa Tam Chúc',
             place: 'Hà Nam',
             price: 580000,
@@ -322,7 +326,7 @@ export const tours: Array<Tour[]> = [
 ];
 
 // Private tour
-export const privateTours: Tour[] = [
+export const privateTours: PrivateTour[] = [
     {
         id: 5,
         intro: 'Bãi biển xanh cát trắng',
@@ -606,5 +610,47 @@ export const users: AccountUser[] = [
         username: 'binz123',
         password: '123123',
         role: 'Khách hàng',
+    },
+    {
+        idUser: 8,
+        avatar: 'https://images.spiderum.com/sp-images/8ed10ae0703a11ea9fe147ec02d01bc1.jpg',
+        fullName: 'Hưng Cao',
+        dob: '4/2/1988',
+        address: 'Hà Nội',
+        gender: 'Nam',
+        email: 'ill@gmail.com',
+        phone: '0863340172',
+        idAccount: 7,
+        username: 'ill123',
+        password: '123123',
+        role: 'Người dẫn tour',
+    },
+    {
+        idUser: 9,
+        avatar: 'https://avatar-ex-swe.nixcdn.com/singer/avatar/2019/05/20/5/1/5/c/1558345158793_600.jpg',
+        fullName: 'Datmaniac',
+        dob: '4/2/1988',
+        address: 'Sài Gòn',
+        gender: 'Nam',
+        email: 'datmaniac@gmail.com',
+        phone: '0863340172',
+        idAccount: 7,
+        username: 'datmaniac123',
+        password: '123123',
+        role: 'Người dẫn tour',
+    },
+    {
+        idUser: 10,
+        avatar: 'https://thuamviet.com/photos/BLOG-TUYEN%20DUNG/CAM%20NANG/CN%20Thu%20Am%20Ca%20Khuc/Nhac%20hiphop/nhac%20hiphop.jpg',
+        fullName: 'Thu Trang',
+        dob: '4/2/1998',
+        address: 'Hải Dương',
+        gender: 'Nam',
+        email: 'trang@gmail.com',
+        phone: '0863340172',
+        idAccount: 7,
+        username: 'trang11',
+        password: '123123',
+        role: 'Người dẫn tour',
     },
 ];

@@ -1,6 +1,10 @@
 import { Tour } from '~/layouts/components/Tour/interface';
 
+export interface PrivateTour extends Tour {
+    bookedTours: number;
+}
+
 export interface Action {
     type: string;
-    payload: Tour[] | number;
+    payload: PrivateTour[] | number;
 }

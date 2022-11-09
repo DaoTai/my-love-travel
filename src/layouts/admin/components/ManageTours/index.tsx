@@ -9,6 +9,7 @@ import { getTours } from './actions';
 import { manageToursSelector } from './selectors';
 import { Tour } from '~/layouts/components/Tour/interface';
 import DetailModal from './DetailTour';
+import DeleteModal from './DeleteTour';
 import 'tippy.js/dist/tippy.css';
 import styles from './styles.module.scss';
 const cx = className.bind(styles);
@@ -21,6 +22,7 @@ const ManageTours = () => {
     const [searchValue, setSearchValue] = useState<string>('');
     const [selectedStatus, setSelectedStatus] = useState<string>(STATUS.ACTIVITING);
     const [detailTour, setDetailTour] = useState<Tour>();
+    const [deleteTour, setDeleteTour] = useState({ name: '', id: 0 });
     const searchInputRef = useRef(Object(null));
 
     const listTour = useMemo(() => {
@@ -37,6 +39,10 @@ const ManageTours = () => {
 
     const handleHideDetail = useCallback(() => {
         setShowModalDetail(false);
+    }, []);
+
+    const handleHideDelete = useCallback(() => {
+        setShowModalDelete(false);
     }, []);
 
     // Dispatch get data tours
@@ -59,6 +65,15 @@ const ManageTours = () => {
     const handleShowDetail = (tour: Tour) => {
         setDetailTour(tour);
         setShowModalDetail(true);
+    };
+
+    // Handle delete tour
+    const handleDeleteTour = (tour: Tour) => {
+        setShowModalDelete(true);
+        setDeleteTour({
+            id: tour.id as number,
+            name: tour.name as string,
+        });
     };
     return (
         <>
@@ -130,7 +145,7 @@ const ManageTours = () => {
                                         <FontAwesomeIcon
                                             className={cx('delete-icon')}
                                             icon={faTrashCan}
-                                            // onClick={() => handleShowDelete(user)}
+                                            onClick={() => handleDeleteTour(tour)}
                                         />
                                     </th>
                                 </tr>
@@ -140,8 +155,10 @@ const ManageTours = () => {
                 </div>
             </div>
 
-            {/* Modal Detaik */}
+            {/* Modal Detail */}
             {showModalDetail && <DetailModal tour={detailTour} onHide={handleHideDetail} />}
+            {/* Modal Delete */}
+            {showModalDelete && <DeleteModal {...deleteTour} onHide={handleHideDelete} />}
         </>
     );
 };

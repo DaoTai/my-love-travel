@@ -1,7 +1,7 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { TYPE } from './constants';
 import { Tour } from '~/layouts/components/Tour/interface';
-import { getToursSuccess, updateTour } from './actions';
+import { getToursSuccess } from './actions';
 import { Action } from './reducer';
 import { tours } from '~/data';
 
@@ -10,6 +10,11 @@ const updateTourData = (tour: Tour) => {
     console.log('Cập thành công: ', tour);
     return tours;
 };
+const deleteTourData = (idTour: number) => {
+    console.log('ID tour xoá: ', idTour);
+    return tours;
+};
+
 function* getToursSaga(): Generator {
     try {
         const res = yield call(getToursData);
@@ -28,8 +33,21 @@ function* updateToursSaga(action: Action): Generator {
     }
 }
 
+function* deleteTourSaga(action: Action): Generator {
+    try {
+        const res = yield call(deleteTourData, action.payload as number);
+        yield put(getToursSuccess(res as Tour[]));
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 function* manageToursSaga(): Generator {
-    yield all([takeLatest(TYPE.GET_TOURS, getToursSaga), takeLatest(TYPE.UPDATE_TOUR, updateToursSaga)]);
+    yield all([
+        takeLatest(TYPE.GET_TOURS, getToursSaga),
+        takeLatest(TYPE.UPDATE_TOUR, updateToursSaga),
+        takeLatest(TYPE.DELETE_TOUR, deleteTourSaga),
+    ]);
 }
 
 export default manageToursSaga;
