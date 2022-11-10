@@ -6,7 +6,14 @@ import Fragment from '~/components/Fragment';
 // import about Auth
 import { Login, Register, ConfirmAccount, ConfirmOTP } from '~/layouts/components/Auth';
 //import about User
-import { Profile, PrivateTours, History, FavouriteTours, DetailPrivateTour } from '~/layouts/user/components';
+import {
+    Profile,
+    PrivateTours,
+    History,
+    FavouriteTours,
+    ProfileForm,
+    DetailPrivateTour,
+} from '~/layouts/user/components';
 // import about Admin
 import { Admin, AccountCreator, TourCreator, Chart, ManageUsers, ManageTours } from '~/layouts/admin/components';
 // Public routes
@@ -86,6 +93,10 @@ const adminRoutes: Array<Route> = [
     {
         path: 'chart',
         component: Chart,
+    },
+    {
+        path: 'profile',
+        component: ProfileForm,
     },
     {
         path: 'account-creator',

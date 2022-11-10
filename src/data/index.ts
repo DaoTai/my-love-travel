@@ -405,7 +405,7 @@ export const profile: Profile = {
     avatar: 'https://wallpaperaccess.com/full/1102530.jpg',
     fullName: 'Thomas Shelby',
     gender: 'nam',
-    dob: '2001-10-24',
+    dob: '24/10/2001',
     address: 'Ha Noi',
     email: 'thomas123@gmail.com',
     phone: '0868930418',

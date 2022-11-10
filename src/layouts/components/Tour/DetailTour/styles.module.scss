@@ -80,6 +80,11 @@
             letter-spacing: 1px;
             padding-left: 8px;
         }
+        ul {
+            li {
+                list-style: inside;
+            }
+        }
     }
     .tour-utilities {
         font-weight: 500;

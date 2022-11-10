@@ -10,6 +10,7 @@ import {
     faArrowRightToBracket,
     faHeartCircleBolt,
     faReceipt,
+    faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '~/Contexts';
 import classNames from 'classnames/bind';
@@ -57,29 +58,40 @@ const Actions = () => {
                 interactive
                 render={(attrs) => (
                     <div className={cx('actions')} {...attrs}>
+                        <Tippy duration={[300, 250]} content="Khám phá" placement="left">
+                            <Link id={cx('search-tour-mobile')} to="/search-tours" onClick={handleHideShow}>
+                                <FontAwesomeIcon icon={faSearch} />
+                                <span>Khám phá</span>
+                            </Link>
+                        </Tippy>
                         <Tippy duration={[300, 250]} content="Tài khoản" placement="left">
                             <Link className={cx('action')} to="/user/profile" onClick={handleHideShow}>
                                 <FontAwesomeIcon icon={faUserAstronaut} />
+                                <span>Tài khoản</span>
                             </Link>
                         </Tippy>
                         <Tippy duration={[300, 250]} content="Tours của bạn" placement="left">
                             <Link className={cx('action')} to="/user/private-tours" onClick={handleHideShow}>
                                 <FontAwesomeIcon icon={faMap} />
+                                <span>Tours của bạn</span>
                             </Link>
                         </Tippy>
                         <Tippy duration={[300, 250]} content="Lịch sử giao dịch" placement="left">
                             <Link className={cx('action')} to="/user/history" onClick={handleHideShow}>
                                 <FontAwesomeIcon icon={faReceipt} />
+                                <span>Lịch sử giao dịch</span>
                             </Link>
                         </Tippy>
                         <Tippy duration={[300, 250]} content="Tour yêu thích" placement="left">
                             <Link className={cx('action')} to="/user/favourite-tours" onClick={handleHideShow}>
                                 <FontAwesomeIcon icon={faHeartCircleBolt} />
+                                <span>Tour yêu thích</span>
                             </Link>
                         </Tippy>
                         <Tippy duration={[300, 250]} content="Đăng xuất" placement="left">
                             <Link className={cx('action')} to="/auth/login" onClick={handleLogOut}>
                                 <FontAwesomeIcon icon={faArrowRightToBracket} />
+                                <span>Đăng xuất</span>
                             </Link>
                         </Tippy>
                     </div>

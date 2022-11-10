@@ -33,9 +33,9 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
     const [showToast, setShowToast] = useState<boolean>(false);
     const [showSelectStatus, setShowSelectStatus] = useState<boolean>(false);
     const [showSelectGuide, setShowSelectGuide] = useState<boolean>(false);
+    const [utility, setUtility] = useState<string>('');
     const [selectedStatus, setSelectedStatus] = useState<string>(tour?.status as STATUS);
     const [selectedGuide, setSelectedGuide] = useState(tour?.guide);
-    const [utility, setUtility] = useState<string>('');
     const [utilities, setUtilities] = useState<string[]>([...(tour?.utilities as string[])]);
     const [images, setImages] = useState<string[]>([...(tour?.images as [])]);
     const tourRef = useRef(Object(null));

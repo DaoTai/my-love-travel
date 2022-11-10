@@ -57,6 +57,8 @@ const Header: React.FC = () => {
                         </Link>
                     </div>
 
+                    {!showSearch && !showNavigation && <h1 className={cx('title')}>Love Travel</h1>}
+
                     {/* Search */}
                     {showSearch && <Search />}
 

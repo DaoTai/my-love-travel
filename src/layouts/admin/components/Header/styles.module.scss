@@ -42,21 +42,56 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        a {
-            text-decoration: none;
-            color: var(--text);
-            padding: 6px 14px;
-            background-color: var(--white);
-            border-radius: 4px;
-            color: var(--primary);
+        #actions-btn {
+            padding: 8px 12px;
             border: 1px solid transparent;
-            transition: all 0.2s ease;
+            border-radius: 16px;
+            background-color: var(--white);
+            font-size: 1.9rem;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            &.active {
+                color: var(--primary);
+            }
             &:hover {
-                cursor: pointer;
-                background: var(--primary);
-                color: var(--white);
-                border-color: var(--primary);
-                opacity: 0.9;
+                color: var(--primary);
+            }
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            align-items: baseline;
+            border-radius: 4px;
+            background-color: var(--white);
+            box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.3);
+            .action {
+                font-size: 1.6rem;
+                background-color: var(--white);
+                border-bottom: 1px solid var(--primary);
+                width: 100%;
+                a {
+                    display: block;
+                    width: 100%;
+                    text-decoration: none;
+                    color: var(--text);
+                    padding: 10px 16px;
+                    background-color: var(--white);
+                    border: 1px solid transparent;
+                    transition: all 0.2s ease;
+                    &:hover {
+                        opacity: 0.8;
+                        color: var(--primary);
+                        svg {
+                            transform: scale(1.08);
+                        }
+                    }
+                }
+                svg {
+                    margin-right: 8px;
+                    transition: all 0.2s linear;
+                }
             }
         }
     }

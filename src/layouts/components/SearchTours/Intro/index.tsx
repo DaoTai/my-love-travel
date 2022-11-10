@@ -8,7 +8,7 @@ const Intro = () => {
     return (
         <div id={cx('intro')}>
             <div className={cx('intro__content')}>
-                <h1>Love Travel đem tới những chuyến tour phong phú cho bạn</h1>
+                <h1>Love Travel du hành chuyến đi cùng bạn</h1>
                 <h2>Khám phá những điều mới mẻ, thú vị tại đất nước Việt Nam</h2>
                 <button id={cx('receive-gift-btn')}>
                     Hộp quà ưu đãi của tháng

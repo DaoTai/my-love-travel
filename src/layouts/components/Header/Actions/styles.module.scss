@@ -51,6 +51,9 @@
         }
 
         &:hover:nth-child(4) {
+            color: cadetblue;
+        }
+        &:hover:nth-child(5) {
             color: hotpink;
         }
 
@@ -83,7 +86,17 @@
             transform-origin: left;
             transition: all 0.2s ease-in;
         }
+
+        span {
+            display: none;
+            padding-left: 8px;
+        }
     }
+}
+
+#search-tour-mobile {
+    @extend .action;
+    display: none;
 }
 
 #auth-btns {
@@ -103,5 +116,24 @@
             border-color: currentColor;
             opacity: 0.9;
         }
+    }
+}
+
+// Tablet
+@media (max-width: 1023px) and (min-width: 740px) {
+}
+
+// Mobile
+@media (max-width: 739px) {
+    .actions {
+        .action {
+            flex: 1 1 auto;
+            span {
+                display: inline-block;
+            }
+        }
+    }
+    #search-tour-mobile {
+        display: block;
     }
 }

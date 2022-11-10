@@ -79,12 +79,9 @@
         align-items: center !important;
     }
 
-    .fade {
-        animation: fade 0.5s ease-in-out;
-    }
-
     .intro__image {
-        flex: 2 1 50%;
+        flex: 1 1 50%;
+        width: 50%;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -98,10 +95,10 @@
         }
     }
     .intro__tour {
-        text-align: center;
-        width: 50%;
-        padding: 0 12px;
         flex: 1 1 50%;
+        width: 50%;
+        text-align: center;
+        padding: 0 12px;
         .intro__tour-quote {
             font-size: 2.8rem;
             font-weight: 600;
@@ -115,6 +112,7 @@
         }
         .intro__tour-desc {
             text-align: justify;
+            padding-bottom: 8px;
         }
     }
 
@@ -146,17 +144,6 @@
     }
 }
 
-@keyframes fade {
-    from {
-        opacity: 0;
-        transform: translateX(10px) scaleX(0) skew(5deg);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0) scaleX(1) skew(0deg);
-    }
-}
-
 @keyframes changeColor {
     from {
         text-decoration: underline wavy #6aba62;
@@ -164,5 +151,46 @@
     to {
         opacity: 1;
         text-decoration: underline wavy #007f60;
+    }
+}
+
+// Tablet
+@media (max-width: 1023px) and (min-width: 740px) {
+}
+
+// Mobile
+@media (max-width: 739px) {
+    .intro__container {
+        margin-top: var(--height-header-layout);
+        .intro__heading {
+            font-size: 3.2rem;
+            top: 20%;
+            transform: translate(-50%, -20%);
+        }
+        button {
+            a {
+                font-size: 1.4rem;
+            }
+        }
+    }
+    #intro__carousel {
+        .intro__tour-content {
+            display: block !important;
+        }
+        .intro__image {
+            width: 100%;
+            flex: 1 1 100%;
+        }
+        .intro__tour {
+            width: 100%;
+            flex: 1 1 100%;
+            .intro__tour-quote {
+                font-size: 3rem;
+            }
+            .intro__tour-name {
+                font-size: 1.8rem;
+                padding-top: 0;
+            }
+        }
     }
 }

@@ -13,9 +13,14 @@ const TourInfo = ({ tour }: { tour: Tour }) => {
                 <FontAwesomeIcon icon={faLocationDot} />
                 <span>{tour.place}</span>
             </h2>
-            <p className={cx('tour-categories')}>
-                Thể loại: <span>{tour.categories?.join('')}</span>
-            </p>
+            <div className={cx('tour-categories')}>
+                Thể loại:
+                <ul>
+                    {tour.categories?.map((category, index) => (
+                        <li key={index}>{category}</li>
+                    ))}
+                </ul>
+            </div>
             <b className={cx('tour-status')}>
                 Trạng thái: <span>{tour.status}</span>
             </b>

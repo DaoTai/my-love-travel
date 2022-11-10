@@ -39,7 +39,6 @@
             }
         }
         h2 {
-            margin-top: 4px;
             font-weight: 400;
             font-size: 3rem;
             &::selection {
@@ -183,23 +182,49 @@
             }
         }
     }
-    #select-tour {
+    #select-category {
         text-align: center;
         font-size: 1.6rem;
         font-weight: 400;
         border: none;
         border-radius: 4px;
-        padding: 8px 4px;
         cursor: pointer;
-        outline: 1px solid var(--primary);
         text-align: left;
+        button {
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            color: var(--primary);
+            text-align: left;
+            width: 160px;
+            max-width: 100%;
+            padding: 10px 8px;
+            border-radius: 8px;
+            border: 1px solid var(--primary);
+            background-color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            svg {
+                float: right;
+                font-size: 1.3rem;
+            }
+            span {
+                text-align: center;
+                color: var(--text);
+                padding-right: 8px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        }
     }
 }
 
 .wrap-list-tour {
     padding: 12px 0;
     #list-tour {
-        margin: var(--space-top-container) -8px;
+        margin: calc(var(--space-top-container) - 24px) -8px;
         display: flex;
         gap: 36px 0;
         flex-wrap: wrap;
@@ -241,6 +266,26 @@
             svg {
                 transform: scale(1.1);
             }
+        }
+    }
+}
+
+.categories {
+    overflow: auto;
+    background-color: var(--white);
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    .category {
+        font-size: 1.6rem;
+        padding: 6px 12px 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        span {
+            padding-right: 4px;
         }
     }
 }

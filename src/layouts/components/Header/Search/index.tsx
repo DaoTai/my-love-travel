@@ -37,12 +37,12 @@ const Search: React.FC = () => {
         }
         // When data search exist
         const searchedTours = allTour.filter((tour: Tour) => {
-            return tour.name.includes(debounced);
+            return tour.name.toLowerCase().includes(debounced.toLowerCase());
         });
         setListSearchTour(searchedTours);
     }, [debounced]);
     return (
-        <div>
+        <div id={cx('search')}>
             <HeadlessTippy
                 interactive
                 visible={showResult}
@@ -80,7 +80,7 @@ const Search: React.FC = () => {
                         type="search"
                         name=""
                         id={cx('search-input')}
-                        placeholder="Tìm kiếm..."
+                        placeholder="Tìm kiếm tour..."
                         autoComplete="off"
                         value={searchValue}
                         onChange={(e) => setSearchValue(e.target.value)}

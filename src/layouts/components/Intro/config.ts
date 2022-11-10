@@ -12,6 +12,16 @@ export const settings = {
     autoplay: true,
     autoplaySpeed: 3500,
     cssEase: 'linear',
+    mobileFirst: true,
+    responsive: [
+        {
+            breakpoint: 1024,
+            settings: {
+                autoplay: false,
+                dots: false,
+            },
+        },
+    ],
 };
 
 export const slides: Slide[] = [

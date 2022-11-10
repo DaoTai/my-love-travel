@@ -27,6 +27,12 @@
             }
         }
     }
+    .title {
+        font-family: 'Dancing Script';
+        font-size: 3.8rem;
+        color: var(--primary);
+        text-shadow: 1px 0px 1px var(--primary);
+    }
 }
 
 .default-background-header {
@@ -51,5 +57,16 @@
         opacity: 0.8;
         background-color: var(--primary);
         color: var(--white);
+    }
+}
+
+// Tablet
+@media (max-width: 1023px) and (min-width: 740px) {
+}
+
+// Mobile
+@media (max-width: 739px) {
+    #header {
+        background-color: var(--white);
     }
 }

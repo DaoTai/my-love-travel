@@ -3,9 +3,12 @@
 }
 
 .wrap-list-fav-tour {
+    margin: 24px auto 36px;
+    width: var(--width-header-layout);
+    max-width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 36px 0;
+    gap: 16px 0;
 }
 
 .title {

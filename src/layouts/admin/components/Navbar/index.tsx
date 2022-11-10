@@ -77,25 +77,6 @@ const Navbar = () => {
                             <span className={cx('nav-name')}>Người dùng</span>
                             {/* <FontAwesomeIcon icon={faChevronRight} /> */}
                         </NavLink>
-                        {/* Children */}
-                        {/* <div className={cx('nav-children')}>
-                            <div className={cx('nav-item')}>
-                                <NavLink
-                                    to="/admin/manage-users"
-                                    className={(nav: any) => cx('nav-link', { active: nav.isActive })}
-                                >
-                                    <span className={cx('nav-name')}>Quản trị viên</span>
-                                </NavLink>
-                            </div>
-                            <div className={cx('nav-item')}>
-                                <NavLink
-                                    to="/admin/manage-users"
-                                    className={(nav: any) => cx('nav-link', { active: nav.isActive })}
-                                >
-                                    <span className={cx('nav-name')}>Người dẫn tour</span>
-                                </NavLink>
-                            </div>
-                        </div> */}
                     </li>
                 </ul>
             </nav>
