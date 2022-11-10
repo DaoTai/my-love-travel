@@ -11,6 +11,7 @@ import { updateUser } from '../actions';
 import Toast, { Status } from '~/components/Toast';
 import { ToastData } from '~/components/Toast/interface';
 import Modal from '~/components/Modal';
+import Fallback from '~/assets/fallback.png';
 import 'tippy.js/dist/tippy.css';
 import styles from './styles.module.scss';
 const cx = className.bind(styles);
@@ -113,7 +114,11 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                     <div id={cx('avatar')} className={cx('detail-item')}>
                         <Tippy animation="fade" placement="right" content="Thay ảnh đại diện" duration={[100, 500]}>
                             <label htmlFor="avatar-input">
-                                <img src={values.avatar} alt="avatar-user" className={cx('avatar-user')} />
+                                <img
+                                    srcSet={values.avatar || Fallback}
+                                    alt="avatar-user"
+                                    className={cx('avatar-user')}
+                                />
                             </label>
                         </Tippy>
                         <input
@@ -127,31 +132,31 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            ID Account
+                            ID Account:
                         </label>
                         <input type="text" value={user?.idAccount} readOnly className={cx('detail-value')} />
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            ID User
+                            ID User:
                         </label>
                         <input type="text" value={user?.idUser} readOnly className={cx('detail-value')} />
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Tên tài khoản
+                            Tên tài khoản:
                         </label>
                         <input type="text" value={user?.username} readOnly className={cx('detail-value')} />
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Vai trò
+                            Vai trò:
                         </label>
                         <input type="text" value={user?.role} readOnly className={cx('detail-value')} />
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Họ tên
+                            Họ tên:
                         </label>
                         <input
                             type="text"
@@ -167,7 +172,7 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Ngày sinh
+                            Ngày sinh:
                         </label>
                         <input
                             type="text"
@@ -181,7 +186,7 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                     </div>
                     <div className={cx('detail-item', 'd-flex  align-items-center')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Giới tính
+                            Giới tính:
                         </label>
                         <div className="d-flex justify-content-around">
                             <div>
@@ -213,7 +218,7 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Email
+                            Email:
                         </label>
                         <input
                             type="email"
@@ -227,7 +232,7 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Số điện thoại
+                            Số điện thoại:
                         </label>
                         <input
                             type="text"
@@ -241,7 +246,7 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Địa chỉ
+                            Địa chỉ:
                         </label>
                         <input
                             type="text"
@@ -255,13 +260,13 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Ngày tham gia
+                            Ngày tham gia:
                         </label>
                         <input type="text" name="joinTime" className={cx('detail-value')} value="1/1/2022" readOnly />
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
-                            Số tour đã đặt
+                            Số tour đã đặt:
                         </label>
                         <input type="text" name="bookedTour" className={cx('detail-value')} value="0" readOnly />
                     </div>

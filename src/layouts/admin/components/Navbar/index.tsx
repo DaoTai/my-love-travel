@@ -1,11 +1,20 @@
-import React from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import HeadlessTippy from '@tippyjs/react/headless';
 import className from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './styles.module.scss';
-import { faChartLine, faChevronRight, faLocation, faUserPlus, faUsers } from '@fortawesome/free-solid-svg-icons';
+import {
+    faChartLine,
+    faChevronRight,
+    faLocation,
+    faPlusCircle,
+    faUserPlus,
+    faUsers,
+} from '@fortawesome/free-solid-svg-icons';
 const cx = className.bind(styles);
 const Navbar = () => {
+    const [showCreations, setShowCreations] = useState<boolean>(false);
     return (
         <div id={cx('nav-bar')}>
             <nav>
@@ -16,14 +25,39 @@ const Navbar = () => {
                             <span className={cx('nav-name')}>Biểu đồ</span>
                         </NavLink>
                     </li>
-                    <li className={cx('nav-item')}>
-                        <NavLink
-                            to="/admin/account-creator"
-                            className={(nav: any) => cx('nav-link', { active: nav.isActive })}
+                    <li className={cx('creator-options')} onClick={() => setShowCreations(!showCreations)}>
+                        <p
+                            className={cx({
+                                active: showCreations,
+                            })}
                         >
-                            <FontAwesomeIcon icon={faUserPlus} />
-                            <span className={cx('nav-name')}>Tạo tài khoản</span>
-                        </NavLink>
+                            <FontAwesomeIcon icon={faChevronRight} />
+                            <span className={cx('nav-name')}>Tạo mới</span>
+                        </p>
+                        {showCreations && (
+                            <>
+                                <div className={cx('nav-item')}>
+                                    <NavLink
+                                        to="/admin/account-creator"
+                                        className={(nav: any) => cx('nav-link', { active: nav.isActive })}
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        <FontAwesomeIcon icon={faUserPlus} />
+                                        <span className={cx('nav-name')}>Tạo tài khoản</span>
+                                    </NavLink>
+                                </div>
+                                <div className={cx('nav-item')}>
+                                    <NavLink
+                                        to="/admin/tour-creator"
+                                        className={(nav: any) => cx('nav-link', { active: nav.isActive })}
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        <FontAwesomeIcon icon={faPlusCircle} />
+                                        <span className={cx('nav-name')}>Tạo tour</span>
+                                    </NavLink>
+                                </div>
+                            </>
+                        )}
                     </li>
                     <li className={cx('nav-item')}>
                         <NavLink

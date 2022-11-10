@@ -1,6 +1,9 @@
 $widthSelectStatus: 165px;
+$heightSelectStatus: 140px;
 @mixin listSelect {
     width: $widthSelectStatus;
+    max-height: $heightSelectStatus;
+    overflow-y: overlay;
     background-color: var(--white);
     box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
     border-radius: 4px;
@@ -91,13 +94,14 @@ $widthSelectStatus: 165px;
     .detail-value {
         flex: 2 1 auto;
         font-size: 1.6rem;
-        padding: 4px 0;
+        padding: 8px 4px;
         margin-left: 8px;
+        border-radius: 4px;
         border: none;
         outline: 1px solid transparent;
         caret-color: var(--primary);
-        &[type='file'] {
-            visibility: hidden;
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.03);
         }
         &:is([type='radio'], [type='checkbox']) {
             cursor: pointer;
@@ -109,179 +113,19 @@ $widthSelectStatus: 165px;
                 margin-right: 12px;
             }
         }
+        &[type='file'] {
+            visibility: hidden;
+        }
         &[type='number']::-webkit-outer-spin-button,
         &[type='number']::-webkit-inner-spin-button {
             -webkit-appearance: none;
         }
     }
 
-    .utilities {
-        margin-left: 12px;
-        .utility {
-            padding: 4px;
-            & + .utility {
-                margin-top: 8px;
-            }
-            input {
-                font-size: 1.5rem;
-                caret-color: var(--primary);
-                border: 1px solid;
-                border-color: transparent transparent var(--primary) transparent;
-                padding: inherit;
-                outline: none;
-                &::placeholder {
-                    font-size: 1.4rem;
-                }
-            }
-            .remove-icon {
-                float: right;
-                font-size: 1.4rem;
-                color: var(--primary);
-                padding: 4px 6px;
-                margin-left: 12px;
-                border-radius: 4px;
-                cursor: pointer;
-                transition: all 0.2s linear;
-                &:hover {
-                    background-color: var(--primary);
-                    color: var(--white);
-                }
-            }
-
-            .add-icon {
-                @extend .remove-icon;
-                color: var(--success);
-                border: 1px solid currentColor;
-                background-color: var(--white);
-                &:hover {
-                    background-color: var(--success);
-                    color: var(--white);
-                }
-            }
-        }
-
-        .utility:last-child {
-            padding-left: 0;
-            margin-top: 14px;
-        }
-    }
-
-    #intro {
-        width: 100%;
-        display: block;
-        margin: 8px 0 0;
-        padding-left: 8px;
-        min-height: 20vh;
-        border: 1px solid var(--primary);
-    }
     .error-msg {
         width: 100%;
         padding-top: 4px;
         color: var(--error);
-    }
-
-    .select-status-tour {
-        flex: 0 1 auto;
-        button {
-            font-size: 1.6rem;
-            letter-spacing: 1px;
-            color: var(--primary);
-            text-align: left;
-            max-width: 100%;
-            width: $widthSelectStatus;
-            padding: 6px 8px;
-            margin-left: 4px;
-            border-radius: 8px;
-            border: 1px solid transparent;
-            background-color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            &:hover {
-                border-color: var(--primary);
-                svg {
-                    visibility: visible;
-                }
-            }
-            svg {
-                float: right;
-                font-size: 1.3rem;
-                visibility: hidden;
-                transition: inherit;
-            }
-            span {
-                padding-right: 8px;
-            }
-        }
-    }
-
-    .select-guide-tour {
-        @extend .select-status-tour;
-    }
-
-    .categories {
-        display: flex;
-        flex-direction: column;
-        align-items: baseline;
-        .category {
-            padding: 4px;
-        }
-    }
-
-    .list-img {
-        margin-top: 12px;
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        .img-tour {
-            width: 250px;
-            height: 200px;
-            flex: 1 1 auto;
-            max-width: 100%;
-            border-radius: 8px;
-            filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.3));
-            background-position: top;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-color: rgba(0, 0, 0, 0.08);
-            position: relative;
-            &:has(.add-img) {
-                cursor: pointer;
-                filter: none;
-            }
-            .add-img {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                font-size: 2.4rem;
-                padding: 5px 8px;
-                border-radius: 99px;
-                background-color: var(--white);
-                &:hover {
-                    background-color: rgba(255, 255, 255, 0.6);
-                }
-            }
-            .remove-img {
-                position: absolute;
-                top: 2px;
-                right: 4px;
-                font-size: 1.8rem;
-                padding: 4px 8px;
-                border: none;
-                background-color: #eee;
-                border-radius: 99px;
-                cursor: pointer;
-                transition: all 0.2s ease-in-out;
-                &:hover {
-                    color: var(--primary);
-                    background-color: var(--white);
-                }
-            }
-        }
     }
 
     .wrap-btns {
@@ -312,6 +156,170 @@ $widthSelectStatus: 165px;
             &:hover {
                 background-color: var(--primary);
                 color: var(--white);
+            }
+        }
+    }
+}
+
+.utilities {
+    margin-left: 12px;
+    .utility {
+        padding: 4px;
+        & + .utility {
+            margin-top: 8px;
+        }
+        input {
+            font-size: 1.5rem;
+            caret-color: var(--primary);
+            border: 1px solid;
+            border-color: transparent transparent var(--primary) transparent;
+            padding: inherit;
+            outline: none;
+            &::placeholder {
+                font-size: 1.4rem;
+            }
+        }
+        .remove-icon {
+            float: right;
+            font-size: 1.4rem;
+            color: var(--primary);
+            padding: 4px 6px;
+            margin-left: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s linear;
+            &:hover {
+                background-color: var(--primary);
+                color: var(--white);
+            }
+        }
+
+        .add-icon {
+            @extend .remove-icon;
+            color: var(--success);
+            border: 1px solid currentColor;
+            background-color: var(--white);
+            &:hover {
+                background-color: var(--success);
+                color: var(--white);
+            }
+        }
+    }
+
+    .utility:last-child {
+        padding-left: 0;
+        margin-top: 14px;
+    }
+}
+
+#intro {
+    width: 100%;
+    display: block;
+    margin: 8px 0 0;
+    padding-left: 8px;
+    min-height: 20vh;
+    border: 1px solid var(--primary);
+}
+
+.select-status-tour {
+    flex: 0 1 auto;
+    button {
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+        color: var(--primary);
+        text-align: left;
+        max-width: 100%;
+        width: $widthSelectStatus;
+        padding: 6px 8px;
+        margin-left: 4px;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        background-color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        &:hover {
+            border-color: var(--primary);
+            svg {
+                visibility: visible;
+            }
+        }
+        svg {
+            float: right;
+            font-size: 1.3rem;
+            visibility: hidden;
+            transition: inherit;
+        }
+        span {
+            padding-right: 8px;
+        }
+    }
+}
+
+.select-guide-tour {
+    @extend .select-status-tour;
+}
+
+.categories {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    .category {
+        padding: 4px;
+    }
+}
+
+.list-img {
+    margin-top: 12px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    .img-tour {
+        width: 250px;
+        height: 200px;
+        flex: 1 1 auto;
+        max-width: 100%;
+        border-radius: 8px;
+        filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.3));
+        background-position: top;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: rgba(0, 0, 0, 0.08);
+        position: relative;
+        &:has(.add-img) {
+            cursor: pointer;
+            filter: none;
+        }
+        .add-img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.4rem;
+            padding: 5px 8px;
+            border-radius: 99px;
+            background-color: var(--white);
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.6);
+            }
+        }
+        .remove-img {
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            font-size: 1.8rem;
+            padding: 4px 8px;
+            border: none;
+            background-color: #eee;
+            border-radius: 99px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            &:hover {
+                color: var(--primary);
+                background-color: var(--white);
             }
         }
     }

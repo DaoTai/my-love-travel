@@ -6,9 +6,9 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import className from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faSave, faUndo } from '@fortawesome/free-solid-svg-icons';
-import { vietNamProvinces } from '~/apis/auth';
 import { init, registerOptions } from './config';
 import { addUser } from '../ManageUsers/actions';
+import { vietNamProvinces } from '~/apis/auth';
 import Toast, { Status } from '~/components/Toast';
 import { ToastData } from '~/components/Toast/interface';
 import 'tippy.js/dist/tippy.css';
@@ -17,20 +17,21 @@ const cx = className.bind(styles);
 const AccountCreator = () => {
     const dispatch = useDispatch();
     const [showToast, setShowToast] = useState<boolean>(false);
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue, setValues } = useFormik({
-        initialValues: init,
-        validationSchema: registerOptions,
-        onSubmit: (values) => {
-            setShowToast(true);
-            dispatch(
-                addUser({
-                    ...values,
-                    idUser: 333,
-                    idAccount: 333,
-                }),
-            );
-        },
-    });
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue, setValues, handleReset } =
+        useFormik({
+            initialValues: init,
+            validationSchema: registerOptions,
+            onSubmit: (values) => {
+                setShowToast(true);
+                dispatch(
+                    addUser({
+                        ...values,
+                        idUser: 333,
+                        idAccount: 333,
+                    }),
+                );
+            },
+        });
     const [provinces, setProvinces] = useState([{ name: '' }]);
     const [showSelectTypes, setShowSelectTypes] = useState<boolean>(false);
     const [selectedType, setSelectedType] = useState<string>('Khách hàng');
@@ -68,17 +69,11 @@ const AccountCreator = () => {
         setFieldValue('role', role);
         setSelectedType(role);
         setShowSelectTypes(false);
-        handleReset();
     };
 
-    // Handle reset values
-    const handleReset = () => {
-        setValues(init);
-    };
     return (
         <>
             <div id={cx('account-creator')}>
-                {/* Form */}
                 {/* Select role */}
                 <div className="d-flex justify-content-between">
                     <div>
@@ -116,6 +111,8 @@ const AccountCreator = () => {
                         </button>
                     </Tippy>
                 </div>
+                {/* Form */}
+
                 <form className={cx('register-form')} onSubmit={handleSubmit}>
                     <div className={cx('form-group')}>
                         <label className={cx('form-label')} htmlFor="">
@@ -139,8 +136,9 @@ const AccountCreator = () => {
                             Ngày sinh
                         </label>
                         <input
-                            type="date"
+                            type="text"
                             name="dob"
+                            placeholder="dd/mm/YYYY"
                             value={values.dob}
                             className={cx('form-input')}
                             onChange={handleChange}

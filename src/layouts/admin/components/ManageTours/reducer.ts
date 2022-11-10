@@ -11,6 +11,8 @@ const manageTourReducer = (state = [], action: Action) => {
             return [...state];
         case TYPE.GET_TOURS_SUCCESS:
             return [...(action.payload as Tour[])];
+        case TYPE.ADD_TOUR:
+            return { ...(action.payload as Omit<Tour, 'id'>) };
         case TYPE.UPDATE_TOUR:
             return { ...(action.payload as Tour) };
         case TYPE.DELETE_TOUR:

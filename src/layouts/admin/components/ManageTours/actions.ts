@@ -13,6 +13,13 @@ export const getToursSuccess = (payload: Tour[]) => {
     };
 };
 
+export const addTour = (payload: Omit<Tour, 'id'>) => {
+    return {
+        type: TYPE.ADD_TOUR,
+        payload,
+    };
+};
+
 export const updateTour = (payload: Tour) => {
     return {
         type: TYPE.UPDATE_TOUR,

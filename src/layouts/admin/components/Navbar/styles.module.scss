@@ -5,10 +5,29 @@
         ul {
             .nav-item {
                 width: 100%;
-                padding: 12px 0 12px 18px;
+                padding: 10px 0 10px 18px;
+                margin-bottom: 4px;
                 cursor: pointer;
                 position: relative;
                 transition: all 0.2s ease-in-out;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    right: 1px;
+                    height: 100%;
+                    width: 2px;
+                    border-radius: 12px;
+                    background-color: var(--primary);
+                    transform: scaleY(0);
+                    transform-origin: bottom;
+                    transition: all 0.3s ease-in-out;
+                }
+                &:has(.nav-link.active) {
+                    &::after {
+                        transform: scaleY(1);
+                    }
+                }
                 &:hover {
                     background-color: rgba(255, 255, 255, 0.3);
                     .nav-name + svg {
@@ -18,21 +37,21 @@
                         display: block;
                     }
                 }
+
                 .nav-name {
                     padding-right: 12px;
-                    & + svg {
-                        font-size: 1.4rem;
-                        transition: all 0.3s ease-in-out;
-                    }
                 }
                 .nav-link {
                     display: block;
                     width: 100%;
                     font-size: 1.7rem;
                     color: var(--white);
+
                     &.active {
-                        color: var(--primary);
+                        color: var(--primary) !important;
+                        position: relative;
                     }
+
                     .nav-name {
                         padding-left: 8px;
                     }
@@ -60,6 +79,40 @@
                             color: var(--white) !important;
                         }
                     }
+                }
+            }
+
+            .creator-options {
+                @extend .nav-item;
+                padding: 0 0 0 8px;
+                color: var(--white);
+                &:hover {
+                    background-color: transparent;
+                }
+                p {
+                    width: 100%;
+                    height: 100%;
+                    padding: 8px;
+                    &:hover {
+                        background-color: rgba(255, 255, 255, 0.3);
+                    }
+
+                    &.active {
+                        color: var(--primary);
+                        svg {
+                            transform: rotate(90deg);
+                        }
+                    }
+                    svg {
+                        transition: all 0.2s linear;
+                    }
+                    .nav-item,
+                    .nav-link {
+                        color: var(--white) !important;
+                    }
+                }
+                .nav-name {
+                    padding-left: 8px;
                 }
             }
         }
