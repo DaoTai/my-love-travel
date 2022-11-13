@@ -12,10 +12,11 @@ import {
     History,
     FavouriteTours,
     ProfileForm,
+    NewPassword,
     DetailPrivateTour,
 } from '~/layouts/user/components';
 // import about Admin
-import { Admin, AccountCreator, TourCreator, Chart, ManageUsers, ManageTours } from '~/layouts/admin/components';
+import { Admin, AccountCreator, TourCreator, Statistical, ManageUsers, ManageTours } from '~/layouts/admin/components';
 // Public routes
 const publicRoutes: Array<Route> = [
     {
@@ -88,11 +89,11 @@ const userRoutes: Array<Route> = [
 const adminRoutes: Array<Route> = [
     {
         path: '',
-        component: Chart,
+        component: Statistical,
     },
     {
-        path: 'chart',
-        component: Chart,
+        path: 'statistical',
+        component: Statistical,
     },
     {
         path: 'profile',

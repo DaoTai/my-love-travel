@@ -20,9 +20,12 @@ const Navbar = () => {
             <nav>
                 <ul>
                     <li className={cx('nav-item')}>
-                        <NavLink to="/admin/chart" className={(nav: any) => cx('nav-link', { active: nav.isActive })}>
+                        <NavLink
+                            to="/admin/statistical"
+                            className={(nav: any) => cx('nav-link', { active: nav.isActive })}
+                        >
                             <FontAwesomeIcon icon={faChartLine} />
-                            <span className={cx('nav-name')}>Biểu đồ</span>
+                            <span className={cx('nav-name')}>Thống kê</span>
                         </NavLink>
                     </li>
                     <li className={cx('creator-options')} onClick={() => setShowCreations(!showCreations)}>

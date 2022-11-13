@@ -5,7 +5,7 @@ import privateToursSaga from '~/layouts/user/components/PrivateTours/saga';
 import historySaga from '~/layouts/user/components/History/saga';
 import manageUsersSaga from '~/layouts/admin/components/ManageUsers/saga';
 import manageToursSaga from '~/layouts/admin/components/ManageTours/saga';
-
+import genderChartSaga from '~/layouts/admin/components/Statistical/Charts/GenderUser/saga';
 export default function* rootSaga() {
     yield all([
         fork(listTourSaga),
@@ -14,5 +14,6 @@ export default function* rootSaga() {
         fork(historySaga),
         fork(manageUsersSaga),
         fork(manageToursSaga),
+        fork(genderChartSaga),
     ]);
 }

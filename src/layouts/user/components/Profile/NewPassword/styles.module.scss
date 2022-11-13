@@ -10,6 +10,7 @@
     background-color: var(--primary);
 }
 .heading {
+    text-align: center;
     font-size: 4.2rem;
     font-weight: 600;
     font-family: 'Dancing Script';
@@ -26,7 +27,7 @@
     .form-label {
         font-size: 1.6rem;
         font-weight: 500;
-        margin: 8px 0 4px;
+        margin: 6px 0 4px;
         display: block;
     }
     .wrap-input {

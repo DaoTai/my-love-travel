@@ -194,7 +194,6 @@
             font-size: 1.5rem;
             letter-spacing: 1px;
             color: var(--primary);
-            text-align: left;
             width: 160px;
             max-width: 100%;
             padding: 10px 8px;
@@ -206,13 +205,11 @@
             justify-content: space-between;
             cursor: pointer;
             svg {
-                float: right;
-                font-size: 1.3rem;
+                font-size: 1.6rem;
             }
             span {
-                text-align: center;
                 color: var(--text);
-                padding-right: 8px;
+                padding-left: 4px;
                 text-overflow: ellipsis;
                 overflow: hidden;
                 white-space: nowrap;

@@ -654,3 +654,71 @@ export const users: AccountUser[] = [
         role: 'Người dẫn tour',
     },
 ];
+
+// Charts
+// Category
+export const categoriesChart = () => {};
+
+// Gender User
+export const genderUserChart = [
+    {
+        name: 'Nam',
+        amount: 500,
+    },
+    {
+        name: 'Nữ',
+        amount: 700,
+    },
+];
+
+// Customers in 12 months
+export const totalCustomerChart = [
+    {
+        month: 1,
+        amount: 14,
+    },
+    {
+        month: 2,
+        amount: 50,
+    },
+    {
+        month: 3,
+        amount: 60,
+    },
+    {
+        month: 4,
+        amount: 54,
+    },
+    {
+        month: 5,
+        amount: 140,
+    },
+    {
+        month: 6,
+        amount: 400,
+    },
+    {
+        month: 7,
+        amount: 500,
+    },
+    {
+        month: 8,
+        amount: 500,
+    },
+    {
+        month: 9,
+        amount: 467,
+    },
+    {
+        month: 10,
+        amount: 567,
+    },
+    {
+        month: 11,
+        amount: 667,
+    },
+    {
+        month: 12,
+        amount: 767,
+    },
+];

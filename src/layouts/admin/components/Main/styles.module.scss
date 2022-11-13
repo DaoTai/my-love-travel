@@ -1,23 +1,23 @@
 .body {
     display: flex;
-    justify-content: flex-end;
-    margin-top: calc(var(--height-header-layout) + 12px);
+    gap: 0 16px;
+    margin-top: calc(var(--height-header-layout));
+    background-color: #f5f5f5;
+
     .nav-bar {
-        max-width: 15%;
-        flex: 1 1 15%;
-        position: fixed;
-        z-index: 1;
-        top: var(--height-header-layout);
-        left: 0;
-        bottom: 0;
+        flex: 1 1 auto;
         width: 100%;
+        max-width: 15%;
+        min-height: 100vh;
         background-color: #091023;
         box-shadow: 4px 0 4px rgba(0, 0, 0, 0.3);
         transition: all 0.3s linear;
     }
     .container {
-        max-width: 85%;
-        flex: 1 1 85%;
-        padding: 12px 24px;
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: var(--width-header-layout);
+        margin: 0 auto;
+        padding: 12px;
     }
 }

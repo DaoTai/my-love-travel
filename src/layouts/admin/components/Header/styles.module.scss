@@ -1,3 +1,22 @@
+@mixin actionLink {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: var(--text);
+    padding: 10px 16px;
+    background-color: var(--white);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    &:hover {
+        opacity: 0.8;
+        color: var(--primary);
+        svg {
+            transform: scale(1.08);
+        }
+    }
+}
+
 .header {
     position: fixed;
     z-index: 10;
@@ -18,11 +37,12 @@
         padding: 0 4px;
     }
     .logo {
+        cursor: pointer;
         svg {
             transition: filter 0.3s ease-in, transform 0.3s linear;
             &:hover {
                 filter: contrast(150%);
-                transform: rotate(-45deg);
+                transform: rotate(-50deg);
             }
         }
     }
@@ -34,7 +54,6 @@
         transition: all 0.3s ease-out;
         &:hover {
             color: var(--primary);
-            cursor: default;
         }
     }
     .wrap-btns {
@@ -72,26 +91,16 @@
                 border-bottom: 1px solid var(--primary);
                 width: 100%;
                 a {
-                    display: block;
-                    width: 100%;
-                    text-decoration: none;
-                    color: var(--text);
-                    padding: 10px 16px;
-                    background-color: var(--white);
-                    border: 1px solid transparent;
-                    transition: all 0.2s ease;
-                    &:hover {
-                        opacity: 0.8;
-                        color: var(--primary);
-                        svg {
-                            transform: scale(1.08);
-                        }
-                    }
+                    @include actionLink;
                 }
                 svg {
                     margin-right: 8px;
                     transition: all 0.2s linear;
                 }
+            }
+
+            #new-password {
+                @include actionLink;
             }
         }
     }

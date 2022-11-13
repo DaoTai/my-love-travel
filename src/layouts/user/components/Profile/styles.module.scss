@@ -40,6 +40,10 @@ $colorButton: linear-gradient(to left, #7430e6, #f224a7);
     }
 }
 
+#form-profile {
+    padding: 0 8px;
+}
+
 .container {
     padding: 12px 8px 24px;
     display: flex;
@@ -57,8 +61,6 @@ $colorButton: linear-gradient(to left, #7430e6, #f224a7);
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
-
-    padding: 0 8px;
 }
 
 .submit-btn {
@@ -67,6 +69,7 @@ $colorButton: linear-gradient(to left, #7430e6, #f224a7);
     width: inherit;
     float: right;
     padding: 6px 20px;
+    margin-right: 0;
     border-radius: 4px;
 }
 
@@ -108,62 +111,61 @@ $colorButton: linear-gradient(to left, #7430e6, #f224a7);
     }
 }
 
-.content {
-    .form-group {
-        text-align: left;
-        width: 50%;
-        padding-right: 24px;
-        margin: 12px 0;
-        display: flex;
-        align-items: center;
-        gap: 0 12px;
-        .form-label {
-            font-size: 1.6rem;
-            font-weight: 500;
-            padding: 0 4px 0 8px;
-            margin-left: 8px;
-            display: block;
-            position: relative;
-            cursor: pointer;
+.form-group {
+    flex: 1 1 50%;
+    max-width: 50%;
+    text-align: left;
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 0 12px;
+    .form-label {
+        font-size: 1.6rem;
+        font-weight: 500;
+        padding-left: 8px;
+        margin-left: 8px;
+        display: block;
+        position: relative;
+        cursor: pointer;
 
-            &::after {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 0;
-                transform: translateY(-50%);
-                border: 5px solid;
-                border-color: transparent transparent transparent var(--primary);
-            }
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            border: 5px solid;
+            border-color: transparent transparent transparent var(--primary);
         }
-        .wrap-input {
-            flex-grow: 1;
-            .form-input {
-                font-size: 1.6rem;
-                width: 100%;
-                padding: 8px 8px 8px 4px;
-                margin-right: 8px;
-                caret-color: var(--primary);
-                border: 1px solid;
-                border-color: transparent transparent var(--primary) transparent;
-                outline: 1px solid transparent;
-                &:focus {
-                    border-radius: 8px;
-                    border-color: var(--primary);
-                    outline-color: var(--primary);
-                }
-            }
-            p.error-msg {
-                color: var(--primary);
-            }
-        }
+    }
+    .wrap-input {
+        flex-grow: 1;
         .form-input {
-            &[type='radio'] {
-                margin-left: 12px !important;
-                margin-right: 12px !important;
-                transform: scale(1.1);
-                accent-color: var(--primary);
+            font-size: 1.6rem;
+            width: 100%;
+            padding: 8px 0 8px 6px;
+            caret-color: var(--primary);
+            border: 1px solid;
+            border-color: transparent transparent var(--primary) transparent;
+            outline: 1px solid transparent;
+            background-color: transparent;
+            &:focus {
+                border-radius: 8px;
+                border-color: var(--primary);
+                outline-color: var(--primary);
+                background-color: var(--white);
             }
+        }
+        p.error-msg {
+            color: var(--primary);
+        }
+    }
+    .form-input {
+        &[type='radio'] {
+            margin-left: 12px !important;
+            margin-right: 12px !important;
+            transform: scale(1.1);
+            accent-color: var(--primary);
         }
     }
 }

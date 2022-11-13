@@ -9,6 +9,7 @@ import { profileSelector as profileStore } from '../selectors';
 import { getProfile, updateProfile } from '../actions';
 import { ToastData } from '~/components/Toast/interface';
 import Toast, { Status } from '~/components/Toast';
+
 import styles from '../styles.module.scss';
 const cx = classNames.bind(styles);
 const FormProfile = () => {
@@ -88,7 +89,7 @@ const FormProfile = () => {
     };
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form id={cx('form-profile')} onSubmit={handleSubmit}>
                 <div className={cx('avatar')}>
                     <div id={cx('wrap-input-image')}>
                         <Tippy animation="fade" placement="bottom" content="Thay ảnh đại diện" duration={[100, 500]}>
@@ -110,7 +111,7 @@ const FormProfile = () => {
                 <div className={cx('content')}>
                     <div className={cx('form-group')}>
                         <label className={cx('form-label')} htmlFor="fullName">
-                            Họ tên
+                            Họ tên:
                         </label>
                         <div className={cx('wrap-input')}>
                             <input
@@ -130,7 +131,7 @@ const FormProfile = () => {
 
                     <div className={cx('form-group')}>
                         <label className={cx('form-label')} htmlFor="">
-                            Giới tính
+                            Giới tính:
                         </label>
                         <div className={cx('form-group')}>
                             <label htmlFor="male">
@@ -167,7 +168,7 @@ const FormProfile = () => {
 
                     <div className={cx('form-group')}>
                         <label className={cx('form-label')} htmlFor="dob">
-                            Ngày sinh
+                            Ngày sinh:
                         </label>
                         <div className={cx('wrap-input')}>
                             <input
@@ -185,7 +186,7 @@ const FormProfile = () => {
 
                     <div className={cx('form-group')}>
                         <label className={cx('form-label')} htmlFor="address">
-                            Địa chỉ
+                            Địa chỉ:
                         </label>
                         <div className={cx('wrap-input')}>
                             <input
@@ -205,7 +206,7 @@ const FormProfile = () => {
 
                     <div className={cx('form-group')}>
                         <label className={cx('form-label')} htmlFor="phone">
-                            Số điện thoại
+                            Số điện thoại:
                         </label>
                         <div className={cx('wrap-input')}>
                             <input
@@ -222,7 +223,7 @@ const FormProfile = () => {
                     </div>
                     <div className={cx('form-group')}>
                         <label className={cx('form-label')} htmlFor="email">
-                            Email
+                            Email:
                         </label>
                         <div className={cx('wrap-input')}>
                             <input
