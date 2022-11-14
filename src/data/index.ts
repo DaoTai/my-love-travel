@@ -672,7 +672,7 @@ export const genderUserChart = [
 ];
 
 // Customers in 12 months
-export const totalCustomerChart = [
+export const amountCustomerChart = [
     {
         month: 1,
         amount: 14,

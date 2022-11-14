@@ -1,4 +1,4 @@
-import { ChartGenderData } from './interface';
+import { ChartGenderData } from '../interface';
 export const INIT_STATE = [];
 
 export const options = (data: ChartGenderData[]) => {
@@ -19,6 +19,9 @@ export const options = (data: ChartGenderData[]) => {
         tooltip: {
             pointFormat: 'Số lượng: <b>{point.y}</b>',
         },
+        legend: {
+            enabled: true,
+        },
         colors: ['#A0E7E5', '#FFAEBC'],
         accessibility: {
             enabled: false,
@@ -34,6 +37,7 @@ export const options = (data: ChartGenderData[]) => {
                     enabled: true,
                     format: '<b>{point.name}</b>: {point.percentage:.1f} %',
                 },
+                showInLegend: true,
             },
         },
         series: [
