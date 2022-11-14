@@ -3,6 +3,7 @@ import { TYPE } from './constants';
 export interface Action {
     type: TYPE;
     payload: [];
+    year?: number;
 }
 
 export interface ChartGenderData {
@@ -13,6 +14,12 @@ export interface ChartGenderData {
 export interface ChartAmountOfCustomerData {
     month: number;
     amount: number;
+}
+
+export interface ChartGMVData {
+    month: number;
+    year: number;
+    money: number;
 }
 
 export interface CategoryData {

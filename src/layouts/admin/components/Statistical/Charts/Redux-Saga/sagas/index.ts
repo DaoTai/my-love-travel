@@ -1,12 +1,15 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { TYPE } from '../../constants';
-import { getGenderSuccess, getAmountCustomerSuccess } from '../actions';
-import { genderUserChart, amountCustomerChart } from '~/data';
-import { ChartGenderData, ChartAmountOfCustomerData } from '../../interface';
+import { getGenderSuccess, getAmountCustomerSuccess, getGmvSuccess } from '../actions';
+import { genderUserChart, amountCustomerChart, gvmChart } from '~/data';
+import { Action, ChartGenderData, ChartAmountOfCustomerData, ChartGMVData } from '../../interface';
 
 // Mock apis
 const genderData = () => genderUserChart;
 const amountCustomerData = () => amountCustomerChart;
+const gmvData = (year: number) => {
+    return gvmChart.filter((data) => data.year === year);
+};
 
 // Saga
 function* getGenderSaga(): Generator {
@@ -27,10 +30,20 @@ function* getAmountOfCustomerSaga(): Generator {
     }
 }
 
+function* getGmvSaga(action: Action): Generator {
+    try {
+        const res = yield call(gmvData, action.year as number);
+        yield put(getGmvSuccess(res as ChartGMVData[]));
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 function* ChartSaga(): Generator {
     yield all([
         takeLatest(TYPE.GET_GENDER_USER, getGenderSaga),
         takeLatest(TYPE.GET_GENDER_AMOUNT_OF_CUSTOMER, getAmountOfCustomerSaga),
+        takeLatest(TYPE.GET_GMV, getGmvSaga),
     ]);
 }
 

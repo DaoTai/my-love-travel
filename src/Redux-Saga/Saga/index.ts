@@ -5,7 +5,7 @@ import privateToursSaga from '~/layouts/user/components/PrivateTours/saga';
 import historySaga from '~/layouts/user/components/History/saga';
 import manageUsersSaga from '~/layouts/admin/components/ManageUsers/saga';
 import manageToursSaga from '~/layouts/admin/components/ManageTours/saga';
-import ChartSaga from '~/layouts/admin/components/Statistical/Charts/Redux-Saga/sagas';
+import ChartSaga from '~/layouts/admin/components/Statistical/Charts/redux-saga/sagas';
 export default function* rootSaga() {
     yield all([
         fork(listTourSaga),

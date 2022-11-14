@@ -13,70 +13,70 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-    <React.StrictMode>
-        <Provider store={store}>
-            <AuthProvider>
-                <GlobalStyles>
-                    <Router>
-                        <Routes>
-                            {/* Auth pages */}
-                            <Route path="/auth">
-                                {authRoutes?.map((route, i) => {
-                                    const Page = route.component;
-                                    return <Route key={i} path={route.path} element={<Page />} />;
-                                })}
-                            </Route>
+    // <React.StrictMode>
+    <Provider store={store}>
+        <AuthProvider>
+            <GlobalStyles>
+                <Router>
+                    <Routes>
+                        {/* Auth pages */}
+                        <Route path="/auth">
+                            {authRoutes?.map((route, i) => {
+                                const Page = route.component;
+                                return <Route key={i} path={route.path} element={<Page />} />;
+                            })}
+                        </Route>
 
-                            {/* Public pages */}
-                            <Route path="/" element={<App />}>
-                                {publicRoutes?.map((route, i) => {
-                                    const Page = route.component;
-                                    const children = route.children;
-                                    return (
-                                        <Route key={i} path={route.path} element={<Page />}>
-                                            {children?.map((child, i) => {
-                                                const ChildrenPage = child.component;
-                                                return <Route key={i} path={child.path} element={<ChildrenPage />} />;
-                                            })}
-                                        </Route>
-                                    );
-                                })}
+                        {/* Public pages */}
+                        <Route path="/" element={<App />}>
+                            {publicRoutes?.map((route, i) => {
+                                const Page = route.component;
+                                const children = route.children;
+                                return (
+                                    <Route key={i} path={route.path} element={<Page />}>
+                                        {children?.map((child, i) => {
+                                            const ChildrenPage = child.component;
+                                            return <Route key={i} path={child.path} element={<ChildrenPage />} />;
+                                        })}
+                                    </Route>
+                                );
+                            })}
 
-                                {/* Default page */}
-                                <Route index element={<Home />} />
-                            </Route>
+                            {/* Default page */}
+                            <Route index element={<Home />} />
+                        </Route>
 
-                            {/* User pages */}
-                            <Route path="/user" element={<App />}>
-                                {userRoutes?.map((route, i) => {
-                                    const Page = route.component;
-                                    const children = route.children;
-                                    return (
-                                        <Route key={i} path={route.path} element={<Page />}>
-                                            {children?.map((child, i) => {
-                                                const ChildrenPage = child.component;
-                                                return <Route key={i} path={child.path} element={<ChildrenPage />} />;
-                                            })}
-                                        </Route>
-                                    );
-                                })}
-                            </Route>
+                        {/* User pages */}
+                        <Route path="/user" element={<App />}>
+                            {userRoutes?.map((route, i) => {
+                                const Page = route.component;
+                                const children = route.children;
+                                return (
+                                    <Route key={i} path={route.path} element={<Page />}>
+                                        {children?.map((child, i) => {
+                                            const ChildrenPage = child.component;
+                                            return <Route key={i} path={child.path} element={<ChildrenPage />} />;
+                                        })}
+                                    </Route>
+                                );
+                            })}
+                        </Route>
 
-                            {/* Admin pages */}
-                            <Route path="/admin" element={<Admin />}>
-                                {adminRoutes.map((route, i) => {
-                                    const Page = route.component;
-                                    return <Route key={i} path={route.path} element={<Page />}></Route>;
-                                })}
-                            </Route>
-                            {/* Error page */}
-                            <Route path="/*" element={<ErrorPage />} />
-                        </Routes>
-                    </Router>
-                </GlobalStyles>
-            </AuthProvider>
-        </Provider>
-    </React.StrictMode>,
+                        {/* Admin pages */}
+                        <Route path="/admin" element={<Admin />}>
+                            {adminRoutes.map((route, i) => {
+                                const Page = route.component;
+                                return <Route key={i} path={route.path} element={<Page />}></Route>;
+                            })}
+                        </Route>
+                        {/* Error page */}
+                        <Route path="/*" element={<ErrorPage />} />
+                    </Routes>
+                </Router>
+            </GlobalStyles>
+        </AuthProvider>
+    </Provider>,
+    // </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

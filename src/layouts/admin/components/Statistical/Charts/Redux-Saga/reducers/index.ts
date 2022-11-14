@@ -21,3 +21,14 @@ export const amountOfCustomerCharReducer = (state = INIT_STATE, action: Action) 
             return state;
     }
 };
+
+export const GmvCharReducer = (state = INIT_STATE, action: Action) => {
+    switch (action.type) {
+        case TYPE.GET_GMV:
+            return [...state];
+        case TYPE.GET_GMV_SUCCESS:
+            return [...action.payload];
+        default:
+            return state;
+    }
+};

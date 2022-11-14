@@ -15,9 +15,9 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    h1,
-    h2 {
+    h1 {
         color: var(--white);
+        line-height: 1.8;
         font-weight: 600;
         font-family: 'Dancing Script';
         text-align: center;
@@ -44,42 +44,26 @@
     .container {
         position: absolute;
         z-index: 10;
-        top: 10%;
+        top: 50%;
         left: 50%;
-        transform: translate(-50%, -10%);
+        transform: translate(-50%, -50%);
         padding: 12px 32px;
         .heading {
-            margin: 12px 0;
             font-size: 5.2rem;
             letter-spacing: 4px;
             text-decoration: underline wavy #6aba62;
             text-underline-offset: 20%;
         }
-        .sub-heading {
-            position: relative;
-            font-size: 4.2rem;
-            letter-spacing: 2px;
-            &::after {
-                content: '';
-                position: absolute;
-                bottom: 0px;
-                left: 0;
-                right: 0;
-                height: 3px;
-                background: var(--primary);
-                border-radius: 8px;
-            }
-        }
     }
     .login-form {
-        padding: 32px 20px 0;
-        margin: 20px 0;
-        width: 380px;
+        padding: 24px;
+        margin: 32px 0;
+        width: 400px;
         max-width: 100%;
         border-radius: 8px;
-        // background: var(--white);
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.6);
         &:focus-within {
-            box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.3);
             background-color: var(--white);
             label {
                 color: var(--text);
@@ -92,9 +76,9 @@
         }
     }
     .form-group {
-        padding: 12px 0;
-        position: relative;
         font-size: 1.8rem;
+        padding: 8px 0;
+        position: relative;
         &:focus-within {
             label {
                 @include muatedLabel;
@@ -104,12 +88,12 @@
             @include muatedLabel;
         }
         label {
-            position: absolute;
-            top: -12px;
-            left: 12px;
             font-size: 1.8rem;
-            font-weight: 400;
             color: var(--white);
+            position: absolute;
+            top: -14px;
+            left: 4px;
+            font-weight: 500;
             transform: scaleY(0);
         }
 
@@ -121,30 +105,27 @@
             width: 100%;
             padding: 12px 8px 12px 12px;
             margin: 8px 0;
-            border-radius: 24px;
+            border-radius: 4px;
             background-color: rgba(142, 157, 163, 0.4);
             border: 1px solid transparent;
-            box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: inherit;
             outline: 1px solid var(--white);
             caret-color: var(--primary);
-
             &:focus {
                 border-color: var(--primary);
-                outline-color: var(--primary);
                 &::placeholder {
                     opacity: 0;
-                }
-                &:placeholder-shown {
-                    font-size: 1.6rem;
                 }
             }
 
             &::placeholder {
                 color: var(--white);
+                letter-spacing: 1px;
+                line-height: 1.6;
             }
 
             &:placeholder-shown {
-                letter-spacing: 2px;
+                letter-spacing: 1px;
                 font-size: 1.6rem;
             }
         }
@@ -152,7 +133,7 @@
         .error-msg {
             color: var(--primary);
             font-weight: 400;
-            padding: 0 0 12px 12px;
+            margin-bottom: 8px;
         }
     }
 
@@ -164,7 +145,6 @@
         letter-spacing: 1px;
         width: 100%;
         padding: 12px;
-        margin: 20px 0;
         border-radius: 8px;
         border: 1px solid transparent;
         cursor: pointer;
@@ -190,7 +170,7 @@
             transform: scaleX(0);
             transform-origin: left;
             border-radius: inherit;
-            transition: all 0.2s ease-in-out;
+            transition: all 0.3s ease-in-out;
         }
     }
 }

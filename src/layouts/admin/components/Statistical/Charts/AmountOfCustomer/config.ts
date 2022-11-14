@@ -1,5 +1,4 @@
 import { ChartAmountOfCustomerData } from '../interface';
-export const INIT_STATE = [];
 
 export const options = (data: ChartAmountOfCustomerData[]) => {
     const configData = data.map((phase) => [phase.month, phase.amount]);
@@ -8,7 +7,6 @@ export const options = (data: ChartAmountOfCustomerData[]) => {
         title: {
             text: 'Tổng số lượng người dùng đăng ký năm 2022',
         },
-
         colors: ['#A0E7E5'],
         xAxis: {
             type: 'category',
@@ -40,7 +38,7 @@ export const options = (data: ChartAmountOfCustomerData[]) => {
             },
         },
         tooltip: {
-            pointFormat: ' <b>{point.y} người</b>',
+            pointFormat: '<b>{point.y} người</b>',
         },
         accessibility: {
             enabled: false,
@@ -60,7 +58,6 @@ export const options = (data: ChartAmountOfCustomerData[]) => {
             },
             {
                 type: 'spline',
-                name: 'linh tinh',
                 data: amounts,
                 color: '#28a745',
             },

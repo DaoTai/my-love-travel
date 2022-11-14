@@ -722,3 +722,127 @@ export const amountCustomerChart = [
         amount: 767,
     },
 ];
+
+// GMV
+export const gvmChart = [
+    {
+        month: 1,
+        money: 0,
+        year: 2021,
+    },
+    {
+        month: 2,
+        money: 1000000,
+        year: 2021,
+    },
+    {
+        month: 3,
+        money: 4000000,
+        year: 2021,
+    },
+    {
+        month: 4,
+        money: 4000000,
+        year: 2021,
+    },
+    {
+        month: 5,
+        money: 6000000,
+        year: 2021,
+    },
+    {
+        month: 6,
+        money: 4000000,
+        year: 2021,
+    },
+    {
+        month: 7,
+        money: 8000000,
+        year: 2021,
+    },
+    {
+        month: 8,
+        money: 6000000,
+        year: 2021,
+    },
+    {
+        month: 9,
+        money: 4070000,
+        year: 2021,
+    },
+    {
+        month: 10,
+        money: 1070000,
+        year: 2021,
+    },
+    {
+        month: 11,
+        money: 2070000,
+        year: 2021,
+    },
+    {
+        month: 12,
+        money: 4070000,
+        year: 2021,
+    },
+    {
+        month: 1,
+        money: 140000,
+        year: 2022,
+    },
+    {
+        month: 2,
+        money: 500000,
+        year: 2022,
+    },
+    {
+        month: 3,
+        money: 600000,
+        year: 2022,
+    },
+    {
+        month: 4,
+        money: 540000,
+        year: 2022,
+    },
+    {
+        month: 5,
+        money: 1400000,
+        year: 2022,
+    },
+    {
+        month: 6,
+        money: 4000000,
+        year: 2022,
+    },
+    {
+        month: 7,
+        money: 5000000,
+        year: 2022,
+    },
+    {
+        month: 8,
+        money: 5000000,
+        year: 2022,
+    },
+    {
+        month: 9,
+        money: 4670000,
+        year: 2022,
+    },
+    {
+        month: 10,
+        money: 5670000,
+        year: 2022,
+    },
+    {
+        month: 11,
+        money: 6670000,
+        year: 2022,
+    },
+    {
+        month: 12,
+        money: 7670000,
+        year: 2022,
+    },
+];

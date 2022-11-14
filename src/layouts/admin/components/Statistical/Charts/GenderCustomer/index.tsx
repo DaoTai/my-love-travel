@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import { options } from './config';
-import { getGender } from '../Redux-Saga/actions';
+import { getGender } from '../redux-saga/actions';
 import { ChartGenderData } from '../interface';
-import { genderUserSelector } from '../Redux-Saga/selectors';
+import { genderUserSelector } from '../redux-saga/selectors';
 
 const GenderUser = () => {
     const dispatch = useDispatch();

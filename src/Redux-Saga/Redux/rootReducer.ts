@@ -8,7 +8,8 @@ import manageToursReducer from '~/layouts/admin/components/ManageTours/reducer';
 import {
     genderChartReducer,
     amountOfCustomerCharReducer,
-} from '~/layouts/admin/components/Statistical/Charts/Redux-Saga/reducers';
+    GmvCharReducer,
+} from '~/layouts/admin/components/Statistical/Charts/redux-saga/reducers';
 const state = combineReducers({
     listTour: listTourReducer,
     profile: profileReducer,
@@ -18,6 +19,7 @@ const state = combineReducers({
     manageTours: manageToursReducer,
     genderUser: genderChartReducer,
     amountOfCustomer: amountOfCustomerCharReducer,
+    gmv: GmvCharReducer,
 });
 
 export type RootState = ReturnType<typeof state>;
