@@ -62,10 +62,8 @@ const Intro: React.FC = () => {
                                 <div className={cx('intro__tour')}>
                                     <cite className={cx('intro__tour-quote')}>{slide.quote}</cite>
                                     <h3 className={cx('intro__tour-name')}>{slide.name}</h3>
-                                    <details>
-                                        <summary></summary>
-                                        <div className={cx('intro__tour-desc')}>{slide.description}</div>
-                                    </details>
+
+                                    <div className={cx('intro__tour-desc')}>{slide.description}</div>
                                 </div>
                             </div>
                         );

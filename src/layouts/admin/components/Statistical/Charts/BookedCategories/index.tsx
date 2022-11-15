@@ -31,7 +31,7 @@ const BookedCategories = () => {
         dispatch(getBookedCategories(year));
     }, [dispatch, year]);
     return (
-        <div id={cx('')}>
+        <div id={cx('booked-categories')}>
             <div className={cx('select-year')}>
                 <HeadlessTippy
                     placement="bottom"

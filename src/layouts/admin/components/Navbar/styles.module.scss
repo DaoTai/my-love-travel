@@ -128,3 +128,22 @@
         opacity: 1;
     }
 }
+
+// Tablet
+@media (max-width: 1023px) and (min-width: 740px) {
+    .nav-item {
+    }
+    .nav-name {
+        display: none;
+    }
+}
+
+// Mobile
+@media (max-width: 739px) {
+    .nav-item {
+        padding: 8px 0;
+    }
+    .nav-name {
+        display: none;
+    }
+}

@@ -1,13 +1,17 @@
 import className from 'classnames/bind';
-import { faChevronCircleUp, faPlus, faStar } from '@fortawesome/free-solid-svg-icons';
 import Item from './CurrentInfor';
-import { CurrentInforProps } from './CurrentInfor/interface';
 import styles from './styles.module.scss';
 const cx = className.bind(styles);
 
 const data = [
     {
-        heading: 'Tour trong tháng',
+        heading: 'Tỉ lệ huỷ tour ',
+        progressPercent: 50,
+        amount: 3,
+        isMorePreviousMonth: false,
+    },
+    {
+        heading: 'Tour trong tháng ',
         progressPercent: 50,
         amount: 500,
         isMorePreviousMonth: false,
@@ -31,11 +35,10 @@ const data = [
 const ListCurrentInfor = () => {
     return (
         <div id={cx('list-current-infor')}>
-            <h3>Tháng hiện tại</h3>
             <div className={cx('content')}>
-                {/* {data.map((item) => (
-                    <Item {...item} />
-                ))} */}
+                {data.map((item, index) => (
+                    <Item key={index} {...item} />
+                ))}
             </div>
         </div>
     );

@@ -65,7 +65,6 @@ const Search: React.FC = () => {
                                     <div className={cx('tour-item__content')}>
                                         <h3 className={cx('tour-item__name')}>{tour.name}</h3>
                                         <p>
-                                            Giá:
                                             {tour.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                                         </p>
                                     </div>

@@ -76,7 +76,9 @@
     border-radius: 8px;
     .intro__tour-content {
         display: flex !important;
-        align-items: center !important;
+        align-items: stretch !important;
+        position: relative;
+        padding: 8px;
     }
 
     .intro__image {
@@ -87,11 +89,13 @@
         background-size: cover;
         height: 40vh;
         width: 100%;
-        border-top-left-radius: 8px;
-        border-bottom-left-radius: 8px;
+        border-top-left-radius: 100%;
+        border-bottom-right-radius: 100%;
         filter: drop-shadow(1px 0px 2px rgba(0, 0, 0, 0.4));
+        transition: all 0.3s linear;
         &:hover {
             filter: contrast(120%) drop-shadow(1px 0px 2px rgba(0, 0, 0, 0.4));
+            border-radius: 8px;
         }
     }
     .intro__tour {
@@ -100,14 +104,13 @@
         text-align: center;
         padding: 0 12px;
         .intro__tour-quote {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 600;
             font-family: 'Dancing Script';
         }
         .intro__tour-name {
             text-align: center;
-            font-size: 2rem;
-            padding-top: 12px;
+            font-size: 2.2rem;
             font-weight: 600;
         }
         .intro__tour-desc {
@@ -154,8 +157,37 @@
     }
 }
 
-// Tablet
-@media (max-width: 1023px) and (min-width: 740px) {
+// Tablet & mobile
+@media (max-width: 1023px) {
+    #intro__carousel {
+        .intro__tour-content {
+            display: block !important;
+            padding: 0px;
+        }
+    }
+    .intro__image {
+        flex: 1 1 100%;
+        width: 100%;
+        height: 100vh;
+        border-radius: 8px !important;
+    }
+    .intro__tour {
+        width: 100% !important;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 6px;
+        background-color: rgba(255, 255, 255, 0.3);
+        .intro__tour-quote {
+            font-size: 3rem;
+        }
+        .intro__tour-name {
+            font-size: 1.8rem;
+            padding-top: 0;
+            text-shadow: 0px 0px 1px rgb(0 0 0 / 40%);
+        }
+    }
 }
 
 // Mobile
@@ -170,26 +202,6 @@
         button {
             a {
                 font-size: 1.4rem;
-            }
-        }
-    }
-    #intro__carousel {
-        .intro__tour-content {
-            display: block !important;
-        }
-        .intro__image {
-            width: 100%;
-            flex: 1 1 100%;
-        }
-        .intro__tour {
-            width: 100%;
-            flex: 1 1 100%;
-            .intro__tour-quote {
-                font-size: 3rem;
-            }
-            .intro__tour-name {
-                font-size: 1.8rem;
-                padding-top: 0;
             }
         }
     }
