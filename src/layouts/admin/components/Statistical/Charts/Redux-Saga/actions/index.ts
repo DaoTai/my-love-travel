@@ -1,5 +1,5 @@
 import { TYPE } from '../../constants';
-import { ChartGenderData, ChartAmountOfCustomerData, ChartGMVData } from '../../interface';
+import { ChartGenderData, ChartAmountOfCustomerData, ChartGMVData, ChartBookedCategoriesData } from '../../interface';
 
 // Gender Chart
 export const getGender = () => ({
@@ -27,4 +27,14 @@ export const getGmv = (year: number) => ({
 
 export const getGmvSuccess = (payload: ChartGMVData[]) => {
     return { type: TYPE.GET_GMV_SUCCESS, payload };
+};
+
+// Booked Categories chart
+export const getBookedCategories = (year: number) => ({
+    type: TYPE.GET_BOOKED_CATEGORIES,
+    year,
+});
+
+export const getBookedCategoriesSuccess = (payload: ChartBookedCategoriesData) => {
+    return { type: TYPE.GET_BOOKED_CATEGORIES_SUCCESS, payload };
 };

@@ -9,7 +9,7 @@ export const options = (data: ChartGMVData[]) => {
     }));
     return {
         title: {
-            text: `Tổng doanh thu của năm ${data[0]?.year}`,
+            text: `Tổng doanh thu tour, ${data[0]?.year}`,
         },
         xAxis: {
             categories: columnLabels,

@@ -2,6 +2,7 @@
 }
 .content {
     margin-top: 12px;
+    padding: 8px 0;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -109,14 +110,17 @@
 }
 .current-infor {
     flex: 1 1 auto;
+    max-width: auto;
     line-height: 1.8;
-    color: var(--primary);
+    color: var(--text);
     background-color: var(--white);
     padding: 4px 8px 8px;
     border-radius: 4px;
-    border-bottom: 4px solid currentColor;
     box-shadow: 2px 1px 6px rgb(0 0 0 / 30%);
-    position: relative;
+    transition: all 0.3s linear;
+    &:hover {
+        transform: translateY(-5px);
+    }
     &:has(.infor__icon--up) {
         color: var(--success);
     }
@@ -132,31 +136,23 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.infor__desc {
-}
 
 .infor__progress-percent {
+    font-size: 2rem;
     display: flex;
     align-items: center;
     gap: 0 12px;
-    font-size: 2.6rem;
     letter-spacing: 1px;
-    color: var(--text);
-    .infor__icon {
-        font-size: 2.4rem;
-        color: var(--primary);
-        &.infor__icon--up {
-            color: var(--success);
-        }
-        &.infor__icon--down {
-            color: var(--error);
-        }
+    color: var(--error);
+    &.up {
+        color: var(--success);
     }
     span {
         color: #25252533;
         font-weight: 400;
     }
 }
-.infor__data {
+.infor__amount {
+    font-weight: 700;
     padding: 0 4px;
 }

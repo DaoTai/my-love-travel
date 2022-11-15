@@ -2,7 +2,7 @@ import { TYPE } from './constants';
 
 export interface Action {
     type: TYPE;
-    payload: [];
+    payload: [] | {};
     year?: number;
 }
 
@@ -22,7 +22,9 @@ export interface ChartGMVData {
     money: number;
 }
 
-export interface CategoryData {
-    month: number;
-    data: [];
+export interface ChartBookedCategoriesData {
+    discoveryEcology: number;
+    leisure: number;
+    historicalSite: number;
+    year: number;
 }

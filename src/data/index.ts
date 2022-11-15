@@ -846,3 +846,11 @@ export const gvmChart = [
         year: 2022,
     },
 ];
+
+// Categories in a year
+export const bookedCategoriesChart = {
+    discoveryEcology: 300,
+    leisure: 500,
+    historicalSite: 345,
+    year: 2022,
+};
