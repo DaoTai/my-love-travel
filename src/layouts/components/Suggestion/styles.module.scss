@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600&display=swap');
-.suggestion {
+#suggestion {
     margin: var(--space-top-container) auto 0;
     width: var(--width-header-layout);
     max-width: 100%;
@@ -93,5 +93,11 @@
     }
     to {
         transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@media (max-width: 1023px) {
+    #suggestion {
+        display: none;
     }
 }

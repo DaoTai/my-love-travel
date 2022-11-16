@@ -1,25 +1,22 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { TYPE } from './constants';
 import { AccountUser } from '~/layouts/components/Auth/interface';
-import { getUsersSuccess } from './actions';
+import { getUsersSuccess, addUserSuccess, updateUserSuccess, deleteUserSuccess } from './actions';
 import { Action } from './reducer';
 import { users } from '~/data';
 
 const getUsersData = () => users;
 
 const addUserData = (user: AccountUser) => {
-    console.log('Data add user: ', user);
-    return [...users, user];
+    return user;
 };
 
 const updateUserData = (user: AccountUser) => {
-    console.log('New data: ', user);
-    return users;
+    return user;
 };
 
 const deleteUserData = (id: number) => {
-    console.log('Delete user id: ', id);
-    return users.filter((user) => user.idUser !== id);
+    return id;
 };
 
 function* getUsersSaga(): Generator {
@@ -34,7 +31,7 @@ function* getUsersSaga(): Generator {
 function* addUserSaga(action: Action): Generator {
     try {
         const res = yield call(addUserData, action.payload as AccountUser);
-        yield put(getUsersSuccess(res as AccountUser));
+        yield put(addUserSuccess(res as AccountUser));
     } catch (err) {
         console.log(err);
     }
@@ -43,7 +40,7 @@ function* addUserSaga(action: Action): Generator {
 function* updateUserSaga(action: Action): Generator {
     try {
         const res = yield call(updateUserData, action.payload as AccountUser);
-        yield put(getUsersSuccess(res as AccountUser));
+        yield put(updateUserSuccess(res as AccountUser));
     } catch (err) {
         console.log(err);
     }
@@ -52,7 +49,7 @@ function* updateUserSaga(action: Action): Generator {
 function* deleteUserSaga(action: Action): Generator {
     try {
         const res = yield call(deleteUserData, action.payload as number);
-        yield put(getUsersSuccess(res as AccountUser));
+        yield put(deleteUserSuccess(res as number));
     } catch (err) {
         console.log(err);
     }

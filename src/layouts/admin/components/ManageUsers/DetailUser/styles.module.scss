@@ -41,12 +41,9 @@
     justify-content: space-between;
     flex-wrap: wrap;
     line-height: 2rem;
-    .detail-item {
+    .detail-item-wrap {
         max-width: 50%;
         flex: 1 1 50%;
-        display: inline-flex;
-        flex-wrap: nowrap;
-        align-items: center;
         padding: 4px;
         overflow: hidden;
         position: relative;
@@ -61,6 +58,11 @@
             &::after {
                 transform: scaleX(1);
             }
+        }
+        .detail-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0 4px;
         }
     }
 
@@ -80,7 +82,6 @@
             }
         }
     }
-
     .detail-label {
         font-weight: 600;
         flex-grow: 2;
@@ -119,6 +120,8 @@
     .error-msg {
         padding-top: 4px;
         color: var(--error);
+        width: 100%;
+        flex-grow: 3;
     }
 
     .wrap-btns {

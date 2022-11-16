@@ -55,6 +55,7 @@ const Actions = () => {
             {/* is active  */}
             <HeadlessTippy
                 visible={isShow}
+                onClickOutside={handleHideShow}
                 interactive
                 render={(attrs) => (
                     <div className={cx('actions')} {...attrs}>

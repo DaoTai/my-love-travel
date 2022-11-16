@@ -26,7 +26,12 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
         validationSchema: detailUserOptions,
         onSubmit: (values) => {
             setShowToast(true);
-            dispatch(updateUser(values));
+            dispatch(
+                updateUser({
+                    ...user,
+                    ...values,
+                }),
+            );
         },
     });
 
@@ -111,7 +116,7 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                 <h1 className={cx('heading')}>Thông tin người dùng</h1>
                 {/* Form detail */}
                 <form onSubmit={handleSubmit} action="" className={cx('wrap-detail-info')}>
-                    <div id={cx('avatar')} className={cx('detail-item')}>
+                    <div id={cx('avatar')} className={cx('detail-item-wrap')}>
                         <Tippy animation="fade" placement="right" content="Thay ảnh đại diện" duration={[100, 500]}>
                             <label htmlFor="avatar-input">
                                 <img
@@ -130,61 +135,73 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                             onChange={handlePreviewAvatar}
                         />
                     </div>
-                    <div className={cx('detail-item')}>
-                        <label htmlFor="" className={cx('detail-label')}>
-                            ID Account:
-                        </label>
-                        <input type="text" value={user?.idAccount} readOnly className={cx('detail-value')} />
+                    <div className={cx('detail-item-wrap')}>
+                        <div className={cx('detail-item')}>
+                            <label htmlFor="" className={cx('detail-label')}>
+                                ID Account:
+                            </label>
+                            <input type="text" value={user?.idAccount} readOnly className={cx('detail-value')} />
+                        </div>
                     </div>
-                    <div className={cx('detail-item')}>
-                        <label htmlFor="" className={cx('detail-label')}>
-                            ID User:
-                        </label>
-                        <input type="text" value={user?.idUser} readOnly className={cx('detail-value')} />
+                    <div className={cx('detail-item-wrap')}>
+                        <div className={cx('detail-item')}>
+                            <label htmlFor="" className={cx('detail-label')}>
+                                ID User:
+                            </label>
+                            <input type="text" value={user?.idUser} readOnly className={cx('detail-value')} />
+                        </div>
                     </div>
-                    <div className={cx('detail-item')}>
-                        <label htmlFor="" className={cx('detail-label')}>
-                            Tên tài khoản:
-                        </label>
-                        <input type="text" value={user?.username} readOnly className={cx('detail-value')} />
+                    <div className={cx('detail-item-wrap')}>
+                        <div className={cx('detail-item')}>
+                            <label htmlFor="" className={cx('detail-label')}>
+                                Tên tài khoản:
+                            </label>
+                            <input type="text" value={user?.username} readOnly className={cx('detail-value')} />
+                        </div>
                     </div>
-                    <div className={cx('detail-item')}>
-                        <label htmlFor="" className={cx('detail-label')}>
-                            Vai trò:
-                        </label>
-                        <input type="text" value={user?.role} readOnly className={cx('detail-value')} />
+                    <div className={cx('detail-item-wrap')}>
+                        <div className={cx('detail-item')}>
+                            <label htmlFor="" className={cx('detail-label')}>
+                                Vai trò:
+                            </label>
+                            <input type="text" value={user?.role} readOnly className={cx('detail-value')} />
+                        </div>
                     </div>
-                    <div className={cx('detail-item')}>
-                        <label htmlFor="" className={cx('detail-label')}>
-                            Họ tên:
-                        </label>
-                        <input
-                            type="text"
-                            name="fullName"
-                            className={cx('detail-value')}
-                            value={values.fullName}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
+                    <div className={cx('detail-item-wrap')}>
+                        <div className={cx('detail-item')}>
+                            <label htmlFor="" className={cx('detail-label')}>
+                                Họ tên:
+                            </label>
+                            <input
+                                type="text"
+                                name="fullName"
+                                className={cx('detail-value')}
+                                value={values.fullName}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                        </div>
                         <p className={cx('error-msg')}>
                             {errors.fullName && touched.fullName ? errors.fullName : null}
                         </p>
                     </div>
-                    <div className={cx('detail-item')}>
-                        <label htmlFor="" className={cx('detail-label')}>
-                            Ngày sinh:
-                        </label>
-                        <input
-                            type="text"
-                            name="dob"
-                            className={cx('detail-value')}
-                            value={values.dob}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
+                    <div className={cx('detail-item-wrap')}>
+                        <div className={cx('detail-item')}>
+                            <label htmlFor="" className={cx('detail-label')}>
+                                Ngày sinh:
+                            </label>
+                            <input
+                                type="text"
+                                name="dob"
+                                className={cx('detail-value')}
+                                value={values.dob}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                        </div>
                         <p className={cx('error-msg')}>{errors.dob && touched.dob ? errors.dob : null}</p>
                     </div>
-                    <div className={cx('detail-item', 'd-flex  align-items-center')}>
+                    <div className={cx('detail-item-wrap', 'd-flex align-items-center')}>
                         <label htmlFor="" className={cx('detail-label')}>
                             Giới tính:
                         </label>
@@ -216,59 +233,75 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                         </div>
                         <p className={cx('error-msg')}>{errors.gender && touched.gender ? errors.gender : null}</p>
                     </div>
-                    <div className={cx('detail-item')}>
-                        <label htmlFor="" className={cx('detail-label')}>
-                            Email:
-                        </label>
-                        <input
-                            type="email"
-                            name="email"
-                            className={cx('detail-value')}
-                            value={values.email}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
+                    <div className={cx('detail-item-wrap')}>
+                        <div className={cx('detail-item')}>
+                            <label htmlFor="" className={cx('detail-label')}>
+                                Email:
+                            </label>
+                            <input
+                                type="email"
+                                name="email"
+                                className={cx('detail-value')}
+                                value={values.email}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                        </div>
                         <p className={cx('error-msg')}>{errors.email && touched.email ? errors.email : null}</p>
                     </div>
-                    <div className={cx('detail-item')}>
-                        <label htmlFor="" className={cx('detail-label')}>
-                            Số điện thoại:
-                        </label>
-                        <input
-                            type="text"
-                            name="phone"
-                            className={cx('detail-value')}
-                            value={values.phone}
-                            onChange={handleOnChangePhone}
-                            onBlur={handleBlur}
-                        />
+                    <div className={cx('detail-item-wrap')}>
+                        <div className={cx('detail-item')}>
+                            <label htmlFor="" className={cx('detail-label')}>
+                                Số điện thoại:
+                            </label>
+                            <input
+                                type="text"
+                                name="phone"
+                                className={cx('detail-value')}
+                                value={values.phone}
+                                onChange={handleOnChangePhone}
+                                onBlur={handleBlur}
+                            />
+                        </div>
                         <p className={cx('error-msg')}>{errors.phone && touched.phone ? errors.phone : null}</p>
                     </div>
-                    <div className={cx('detail-item')}>
-                        <label htmlFor="" className={cx('detail-label')}>
-                            Địa chỉ:
-                        </label>
-                        <input
-                            type="text"
-                            name="address"
-                            className={cx('detail-value')}
-                            value={values.address}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
+                    <div className={cx('detail-item-wrap')}>
+                        <div className={cx('detail-item')}>
+                            <label htmlFor="" className={cx('detail-label')}>
+                                Địa chỉ:
+                            </label>
+                            <input
+                                type="text"
+                                name="address"
+                                className={cx('detail-value')}
+                                value={values.address}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                        </div>
                         <p className={cx('error-msg')}>{errors.address && touched.address ? errors.address : null}</p>
                     </div>
-                    <div className={cx('detail-item')}>
-                        <label htmlFor="" className={cx('detail-label')}>
-                            Ngày tham gia:
-                        </label>
-                        <input type="text" name="joinTime" className={cx('detail-value')} value="1/1/2022" readOnly />
+                    <div className={cx('detail-item-wrap')}>
+                        <div className={cx('detail-item')}>
+                            <label htmlFor="" className={cx('detail-label')}>
+                                Ngày tham gia:
+                            </label>
+                            <input
+                                type="text"
+                                name="joinTime"
+                                className={cx('detail-value')}
+                                value="1/1/2022"
+                                readOnly
+                            />
+                        </div>
                     </div>
-                    <div className={cx('detail-item')}>
-                        <label htmlFor="" className={cx('detail-label')}>
-                            Số tour đã đặt:
-                        </label>
-                        <input type="text" name="bookedTour" className={cx('detail-value')} value="0" readOnly />
+                    <div className={cx('detail-item-wrap')}>
+                        <div className={cx('detail-item')}>
+                            <label htmlFor="" className={cx('detail-label')}>
+                                Số tour đã đặt:
+                            </label>
+                            <input type="text" name="bookedTour" className={cx('detail-value')} value="0" readOnly />
+                        </div>
                     </div>
                     {/* Wrap buttons */}
                     <div className={cx('wrap-btns')}>

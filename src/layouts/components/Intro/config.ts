@@ -6,11 +6,11 @@ export const settings = {
     dots: true,
     infinite: true,
     pauseOnHover: true,
-    speed: 500,
+    speed: 1500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3500,
+    autoplaySpeed: 4500,
     cssEase: 'linear',
     mobileFirst: true,
     responsive: [

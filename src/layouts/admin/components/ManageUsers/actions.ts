@@ -20,9 +20,22 @@ export const addUser = (payload: AccountUser) => {
     };
 };
 
+export const addUserSuccess = (payload: AccountUser) => {
+    return {
+        type: TYPE.ADD_USER_SUCCESS,
+        payload,
+    };
+};
+
 export const updateUser = (payload: AccountUser) => {
     return {
         type: TYPE.UPDATE_USER,
+        payload,
+    };
+};
+export const updateUserSuccess = (payload: AccountUser) => {
+    return {
+        type: TYPE.UPDATE_USER_SUCCESS,
         payload,
     };
 };
@@ -30,6 +43,12 @@ export const updateUser = (payload: AccountUser) => {
 export const deleteUser = (payload: number) => {
     return {
         type: TYPE.DELETE_USER,
+        payload,
+    };
+};
+export const deleteUserSuccess = (payload: number) => {
+    return {
+        type: TYPE.DELETE_USER_SUCCESS,
         payload,
     };
 };

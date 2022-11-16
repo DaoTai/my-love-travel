@@ -42,7 +42,7 @@ const ManageUsers = () => {
     // Dispatch get data users
     useEffect(() => {
         dispatch(getUsers());
-    }, []);
+    }, [dispatch]);
 
     // Emptry search input
     const handleEmptySearch = () => {
@@ -113,42 +113,46 @@ const ManageUsers = () => {
                     </div>
                 </div>
                 <div className={cx('wrap-table')}>
-                    <table id={cx('table-manage-users')}>
-                        <thead>
-                            <tr>
-                                <th>STT</th>
-                                <th>Tên tài khoản</th>
-                                <th>Tên người dùng</th>
-                                <th>Chi tiết người dùng</th>
-                                <th>Xoá người dùng</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredUsers?.map((user: AccountUser, index: number) => {
-                                return (
-                                    <tr key={user.idUser}>
-                                        <th>{index + 1}</th>
-                                        <th>{user.username}</th>
-                                        <th>{user.fullName}</th>
-                                        <th>
-                                            <FontAwesomeIcon
-                                                className={cx('detail-icon')}
-                                                icon={faEye}
-                                                onClick={() => handleShowDetail(user)}
-                                            />
-                                        </th>
-                                        <th>
-                                            <FontAwesomeIcon
-                                                className={cx('delete-icon')}
-                                                icon={faTrashCan}
-                                                onClick={() => handleShowDelete(user)}
-                                            />
-                                        </th>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
+                    {filteredUsers.length > 0 ? (
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên tài khoản</th>
+                                    <th>Tên người dùng</th>
+                                    <th>Chi tiết người dùng</th>
+                                    <th>Xoá người dùng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredUsers?.map((user: AccountUser, index: number) => {
+                                    return (
+                                        <tr key={user.idUser}>
+                                            <td>{index + 1}</td>
+                                            <td>{user.username}</td>
+                                            <td>{user.fullName}</td>
+                                            <td>
+                                                <FontAwesomeIcon
+                                                    className="detail-icon"
+                                                    icon={faEye}
+                                                    onClick={() => handleShowDetail(user)}
+                                                />
+                                            </td>
+                                            <td>
+                                                <FontAwesomeIcon
+                                                    className="delete-icon"
+                                                    icon={faTrashCan}
+                                                    onClick={() => handleShowDelete(user)}
+                                                />
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                    ) : (
+                        <p className="text-center">Danh sách trống</p>
+                    )}
                 </div>
             </div>
 

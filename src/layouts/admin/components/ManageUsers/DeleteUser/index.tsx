@@ -19,12 +19,14 @@ const DeleteUser = ({ id, name, onHide }: DeleteUserProps) => {
     };
 
     useEffect(() => {
-        const handleHide = (e: any) => {
+        const handleKeyDown = (e: any) => {
             e.which === 27 && onHide();
+            e.which === 13 && handleDeleteUser();
         };
-        window.addEventListener('keydown', handleHide);
+
+        window.addEventListener('keydown', handleKeyDown);
         return () => {
-            window.removeEventListener('keydown', handleHide);
+            window.removeEventListener('keydown', handleKeyDown);
         };
     }, []);
 

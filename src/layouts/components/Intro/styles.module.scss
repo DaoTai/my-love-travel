@@ -76,7 +76,7 @@
     border-radius: 8px;
     .intro__tour-content {
         display: flex !important;
-        align-items: stretch !important;
+        align-items: center !important;
         position: relative;
         padding: 8px;
     }
@@ -87,7 +87,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-        height: 40vh;
+        height: 50vh;
         width: 100%;
         border-top-left-radius: 100%;
         border-bottom-right-radius: 100%;
@@ -159,33 +159,13 @@
 
 // Tablet & mobile
 @media (max-width: 1023px) {
+    .intro__container {
+        padding-top: 100%;
+    }
     #intro__carousel {
+        display: none !important;
         .intro__tour-content {
-            display: block !important;
             padding: 0px;
-        }
-    }
-    .intro__image {
-        flex: 1 1 100%;
-        width: 100%;
-        height: 100vh;
-        border-radius: 8px !important;
-    }
-    .intro__tour {
-        width: 100% !important;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 6px;
-        background-color: rgba(255, 255, 255, 0.3);
-        .intro__tour-quote {
-            font-size: 3rem;
-        }
-        .intro__tour-name {
-            font-size: 1.8rem;
-            padding-top: 0;
-            text-shadow: 0px 0px 1px rgb(0 0 0 / 40%);
         }
     }
 }
@@ -195,13 +175,12 @@
     .intro__container {
         margin-top: var(--height-header-layout);
         .intro__heading {
-            font-size: 3.2rem;
-            top: 20%;
-            transform: translate(-50%, -20%);
+            top: 25%;
+            transform: translate(-50%, -25%);
         }
         button {
             a {
-                font-size: 1.4rem;
+                font-size: 1.8rem;
             }
         }
     }

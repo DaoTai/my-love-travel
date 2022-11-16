@@ -13,7 +13,7 @@ const Footer = () => {
         <div id="footer">
             <div id={cx('wrap-footer')}>
                 <div className={cx('footer')}>
-                    <div id={cx('footer__wrapper')} className="d-flex">
+                    <div id={cx('footer__wrapper')}>
                         <div className={cx('footer-item')}>
                             <h2 className="d-flex align-items-center">
                                 <LogoIcon />
@@ -30,7 +30,7 @@ const Footer = () => {
                                 </li>
                                 <li>
                                     <FontAwesomeIcon icon={faMapLocation} />
-                                    Địa chỉ: 75 Tây Sơn, Đống Đa, Hà Nội
+                                    Địa chỉ: 88 Trần Phú, Q.Hà Đông, TP.Hà Nội
                                 </li>
                             </ul>
                         </div>

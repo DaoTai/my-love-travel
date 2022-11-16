@@ -39,7 +39,7 @@ const Suggestion: React.FC = () => {
         dispatch(getListTour());
     }, []);
     return (
-        <div id="suggestion" className={cx('suggestion')}>
+        <div id={cx('suggestion')}>
             <h1> Gợi ý địa điểm từ Love Travel ✈️</h1>
             <div className={cx('wrap-suggest-tours')}>
                 <Slider {...settings}>

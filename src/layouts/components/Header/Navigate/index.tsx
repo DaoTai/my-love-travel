@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import classNames from 'classnames/bind';
 import styles from './styles.module.scss';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
 
 const Navigation = () => {
@@ -8,17 +11,19 @@ const Navigation = () => {
         <ul id={cx('navigate')} className="d-flex">
             <li className={cx('navigate__item')}>
                 <NavLink className={(nav) => cx({ active: nav.isActive })} to="/search-tours">
-                    Khám phá
+                    <span>Khám phá</span>
                 </NavLink>
+                <FontAwesomeIcon icon={faSearch} className={cx('navigate__icon')} />
             </li>
             <li className={cx('navigate__item')}>
-                <a href="#events">Hoạt động</a>
+                <a href="#events">
+                    <span>Hoạt động</span>
+                </a>
             </li>
-            {/* <li className={cx("navigate__item")}>
-                <Link to="/">Gợi ý</Link>
-            </li> */}
             <li className={cx('navigate__item')}>
-                <a href="#footer">Liên hệ</a>
+                <a href="#footer">
+                    <span>Liên hệ</span>
+                </a>
             </li>
         </ul>
     );

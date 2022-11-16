@@ -133,6 +133,16 @@
             }
         }
     }
+    #auth-btns {
+        .auth-btn:first-child {
+            display: none;
+        }
+        .auth-btn {
+            padding: 6px 8px !important;
+            background-color: var(--primary);
+            color: var(--white);
+        }
+    }
     #search-tour-mobile {
         display: block;
     }

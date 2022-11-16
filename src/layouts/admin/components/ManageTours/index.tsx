@@ -48,7 +48,7 @@ const ManageTours = () => {
     // Dispatch get data tours
     useEffect(() => {
         dispatch(getTours());
-    }, []);
+    }, [dispatch]);
 
     // Handle select type
     const handleSelectType = (type: string) => {
@@ -131,23 +131,23 @@ const ManageTours = () => {
                         <tbody>
                             {listTour.map((tour, i) => (
                                 <tr key={tour.id}>
-                                    <th>{i + 1}</th>
-                                    <th>{tour.name}</th>
-                                    <th>{tour.place}</th>
-                                    <th>
+                                    <td>{i + 1}</td>
+                                    <td>{tour.name}</td>
+                                    <td>{tour.place}</td>
+                                    <td>
                                         <FontAwesomeIcon
-                                            className={cx('detail-icon')}
+                                            className="detail-icon"
                                             icon={faEye}
                                             onClick={() => handleShowDetail(tour)}
                                         />
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         <FontAwesomeIcon
-                                            className={cx('delete-icon')}
+                                            className="delete-icon"
                                             icon={faTrashCan}
                                             onClick={() => handleDeleteTour(tour)}
                                         />
-                                    </th>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
