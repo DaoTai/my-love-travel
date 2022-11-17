@@ -1,8 +1,8 @@
 import { Tour } from '~/layouts/components/Tour/interface';
-import { PrivateTour } from '~/layouts/user/components/PrivateTours/interface';
+import { PrivateTour } from '~/layouts/user/pages/PrivateTours/interface';
 import { Comment } from '~/layouts/components/Tour/interface';
-import { Profile } from '~/layouts/user/components/Profile/interface';
-import { PrivateBill } from '~/layouts/user/components/History/interface';
+import { Profile } from '~/layouts/user/pages/Profile/interface';
+import { PrivateBill } from '~/layouts/user/pages/History/interface';
 import { AccountUser } from '~/layouts/components/Auth/interface';
 // Tour
 export const tours: Array<Tour[]> = [

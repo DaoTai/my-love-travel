@@ -1,16 +1,16 @@
 import { combineReducers, Reducer, AnyAction } from 'redux';
 import listTourReducer from '~/layouts/components/Tour/reducer';
-import profileReducer from '~/layouts/user/components/Profile/reducer';
-import privateToursReducer from '~/layouts/user/components/PrivateTours/reducer';
-import historyReducer from '~/layouts/user/components/History/reducer';
-import manageUsersReducer from '~/layouts/admin/components/ManageUsers/reducer';
-import manageToursReducer from '~/layouts/admin/components/ManageTours/reducer';
+import profileReducer from '~/layouts/user/pages/Profile/reducer';
+import privateToursReducer from '~/layouts/user/pages/PrivateTours/reducer';
+import historyReducer from '~/layouts/user/pages/History/reducer';
+import manageUsersReducer from '~/layouts/admin/pages/ManageUsers/reducer';
+import manageToursReducer from '~/layouts/admin/pages/ManageTours/reducer';
 import {
     genderChartReducer,
     amountOfCustomerCharReducer,
     gmvCharReducer,
     bookedCategoriesCharReducer,
-} from '~/layouts/admin/components/Statistical/Charts/redux-saga/reducers';
+} from '~/layouts/admin/pages/Statistical/Charts/redux-saga/reducers';
 const state = combineReducers({
     listTour: listTourReducer,
     profile: profileReducer,

@@ -1,11 +1,11 @@
 import { all, fork } from 'redux-saga/effects';
 import listTourSaga from '~/layouts/components/Tour/saga';
-import profileSaga from '~/layouts/user/components/Profile/saga';
-import privateToursSaga from '~/layouts/user/components/PrivateTours/saga';
-import historySaga from '~/layouts/user/components/History/saga';
-import manageUsersSaga from '~/layouts/admin/components/ManageUsers/saga';
-import manageToursSaga from '~/layouts/admin/components/ManageTours/saga';
-import ChartSaga from '~/layouts/admin/components/Statistical/Charts/redux-saga/sagas';
+import profileSaga from '~/layouts/user/pages/Profile/saga';
+import privateToursSaga from '~/layouts/user/pages/PrivateTours/saga';
+import historySaga from '~/layouts/user/pages/History/saga';
+import manageUsersSaga from '~/layouts/admin/pages/ManageUsers/saga';
+import manageToursSaga from '~/layouts/admin/pages/ManageTours/saga';
+import ChartSaga from '~/layouts/admin/pages/Statistical/Charts/redux-saga/sagas';
 export default function* rootSaga() {
     yield all([
         fork(listTourSaga),

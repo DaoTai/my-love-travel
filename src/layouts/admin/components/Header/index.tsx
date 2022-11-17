@@ -6,7 +6,7 @@ import { LogoIcon } from '~/components/Icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightToBracket, faBars, faShieldAlt, faUserSecret } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '~/Contexts';
-import { NewPassword } from '~/layouts/user/components';
+import { NewPassword } from '~/layouts/user/pages';
 import styles from './styles.module.scss';
 const cx = className.bind(styles);
 const Header = ({ setShowNavbar }: { setShowNavbar: () => void }) => {

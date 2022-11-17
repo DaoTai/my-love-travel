@@ -14,7 +14,7 @@ import {
     ProfileForm,
     NewPassword,
     DetailPrivateTour,
-} from '~/layouts/user/components';
+} from '~/layouts/user/pages';
 // import about Admin
 import { Admin, Statistical, ManageUsers, ManageTours } from '~/layouts/admin/components';
 // Public routes

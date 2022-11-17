@@ -10,7 +10,7 @@ import { TYPE_SEARCH } from './constants';
 import { Tour as ITour } from '~/layouts/components/Tour/interface';
 import { getListTour } from '~/layouts/components/Tour/actions';
 import { listTourSelector as storeListTour } from '~/layouts/components/Tour/selector';
-import { categories } from '~/layouts/admin/components/ManageTours/DetailTour/config';
+import { categories } from '~/layouts/admin/pages/ManageTours/DetailTour/config';
 import style from '../styles.module.scss';
 const cx = classNames.bind(style);
 
