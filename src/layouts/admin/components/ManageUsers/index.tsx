@@ -4,11 +4,12 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import className from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { manageUsersSelector } from './selector';
-import { faChevronDown, faClose, faEye, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faChevronDown, faClose, faEye, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { getUsers } from './actions';
-import { AccountUser } from '~/layouts/components/Auth/interface';
 import ModalDetail from './DetailUser';
 import ModalDelete from './DeleteUser';
+import ModalAdd from './AddUser';
+import { AccountUser } from '~/layouts/components/Auth/interface';
 import 'tippy.js/dist/tippy.css';
 import styles from './styles.module.scss';
 const cx = className.bind(styles);
@@ -17,6 +18,7 @@ const ManageUsers = () => {
     const listUser: AccountUser[] = useSelector(manageUsersSelector);
     const [searchValue, setSearchValue] = useState<string>('');
     const [showSelectTypes, setShowSelectTypes] = useState<boolean>(false);
+    const [showModalAdd, setShowModalAdd] = useState<boolean>(false);
     const [showModalDetail, setShowModalDetail] = useState<boolean>(false);
     const [showModalDelete, setShowModalDelete] = useState<boolean>(false);
     const [detailUser, setDetailUser] = useState<AccountUser>();
@@ -35,6 +37,7 @@ const ManageUsers = () => {
     }, [selectedType, listUser, searchValue]);
 
     const handleHideModal = useCallback(() => {
+        setShowModalAdd(false);
         setShowModalDetail(false);
         setShowModalDelete(false);
     }, []);
@@ -74,6 +77,9 @@ const ManageUsers = () => {
         <>
             <div id={cx('manage-users')}>
                 <div className={cx('wrap-search-options')}>
+                    <button id={cx('add-user-btn')} onClick={() => setShowModalAdd(true)}>
+                        <FontAwesomeIcon icon={faAdd} />
+                    </button>
                     <div className={cx('search-input')}>
                         <input
                             ref={searchInputRef}
@@ -156,10 +162,12 @@ const ManageUsers = () => {
                 </div>
             </div>
 
+            {/* Modal add */}
+            <ModalAdd isOpen={showModalAdd} onHide={handleHideModal} />
             {/* Modal detail */}
             {showModalDetail && <ModalDetail user={detailUser} onHide={handleHideModal} />}
             {/* Modal delete */}
-            {showModalDelete && <ModalDelete {...deleteUser} onHide={handleHideModal} />}
+            {<ModalDelete isOpen={showModalDelete} onHide={handleHideModal} {...deleteUser} />}
         </>
     );
 };

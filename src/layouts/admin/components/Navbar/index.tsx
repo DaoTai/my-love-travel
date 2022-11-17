@@ -28,40 +28,7 @@ const Navbar = () => {
                             <span className={cx('nav-name')}>Thống kê</span>
                         </NavLink>
                     </li>
-                    <li className={cx('creator-options')} onClick={() => setShowCreations(!showCreations)}>
-                        <p
-                            className={cx({
-                                active: showCreations,
-                            })}
-                        >
-                            <FontAwesomeIcon icon={faChevronRight} />
-                            <span className={cx('nav-name')}>Tạo mới</span>
-                        </p>
-                        {showCreations && (
-                            <>
-                                <div className={cx('nav-item')}>
-                                    <NavLink
-                                        to="/admin/account-creator"
-                                        className={(nav: any) => cx('nav-link', { active: nav.isActive })}
-                                        onClick={(e) => e.stopPropagation()}
-                                    >
-                                        <FontAwesomeIcon icon={faUserPlus} />
-                                        <span className={cx('nav-name')}>Tạo tài khoản</span>
-                                    </NavLink>
-                                </div>
-                                <div className={cx('nav-item')}>
-                                    <NavLink
-                                        to="/admin/tour-creator"
-                                        className={(nav: any) => cx('nav-link', { active: nav.isActive })}
-                                        onClick={(e) => e.stopPropagation()}
-                                    >
-                                        <FontAwesomeIcon icon={faPlusCircle} />
-                                        <span className={cx('nav-name')}>Tạo tour</span>
-                                    </NavLink>
-                                </div>
-                            </>
-                        )}
-                    </li>
+
                     <li className={cx('nav-item')}>
                         <NavLink
                             to="/admin/manage-tours"

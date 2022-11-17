@@ -16,7 +16,7 @@ import {
     DetailPrivateTour,
 } from '~/layouts/user/components';
 // import about Admin
-import { Admin, AccountCreator, TourCreator, Statistical, ManageUsers, ManageTours } from '~/layouts/admin/components';
+import { Admin, Statistical, ManageUsers, ManageTours } from '~/layouts/admin/components';
 // Public routes
 const publicRoutes: Array<Route> = [
     {
@@ -99,14 +99,7 @@ const adminRoutes: Array<Route> = [
         path: 'profile',
         component: ProfileForm,
     },
-    {
-        path: 'account-creator',
-        component: AccountCreator,
-    },
-    {
-        path: 'tour-creator',
-        component: TourCreator,
-    },
+
     {
         path: 'manage-tours',
         component: ManageTours,

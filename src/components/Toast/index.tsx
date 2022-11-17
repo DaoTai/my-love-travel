@@ -32,7 +32,7 @@ const Toast = ({ status = Status.error, show, title = 'Thông báo', text = '...
     const toastContainerRef = useRef<HTMLHeadingElement>(Object(null));
 
     const handleCloseToast = () => {
-        const timeHide = 1500;
+        const timeHide = 1000;
         toastContainerRef?.current.animate([{ transform: 'translateX(250%)' }], {
             duration: timeHide + 1000,
         });

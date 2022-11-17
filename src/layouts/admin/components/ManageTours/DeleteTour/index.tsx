@@ -5,10 +5,11 @@ import { deleteTour } from '../actions';
 import { DeleteUserProps } from './interface';
 import Toast, { Status } from '~/components/Toast';
 import { ToastData } from '~/components/Toast/interface';
+import Modal from '~/components/Modal';
 import styles from './styles.module.scss';
 const cx = className.bind(styles);
 
-const DeleteUser = ({ id, name, onHide }: DeleteUserProps) => {
+const DeleteUser = ({ id, name, isOpen, onHide }: DeleteUserProps) => {
     const [showToast, setShowToast] = useState<boolean>(false);
     const dispatch = useDispatch();
 
@@ -16,6 +17,7 @@ const DeleteUser = ({ id, name, onHide }: DeleteUserProps) => {
     const handleDeleteTour = () => {
         setShowToast(true);
         dispatch(deleteTour(id));
+        onHide();
     };
 
     useEffect(() => {
@@ -41,24 +43,27 @@ const DeleteUser = ({ id, name, onHide }: DeleteUserProps) => {
     }, [showToast]);
     return (
         <>
-            <div id={cx('cancel-tour')}>
-                <div className={cx('modal-cancel-tour')}>
-                    <h2 className={cx('heading')}>Thông báo</h2>
-                    <div className={cx('content')}>
-                        <p>
-                            Bạn chắc chắn muốn xoá tour:<b> {name}</b> ?
-                        </p>
-                        <div className={cx('wrap-btns')}>
-                            <button className={cx('close-btn')} onClick={onHide}>
-                                Thoát
-                            </button>
-                            <button className={cx('execute-btn')} onClick={handleDeleteTour}>
-                                Đồng ý
-                            </button>
+            {isOpen && (
+                <Modal size="small" title="Thông báo">
+                    <div id={cx('cancel-tour')}>
+                        <div className={cx('modal-cancel-tour')}>
+                            <div className={cx('content')}>
+                                <p>
+                                    Bạn chắc chắn muốn xoá tour:<b> {name}</b> ?
+                                </p>
+                                <div className={cx('wrap-btns')}>
+                                    <button className={cx('close-btn')} onClick={onHide}>
+                                        Thoát
+                                    </button>
+                                    <button className={cx('execute-btn')} onClick={handleDeleteTour}>
+                                        Đồng ý
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </Modal>
+            )}
 
             {/* Toast */}
             {showToast && <Toast {...toastOptions} />}

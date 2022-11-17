@@ -1,8 +1,9 @@
-@import '../AccountCreator/styles.module.scss';
+@import '../../ManageUsers/AddUser/styles.module.scss';
 
 $widthSelectType: 168px;
 $widthSelectStatus: 165px;
 $heightSelectStatus: 300px;
+
 @mixin listSelect {
     width: $widthSelectStatus;
     max-height: $heightSelectStatus;
@@ -25,9 +26,6 @@ $heightSelectStatus: 300px;
             padding-right: 4px;
         }
     }
-}
-#reset-btn {
-    padding: 10px 8px;
 }
 
 #tour-creator {
@@ -78,7 +76,6 @@ $heightSelectStatus: 300px;
             }
         }
         &:focus {
-            border-color: var(--primary);
             outline-color: var(--primary);
         }
 

@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import HeadlessTippy from '@tippyjs/react/headless';
 import className from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faClose, faEye, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faChevronDown, faClose, faEye, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { STATUS } from './constants';
 import { getTours } from './actions';
 import { manageToursSelector } from './selectors';
 import { Tour } from '~/layouts/components/Tour/interface';
 import DetailModal from './DetailTour';
 import DeleteModal from './DeleteTour';
+import AddTour from './AddTour';
 import 'tippy.js/dist/tippy.css';
 import styles from './styles.module.scss';
 const cx = className.bind(styles);
@@ -19,6 +20,7 @@ const ManageTours = () => {
     const [showSelectStatus, setShowSelectStatus] = useState<boolean>(false);
     const [showModalDetail, setShowModalDetail] = useState<boolean>(false);
     const [showModalDelete, setShowModalDelete] = useState<boolean>(false);
+    const [showAddTour, setShowAddTour] = useState<boolean>(false);
     const [searchValue, setSearchValue] = useState<string>('');
     const [selectedStatus, setSelectedStatus] = useState<string>(STATUS.ACTIVITING);
     const [detailTour, setDetailTour] = useState<Tour>();
@@ -35,15 +37,19 @@ const ManageTours = () => {
             );
         }
         return result;
-    }, [allTours, selectedStatus, searchValue]);
+    }, [allTours, selectedStatus, searchValue, dispatch]);
+
+    const handleHideAddTour = useCallback(() => {
+        setShowAddTour(false);
+    }, [dispatch]);
 
     const handleHideDetail = useCallback(() => {
         setShowModalDetail(false);
-    }, []);
+    }, [dispatch]);
 
     const handleHideDelete = useCallback(() => {
         setShowModalDelete(false);
-    }, []);
+    }, [dispatch]);
 
     // Dispatch get data tours
     useEffect(() => {
@@ -79,6 +85,9 @@ const ManageTours = () => {
         <>
             <div id={cx('manage-tours')}>
                 <div className={cx('wrap-search-options')}>
+                    <button id={cx('add-tour-btn')} onClick={() => setShowAddTour(true)}>
+                        <FontAwesomeIcon icon={faAdd} />
+                    </button>
                     <div className={cx('search-input')}>
                         <input
                             ref={searchInputRef}
@@ -90,7 +99,7 @@ const ManageTours = () => {
                         />
                         <FontAwesomeIcon icon={faClose} className={cx('close-icon')} onClick={handleEmptySearch} />
                     </div>
-                    <div className={cx('select-status-tour')}>
+                    <div id={cx('select-status-tour')}>
                         <HeadlessTippy
                             placement="bottom"
                             interactive
@@ -154,11 +163,12 @@ const ManageTours = () => {
                     </table>
                 </div>
             </div>
-
+            {/* Show add tour */}
+            <AddTour isOpen={showAddTour} onHide={handleHideAddTour} />
             {/* Modal Detail */}
             {showModalDetail && <DetailModal tour={detailTour} onHide={handleHideDetail} />}
             {/* Modal Delete */}
-            {showModalDelete && <DeleteModal {...deleteTour} onHide={handleHideDelete} />}
+            {<DeleteModal {...deleteTour} isOpen={showModalDelete} onHide={handleHideDelete} />}
         </>
     );
 };

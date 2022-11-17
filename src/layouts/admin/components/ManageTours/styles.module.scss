@@ -1,9 +1,38 @@
 @import '../ManageUsers/styles.module.scss';
 
 $widthSelectStatus: 150px;
+#reset-btn {
+    padding: 10px 8px;
+    margin-top: 12px;
+}
 
+#close-btn {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 5px;
+    font-size: 2.4rem;
+    background-color: transparent;
+    border: none;
+    padding: 8px 12px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+        opacity: 0.8;
+        color: var(--primary);
+    }
+}
 .wrap-search-options {
-    .select-status-tour {
+    #add-tour-btn {
+        color: var(--white);
+        padding: 4px 8px;
+        background-color: var(--success);
+        border-radius: 4px;
+        border: 1px solid var(--success);
+        cursor: pointer;
+        font-size: 2rem;
+    }
+    #select-status-tour {
         flex: 0 1 auto;
         button {
             font-size: 1.4rem;
@@ -39,14 +68,3 @@ $widthSelectStatus: 150px;
         }
     }
 }
-
-// @keyframes showFromBottom {
-//     from {
-//         opacity: 0;
-//         transform: translateY(30%);
-//     }
-//     to {
-//         opacity: 1;
-//         transform: translateY(0);
-//     }
-// }

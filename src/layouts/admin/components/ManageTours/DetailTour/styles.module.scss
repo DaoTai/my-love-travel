@@ -51,16 +51,6 @@ $heightSelectStatus: 140px;
         color: var(--primary);
     }
 }
-.heading {
-    font-family: 'Dancing Script';
-    font-size: 3.8rem;
-    text-align: center;
-    margin-bottom: 8px;
-    position: relative;
-    &::after {
-        @include underline;
-    }
-}
 
 .wrap-detail-info {
     display: flex;
@@ -74,6 +64,11 @@ $heightSelectStatus: 140px;
         align-items: baseline;
         padding: 8px 4px 4px;
         position: relative;
+        &:has(input:read-only) {
+            &::after {
+                display: none;
+            }
+        }
         &::after {
             @include underline;
             height: 1px;

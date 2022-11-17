@@ -12,6 +12,8 @@ const manageUsersReducer = (state = [], action: Action) => {
         case TYPE.GET_USERS_SUCCESS:
             return [...(action.payload as AccountUser[])];
         case TYPE.ADD_USER_SUCCESS:
+            console.log('Current state: ', [...state, action.payload]);
+
             return [...state, action.payload];
         case TYPE.UPDATE_USER_SUCCESS:
             const updatedUser = action.payload as AccountUser;

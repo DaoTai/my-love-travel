@@ -109,11 +109,10 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
     return (
         <>
             {/* Detail user */}
-            <Modal>
+            <Modal title="Thông tin người dùng">
                 <button id={cx('close-btn')}>
                     <FontAwesomeIcon icon={faClose} onClick={onHide} />
                 </button>
-                <h1 className={cx('heading')}>Thông tin người dùng</h1>
                 {/* Form detail */}
                 <form onSubmit={handleSubmit} action="" className={cx('wrap-detail-info')}>
                     <div id={cx('avatar')} className={cx('detail-item-wrap')}>
@@ -205,7 +204,7 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                         <label htmlFor="" className={cx('detail-label')}>
                             Giới tính:
                         </label>
-                        <div className="d-flex justify-content-around">
+                        <div className={cx('detail-value', 'd-flex')}>
                             <div>
                                 <input
                                     type="radio"

@@ -84,7 +84,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
         return () => {
             window.removeEventListener('keydown', handleHide);
         };
-    }, [tour]);
+    }, [tour, dispatch, onHide, setValues]);
 
     // When change images
     useEffect(() => {
@@ -94,12 +94,12 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                 image && URL.revokeObjectURL(image);
             });
         };
-    }, [images]);
+    }, [images, dispatch, setFieldValue]);
 
     // Set field values
     useEffect(() => {
         setFieldValue('utilities', utilities);
-    }, [utilities]);
+    }, [utilities, dispatch, setFieldValue]);
 
     const toastOptions: ToastData = useMemo(() => {
         return {
@@ -190,12 +190,11 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
     };
     return (
         <>
-            {/* Detail user */}
-            <Modal>
+            {/* Detail user */}(
+            <Modal title="Chi tiết tour">
                 <button id={cx('close-btn')}>
                     <FontAwesomeIcon icon={faClose} onClick={onHide} />
                 </button>
-                <h1 className={cx('heading')}>Chi tiết tour</h1>
                 {/* Form detail */}
                 <form onSubmit={handleSubmit} action="" className={cx('wrap-detail-info')}>
                     <div className={cx('detail-item')}>
@@ -436,7 +435,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                             {utilities.length > 0 ? (
                                 utilities?.map((utility, i) => (
                                     <li key={i} value={utility} className={cx('utility')}>
-                                        {utility}
+                                        <b>{i + 1 + '.'}</b> {utility}
                                         <Tippy content="Xoá" placement="right" animation="fade">
                                             <span className={cx('remove-icon')} onClick={() => handleRemoveUtility(i)}>
                                                 <FontAwesomeIcon icon={faMinus} />
@@ -447,7 +446,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                             ) : (
                                 <p className={cx('error-msg')}>Chưa cập nhật</p>
                             )}
-                            <li className={cx('utility')}>
+                            <div className={cx('utility')}>
                                 <input
                                     type="text"
                                     value={utility}
@@ -457,7 +456,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                                 <button type="button" className={cx('add-icon')} onClick={handleAddUtility}>
                                     <FontAwesomeIcon icon={faPlus} />
                                 </button>
-                            </li>
+                            </div>
                         </ul>
                     </div>
                     <div className={cx('detail-item')}>
@@ -520,7 +519,6 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                     </div>
                 </form>
             </Modal>
-
             {/* Toast */}
             {showToast && <Toast {...toastOptions} />}
         </>

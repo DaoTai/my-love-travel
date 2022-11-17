@@ -1,11 +1,13 @@
 $widthSelectType: 168px;
 #reset-btn {
-    padding: 8px;
-    background-color: var(--success);
+    display: block;
     color: var(--white);
-    border-radius: 99px;
-    border: 1px solid transparent;
     letter-spacing: 1px;
+    background-color: var(--success);
+    border: 1px solid transparent;
+    padding: 8px 6px;
+    border-radius: 99px;
+    margin-left: auto;
     cursor: pointer;
     transition: all 0.3s linear;
     svg {
@@ -13,6 +15,23 @@ $widthSelectType: 168px;
     }
     &:hover {
         opacity: 0.8;
+    }
+}
+
+#close-btn {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 5px;
+    font-size: 2.4rem;
+    background-color: transparent;
+    border: none;
+    padding: 8px 12px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+        opacity: 0.8;
+        color: var(--primary);
     }
 }
 
@@ -59,7 +78,6 @@ $widthSelectType: 168px;
 }
 
 .register-form {
-    margin-top: 12px;
     display: flex;
     align-items: stretch;
     justify-content: space-between;
@@ -80,14 +98,13 @@ $widthSelectType: 168px;
             color: var(--text);
             width: 100%;
             padding: 10px;
-            border-radius: 12px;
+            border-radius: 4px;
             border: 1px solid var(--text);
             background-color: var(--white);
-            outline: 1px solid var(--white);
+            outline: none;
             caret-color: var(--primary);
             &:focus {
                 border-color: var(--primary);
-                outline-color: var(--primary);
             }
 
             &::placeholder {
