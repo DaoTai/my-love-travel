@@ -6,11 +6,12 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import className from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faClose, faSave, faUndo } from '@fortawesome/free-solid-svg-icons';
-import { init, registerOptions } from './config';
+import { init, registerOptions, formInputs } from './config';
 import { addUser } from '../actions';
 import { vietNamProvinces } from '~/apis/auth';
 import Toast, { Status } from '~/components/Toast';
 import { ToastData } from '~/components/Toast/interface';
+import { Register } from '~/layouts/components/Auth/interface';
 import Modal from '~/components/Modal';
 import 'tippy.js/dist/tippy.css';
 import styles from './styles.module.scss';
@@ -47,7 +48,7 @@ const AccountCreator = ({ isOpen, onHide }: { isOpen: boolean; onHide: () => voi
                 setShowToast(false);
             },
         };
-    }, [showToast]);
+    }, [showToast, selectedType]);
     // Fetch api provinces
     useEffect(() => {
         const fetchApi = async () => {
@@ -127,7 +128,7 @@ const AccountCreator = ({ isOpen, onHide }: { isOpen: boolean; onHide: () => voi
                         </div>
                         {/* Form */}
                         <form className={cx('register-form')} onSubmit={handleSubmit}>
-                            <div className={cx('form-group')}>
+                            {/* <div className={cx('form-group')}>
                                 <label className={cx('form-label')} htmlFor="">
                                     Họ tên:
                                 </label>
@@ -159,63 +160,7 @@ const AccountCreator = ({ isOpen, onHide }: { isOpen: boolean; onHide: () => voi
                                 />
                                 <p className={cx('error-msg')}>{errors.dob && touched.dob ? errors.dob : null}</p>
                             </div>
-                            <div className={cx('form-group')}>
-                                <label className={cx('form-label')} htmlFor="">
-                                    Địa chỉ:
-                                </label>
-                                <select
-                                    name="address"
-                                    className={cx('form-input')}
-                                    value={values.address}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                >
-                                    {provinces?.map((province, i) => {
-                                        return (
-                                            <option key={i} value={province.name}>
-                                                {province.name}
-                                            </option>
-                                        );
-                                    })}
-                                </select>
-                                <p className={cx('error-msg')}>
-                                    {errors.address && touched.address ? errors.address : null}
-                                </p>
-                            </div>
-                            <div className={cx('form-group')}>
-                                <label className={cx('form-label')} htmlFor="">
-                                    Giới tính:
-                                </label>
-                                <div>
-                                    <div>
-                                        <input
-                                            id="male"
-                                            type="radio"
-                                            checked={values.gender === 'Nam'}
-                                            value="Nam"
-                                            name="gender"
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                        />
-                                        <label htmlFor="male">Nam</label>
-                                    </div>
-                                    <div>
-                                        <input
-                                            id="female"
-                                            type="radio"
-                                            checked={values.gender === 'Nữ'}
-                                            value="Nữ"
-                                            name="gender"
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                        />
-                                        <label htmlFor="female">Nữ</label>
-                                    </div>
-                                </div>
-                                <p className={cx('error-msg')}>
-                                    {errors.gender && touched.gender ? errors.gender : null}
-                                </p>
-                            </div>
+
                             <div className={cx('form-group')}>
                                 <label className={cx('form-label')} htmlFor="">
                                     Email:
@@ -278,6 +223,87 @@ const AccountCreator = ({ isOpen, onHide }: { isOpen: boolean; onHide: () => voi
                                 />
                                 <p className={cx('error-msg')}>
                                     {errors.password && touched.password ? errors.password : null}
+                                </p>
+                            </div> */}
+                            {formInputs.map((input, i) => {
+                                const nameInput = input.name as keyof Register;
+                                return (
+                                    <div key={i} className={cx('form-group')}>
+                                        <label className={cx('form-label')} htmlFor="">
+                                            {input.label}
+                                        </label>
+                                        <input
+                                            id={nameInput}
+                                            type={input.type}
+                                            placeholder={input.placeholder}
+                                            name={nameInput}
+                                            value={values[nameInput]}
+                                            className={cx('form-input')}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        <p className={cx('error-msg')}>
+                                            {errors[nameInput] && touched[nameInput] ? errors[nameInput] : null}
+                                        </p>
+                                    </div>
+                                );
+                            })}
+                            {/* ==================================== */}
+                            <div className={cx('form-group')}>
+                                <label className={cx('form-label')} htmlFor="">
+                                    Địa chỉ:
+                                </label>
+                                <select
+                                    name="address"
+                                    className={cx('form-input')}
+                                    value={values.address}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                >
+                                    {provinces?.map((province, i) => {
+                                        return (
+                                            <option key={i} value={province.name}>
+                                                {province.name}
+                                            </option>
+                                        );
+                                    })}
+                                </select>
+                                <p className={cx('error-msg')}>
+                                    {errors.address && touched.address ? errors.address : null}
+                                </p>
+                            </div>
+                            <div className={cx('form-group')}>
+                                <label className={cx('form-label')} htmlFor="">
+                                    Giới tính:
+                                </label>
+                                <div>
+                                    <div>
+                                        <input
+                                            id="male"
+                                            type="radio"
+                                            checked={values.gender === 'Nam'}
+                                            value="Nam"
+                                            name="gender"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        <label htmlFor="male">Nam</label>
+                                    </div>
+                                    <div>
+                                        <input
+                                            id="female"
+                                            type="radio"
+                                            checked={values.gender === 'Nữ'}
+                                            value="Nữ"
+                                            name="gender"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        <label htmlFor="female">Nữ</label>
+                                    </div>
+                                </div>
+                                <p className={cx('error-msg')}>
+                                    {errors.gender && touched.gender ? errors.gender : null}
                                 </p>
                             </div>
 

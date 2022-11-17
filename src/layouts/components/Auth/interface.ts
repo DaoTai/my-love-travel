@@ -8,6 +8,8 @@ export interface User {
     email: string;
     phone: string;
     avatar?: string;
+    amountBookedTour?: number;
+    joinedTime?: string;
 }
 
 export interface Account {

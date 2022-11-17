@@ -7,6 +7,8 @@ const regexFormatDate =
     /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
 const requiredMsg = 'Vui lòng nhập trường này';
 const invalidMsg = 'Giá trị không hợp lệ';
+export const statuses = [STATUS.ACTIVITING, STATUS.PENDING, STATUS.ENDING];
+export const categories = ['Di tích lịch sử', 'Sinh thái khám phá', 'Nghỉ dưỡng'];
 // Initial value formik
 export const init: Partial<Tour> = {
     id: -1,
@@ -26,6 +28,19 @@ export const init: Partial<Tour> = {
     guide: '',
 };
 
+export const formInputs = [
+    { name: 'id', label: 'ID tour', type: 'number', placeholder: 'Nhập thông tin ...', readOnly: true },
+    { name: 'name', label: 'Tên tour', type: 'text', placeholder: 'Nhập thông tin ...' },
+    { name: 'place', label: 'Địa điểm', type: 'text', placeholder: 'Nhập thông tin ...' },
+    { name: 'price', label: 'Đơn giá', type: 'number', placeholder: 'Nhập thông tin ...' },
+    { name: 'timeStart', label: 'Ngày bắt đầu', type: 'text', placeholder: 'dd/mm/YYYY' },
+    { name: 'hourStart', label: 'Giờ khởi hành', type: 'text', placeholder: 'VD: 9h45' },
+    { name: 'timeEnd', label: 'Ngày kết thúc', type: 'text', placeholder: 'dd/mm/YYYY' },
+    { name: 'limit', label: 'Số lượng giới hạn', type: 'number', placeholder: 'Nhập thông tin ...' },
+    { name: 'currentCustomers', label: 'Số khách hiện tại', type: 'number', placeholder: 'Nhập thông tin ...' },
+];
+
+// Validate options
 export const detailTourOptions = Yup.object().shape({
     name: Yup.string().required(requiredMsg),
     guide: Yup.string(),
@@ -42,7 +57,3 @@ export const detailTourOptions = Yup.object().shape({
     categories: Yup.array().min(1, requiredMsg),
     utilities: Yup.array().default([]),
 });
-
-export const statuses = [STATUS.ACTIVITING, STATUS.PENDING, STATUS.ENDING];
-
-export const categories = ['Di tích lịch sử', 'Sinh thái khám phá', 'Nghỉ dưỡng'];

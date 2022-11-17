@@ -6,8 +6,9 @@ import { useFormik } from 'formik';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose, faPenToSquare, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { DetailUserProps } from './interface';
-import { init, detailUserOptions } from './config';
+import { init, detailUserOptions, formInputs } from './config';
 import { updateUser } from '../actions';
+import { AccountUser } from '~/layouts/components/Auth/interface';
 import Toast, { Status } from '~/components/Toast';
 import { ToastData } from '~/components/Toast/interface';
 import Modal from '~/components/Modal';
@@ -19,7 +20,6 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
     const dispatch = useDispatch();
     const [avatar, setAvatar] = useState(Object(null));
     const [showToast, setShowToast] = useState<boolean>(false);
-
     const userRef = useRef(Object(null));
     const { values, errors, touched, handleBlur, handleChange, handleSubmit, setValues, setFieldValue } = useFormik({
         initialValues: init,
@@ -32,22 +32,14 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                     ...values,
                 }),
             );
+            console.log({ ...user, ...values });
         },
     });
 
     // Set value form
     useEffect(() => {
         userRef.current = user;
-        setValues({
-            avatar: user?.avatar,
-            fullName: user?.fullName,
-            gender: user?.gender,
-            dob: user?.dob,
-            address: user?.address,
-            email: user?.email,
-            phone: user?.phone,
-            role: user?.role,
-        });
+        setValues(user as Partial<AccountUser>);
         const handleHide = (e: any) => {
             e.which === 27 && onHide();
         };
@@ -55,7 +47,7 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
         return () => {
             window.removeEventListener('keydown', handleHide);
         };
-    }, [user]);
+    }, [user, onHide, setValues]);
 
     // When change avatar
     useEffect(() => {
@@ -84,27 +76,9 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
         setFieldValue('avatar', file.pre);
         e.target.value = null;
     };
-
-    // Validate when on change phone input
-    const handleOnChangePhone = (e: any) => {
-        const regex = /^[0-9\b]+$/;
-        if (regex.test(e.target.value)) {
-            handleChange(e);
-        }
-    };
-
     // Handle reset values
     const handleReset = () => {
-        setValues({
-            avatar: userRef.current?.avatar,
-            fullName: userRef.current?.fullName,
-            gender: userRef.current?.gender,
-            dob: userRef.current?.dob,
-            address: userRef.current?.address,
-            email: userRef.current?.email,
-            phone: userRef.current?.phone,
-            role: userRef.current?.role,
-        });
+        setValues(userRef.current);
     };
     return (
         <>
@@ -115,6 +89,7 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                 </button>
                 {/* Form detail */}
                 <form onSubmit={handleSubmit} action="" className={cx('wrap-detail-info')}>
+                    {/* Avatar */}
                     <div id={cx('avatar')} className={cx('detail-item-wrap')}>
                         <Tippy animation="fade" placement="right" content="Thay ảnh đại diện" duration={[100, 500]}>
                             <label htmlFor="avatar-input">
@@ -134,72 +109,33 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                             onChange={handlePreviewAvatar}
                         />
                     </div>
-                    <div className={cx('detail-item-wrap')}>
-                        <div className={cx('detail-item')}>
-                            <label htmlFor="" className={cx('detail-label')}>
-                                ID Account:
-                            </label>
-                            <input type="text" value={user?.idAccount} readOnly className={cx('detail-value')} />
-                        </div>
-                    </div>
-                    <div className={cx('detail-item-wrap')}>
-                        <div className={cx('detail-item')}>
-                            <label htmlFor="" className={cx('detail-label')}>
-                                ID User:
-                            </label>
-                            <input type="text" value={user?.idUser} readOnly className={cx('detail-value')} />
-                        </div>
-                    </div>
-                    <div className={cx('detail-item-wrap')}>
-                        <div className={cx('detail-item')}>
-                            <label htmlFor="" className={cx('detail-label')}>
-                                Tên tài khoản:
-                            </label>
-                            <input type="text" value={user?.username} readOnly className={cx('detail-value')} />
-                        </div>
-                    </div>
-                    <div className={cx('detail-item-wrap')}>
-                        <div className={cx('detail-item')}>
-                            <label htmlFor="" className={cx('detail-label')}>
-                                Vai trò:
-                            </label>
-                            <input type="text" value={user?.role} readOnly className={cx('detail-value')} />
-                        </div>
-                    </div>
-                    <div className={cx('detail-item-wrap')}>
-                        <div className={cx('detail-item')}>
-                            <label htmlFor="" className={cx('detail-label')}>
-                                Họ tên:
-                            </label>
-                            <input
-                                type="text"
-                                name="fullName"
-                                className={cx('detail-value')}
-                                value={values.fullName}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                        </div>
-                        <p className={cx('error-msg')}>
-                            {errors.fullName && touched.fullName ? errors.fullName : null}
-                        </p>
-                    </div>
-                    <div className={cx('detail-item-wrap')}>
-                        <div className={cx('detail-item')}>
-                            <label htmlFor="" className={cx('detail-label')}>
-                                Ngày sinh:
-                            </label>
-                            <input
-                                type="text"
-                                name="dob"
-                                className={cx('detail-value')}
-                                value={values.dob}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                        </div>
-                        <p className={cx('error-msg')}>{errors.dob && touched.dob ? errors.dob : null}</p>
-                    </div>
+                    {/* Inputs */}
+                    {formInputs.map((input: any, i) => {
+                        const nameInput = input.name as keyof AccountUser;
+                        return (
+                            <div key={i} className={cx('detail-item-wrap')}>
+                                <div className={cx('detail-item')}>
+                                    <label htmlFor="" className={cx('detail-label')}>
+                                        {input.label}
+                                    </label>
+                                    <input
+                                        type={input.type}
+                                        name={nameInput}
+                                        className={cx('detail-value')}
+                                        readOnly={input.readOnly}
+                                        disabled={input.disabled}
+                                        value={values[nameInput]}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                </div>
+                                <p className={cx('error-msg')}>
+                                    {errors[nameInput] && touched[nameInput] ? errors[nameInput] : null}
+                                </p>
+                            </div>
+                        );
+                    })}
+                    {/* Gender inputs */}
                     <div className={cx('detail-item-wrap', 'd-flex align-items-center')}>
                         <label htmlFor="" className={cx('detail-label')}>
                             Giới tính:
@@ -231,76 +167,6 @@ const DetailUser = ({ user, onHide }: DetailUserProps) => {
                             </div>
                         </div>
                         <p className={cx('error-msg')}>{errors.gender && touched.gender ? errors.gender : null}</p>
-                    </div>
-                    <div className={cx('detail-item-wrap')}>
-                        <div className={cx('detail-item')}>
-                            <label htmlFor="" className={cx('detail-label')}>
-                                Email:
-                            </label>
-                            <input
-                                type="email"
-                                name="email"
-                                className={cx('detail-value')}
-                                value={values.email}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                        </div>
-                        <p className={cx('error-msg')}>{errors.email && touched.email ? errors.email : null}</p>
-                    </div>
-                    <div className={cx('detail-item-wrap')}>
-                        <div className={cx('detail-item')}>
-                            <label htmlFor="" className={cx('detail-label')}>
-                                Số điện thoại:
-                            </label>
-                            <input
-                                type="text"
-                                name="phone"
-                                className={cx('detail-value')}
-                                value={values.phone}
-                                onChange={handleOnChangePhone}
-                                onBlur={handleBlur}
-                            />
-                        </div>
-                        <p className={cx('error-msg')}>{errors.phone && touched.phone ? errors.phone : null}</p>
-                    </div>
-                    <div className={cx('detail-item-wrap')}>
-                        <div className={cx('detail-item')}>
-                            <label htmlFor="" className={cx('detail-label')}>
-                                Địa chỉ:
-                            </label>
-                            <input
-                                type="text"
-                                name="address"
-                                className={cx('detail-value')}
-                                value={values.address}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                        </div>
-                        <p className={cx('error-msg')}>{errors.address && touched.address ? errors.address : null}</p>
-                    </div>
-                    <div className={cx('detail-item-wrap')}>
-                        <div className={cx('detail-item')}>
-                            <label htmlFor="" className={cx('detail-label')}>
-                                Ngày tham gia:
-                            </label>
-                            <input
-                                type="text"
-                                name="joinTime"
-                                className={cx('detail-value')}
-                                value="1/1/2022"
-                                readOnly
-                            />
-                        </div>
-                    </div>
-                    <div className={cx('detail-item-wrap')}>
-                        <div className={cx('detail-item')}>
-                            <label htmlFor="" className={cx('detail-label')}>
-                                Số tour đã đặt:
-                            </label>
-                            <input type="text" name="bookedTour" className={cx('detail-value')} value="0" readOnly />
-                        </div>
                     </div>
                     {/* Wrap buttons */}
                     <div className={cx('wrap-btns')}>

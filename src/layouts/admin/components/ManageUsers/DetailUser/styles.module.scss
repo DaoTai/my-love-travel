@@ -94,7 +94,8 @@
         border-radius: 4px;
         padding: 8px 4px;
         margin-left: 4px;
-        &:is([type='text'], [type='email']):hover {
+        background-color: transparent;
+        &:is([type='text'], [type='email'], [type='number']):is(:hover, :focus) {
             background-color: rgba(0, 0, 0, 0.03);
         }
         &[type='file'] {

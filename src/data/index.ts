@@ -526,6 +526,8 @@ export const users: AccountUser[] = [
         username: 'rhymastic123',
         password: '123123',
         role: 'Khách hàng',
+        amountBookedTour: 8,
+        joinedTime: '1/1/2022',
     },
     {
         idUser: 2,
@@ -540,6 +542,8 @@ export const users: AccountUser[] = [
         username: 'bray123',
         password: '123123',
         role: 'Khách hàng',
+        amountBookedTour: 8,
+        joinedTime: '1/1/2022',
     },
     {
         idUser: 3,
@@ -554,6 +558,8 @@ export const users: AccountUser[] = [
         username: 'rick123',
         password: '123123',
         role: 'Khách hàng',
+        amountBookedTour: 8,
+        joinedTime: '1/1/2022',
     },
     {
         idUser: 4,
@@ -568,6 +574,8 @@ export const users: AccountUser[] = [
         username: 'ha123',
         password: '123123',
         role: 'Admin',
+        amountBookedTour: 8,
+        joinedTime: '1/1/2022',
     },
     {
         idUser: 5,
@@ -582,6 +590,8 @@ export const users: AccountUser[] = [
         username: 'ha123',
         password: '123123',
         role: 'Admin',
+        amountBookedTour: 8,
+        joinedTime: '1/1/2022',
     },
     {
         idUser: 6,
@@ -596,6 +606,8 @@ export const users: AccountUser[] = [
         username: 'ha123',
         password: '123123',
         role: 'Admin',
+        amountBookedTour: 8,
+        joinedTime: '1/1/2022',
     },
     {
         idUser: 7,
@@ -610,6 +622,8 @@ export const users: AccountUser[] = [
         username: 'binz123',
         password: '123123',
         role: 'Khách hàng',
+        amountBookedTour: 8,
+        joinedTime: '1/1/2022',
     },
     {
         idUser: 8,
@@ -624,6 +638,8 @@ export const users: AccountUser[] = [
         username: 'ill123',
         password: '123123',
         role: 'Người dẫn tour',
+        amountBookedTour: 8,
+        joinedTime: '1/1/2022',
     },
     {
         idUser: 9,
@@ -638,6 +654,8 @@ export const users: AccountUser[] = [
         username: 'datmaniac123',
         password: '123123',
         role: 'Người dẫn tour',
+        amountBookedTour: 8,
+        joinedTime: '1/1/2022',
     },
     {
         idUser: 10,
@@ -652,6 +670,8 @@ export const users: AccountUser[] = [
         username: 'trang11',
         password: '123123',
         role: 'Người dẫn tour',
+        amountBookedTour: 8,
+        joinedTime: '1/1/2022',
     },
 ];
 

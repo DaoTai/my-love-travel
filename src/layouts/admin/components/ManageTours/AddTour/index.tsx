@@ -6,7 +6,7 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import className from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faClose, faMinus, faPlus, faSave, faUndo } from '@fortawesome/free-solid-svg-icons';
-import { init, detailTourOptions, statuses, categories } from '../DetailTour/config';
+import { init, detailTourOptions, statuses, categories, formInputs } from '../DetailTour/config';
 import { addTour } from '../actions';
 import Toast, { Status } from '~/components/Toast';
 import { ToastData } from '~/components/Toast/interface';
@@ -34,9 +34,8 @@ const TourCreator = ({ isOpen, onHide }: { isOpen: boolean; onHide: () => void }
         initialValues: init,
         validationSchema: detailTourOptions,
         onSubmit: (values, e: any) => {
-            const { id, ...payload } = values;
             setShowToast(true);
-            dispatch(addTour(payload as Omit<Tour, 'id'>));
+            dispatch(addTour(values as Omit<Tour, 'id'>));
             handleReset(e);
         },
     });
@@ -61,14 +60,14 @@ const TourCreator = ({ isOpen, onHide }: { isOpen: boolean; onHide: () => void }
     useEffect(() => {
         // Dispatch get users to filter guides
         dispatch(getUsers());
-        const handleKeyDown = (e: KeyboardEvent) => {
+        const handleKeyDown = (e: KeyboardEvent): void => {
             e.which === 27 && onHide();
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, [dispatch]);
+    }, [dispatch, onHide]);
 
     // When change images
     useEffect(() => {
@@ -78,12 +77,12 @@ const TourCreator = ({ isOpen, onHide }: { isOpen: boolean; onHide: () => void }
                 image && URL.revokeObjectURL(image);
             });
         };
-    }, [images]);
+    }, [images, setFieldValue]);
 
-    // Set field values
+    // Set field utilities
     useEffect(() => {
         setFieldValue('utilities', utilities);
-    }, [utilities]);
+    }, [utilities, setFieldValue]);
 
     // Handle select guide
     const handleSelectGuide = (guide: AccountUser | null) => {
@@ -136,7 +135,7 @@ const TourCreator = ({ isOpen, onHide }: { isOpen: boolean; onHide: () => void }
     return (
         <>
             {isOpen && (
-                <Modal title="Thêm tour">
+                <Modal title="Thêm tour mới">
                     <div id={cx('tour-creator')}>
                         <button id={cx('close-btn')}>
                             <FontAwesomeIcon icon={faClose} onClick={onHide} />
@@ -151,101 +150,31 @@ const TourCreator = ({ isOpen, onHide }: { isOpen: boolean; onHide: () => void }
                         </div>
                         {/* Form */}
                         <form onSubmit={handleSubmit} action="" className={cx('register-form')}>
-                            <div className={cx('form-group')}>
-                                <label htmlFor="" className={cx('form-label')}>
-                                    Tên tour:
-                                </label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={values.name}
-                                    className={cx('form-input')}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                <p className={cx('error-msg')}>{errors.name && touched.name ? errors.name : null}</p>
-                            </div>
-                            <div className={cx('form-group')}>
-                                <label htmlFor="" className={cx('form-label')}>
-                                    Địa điểm:
-                                </label>
-                                <input
-                                    type="text"
-                                    name="place"
-                                    className={cx('form-input')}
-                                    value={values.place}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                <p className={cx('error-msg')}>{errors.place && touched.place ? errors.place : null}</p>
-                            </div>
-                            <div className={cx('form-group')}>
-                                <label htmlFor="" className={cx('form-label')}>
-                                    Đơn giá:
-                                </label>
-                                <input
-                                    type="number"
-                                    name="price"
-                                    value={values.price}
-                                    className={cx('form-input')}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                <span>
-                                    ({values.price?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })})
-                                </span>
-                                <p className={cx('error-msg')}>{errors.price && touched.price ? errors.price : null}</p>
-                            </div>
-                            <div className={cx('form-group')}>
-                                <label htmlFor="" className={cx('form-label')}>
-                                    Ngày bắt đầu:
-                                </label>
-                                <input
-                                    type="text"
-                                    name="timeStart"
-                                    placeholder="dd/mm/YYYY"
-                                    className={cx('form-input')}
-                                    value={values.timeStart as string}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                <p className={cx('error-msg')}>
-                                    {errors.timeStart && touched.timeStart ? errors.timeStart : null}
-                                </p>
-                            </div>
-                            <div className={cx('form-group')}>
-                                <label htmlFor="" className={cx('form-label')}>
-                                    Ngày kết thúc:
-                                </label>
-                                <input
-                                    type="text"
-                                    name="timeEnd"
-                                    placeholder="dd/mm/YYYY"
-                                    className={cx('form-input')}
-                                    value={values.timeEnd as string}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                <p className={cx('error-msg')}>
-                                    {errors.timeEnd && touched.timeEnd ? errors.timeEnd : null}
-                                </p>
-                            </div>
-                            <div className={cx('form-group')}>
-                                <label htmlFor="" className={cx('form-label')}>
-                                    Giờ khởi hành:
-                                </label>
-                                <input
-                                    type="text"
-                                    name="hourStart"
-                                    className={cx('form-input')}
-                                    value={values.hourStart}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                <p className={cx('error-msg')}>
-                                    {errors.hourStart && touched.hourStart ? errors.hourStart : null}
-                                </p>
-                            </div>
+                            {/* Normal Inputs */}
+                            {formInputs.map((input, i) => {
+                                const nameInput = input.name as keyof Tour;
+                                return (
+                                    <div key={i} className={cx('form-group')}>
+                                        <label htmlFor={nameInput} className={cx('form-label')}>
+                                            {input.label}
+                                        </label>
+                                        <input
+                                            id={nameInput}
+                                            type={input.type}
+                                            name={nameInput}
+                                            className={cx('form-input')}
+                                            value={values[nameInput]}
+                                            placeholder={input.placeholder}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        <p className={cx('error-msg')}>
+                                            {errors[nameInput] && touched[nameInput] ? errors[nameInput] : null}
+                                        </p>
+                                    </div>
+                                );
+                            })}
+                            {/* ========================================= */}
                             <div className={cx('form-group')}>
                                 <label htmlFor="" className={cx('form-label')}>
                                     Trạng thái:
@@ -280,38 +209,7 @@ const TourCreator = ({ isOpen, onHide }: { isOpen: boolean; onHide: () => void }
                                     {errors.status && touched.status ? errors.status : null}
                                 </p>
                             </div>
-                            <div className={cx('form-group')}>
-                                <label htmlFor="" className={cx('form-label')}>
-                                    Số lượng giới hạn:
-                                </label>
-                                <input
-                                    type="number"
-                                    name="limit"
-                                    className={cx('form-input')}
-                                    value={values.limit}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                <p className={cx('error-msg')}>{errors.limit && touched.limit ? errors.limit : null}</p>
-                            </div>
-                            <div className={cx('form-group')}>
-                                <label htmlFor="" className={cx('form-label')}>
-                                    Số khách hiện tại:
-                                </label>
-                                <input
-                                    type="number"
-                                    name="currentCustomers"
-                                    className={cx('form-input')}
-                                    value={values.currentCustomers}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                <p className={cx('error-msg')}>
-                                    {errors.currentCustomers && touched.currentCustomers
-                                        ? errors.currentCustomers
-                                        : null}
-                                </p>
-                            </div>
+
                             <div className={cx('form-group')}>
                                 <label htmlFor="" className={cx('form-label')}>
                                     Thể loại:

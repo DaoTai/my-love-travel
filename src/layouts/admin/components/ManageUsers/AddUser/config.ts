@@ -15,6 +15,15 @@ export const init: Partial<RegisterData> = {
     role: '',
 };
 
+export const formInputs = [
+    { name: 'fullName', type: 'text', label: 'Họ tên', placeholder: 'VD: Đào Tài' },
+    { name: 'dob', type: 'text', label: 'Ngày sinh', placeholder: 'dd/mm/YYYY' },
+    { name: 'email', type: 'email', label: 'Email', placeholder: 'VD: bdt11@gmail.com' },
+    { name: 'phone', type: 'text', label: 'Số điện thoại', placeholder: 'Nhập số điện thoại' },
+    { name: 'username', type: 'text', label: 'Tên đăng nhập', placeholder: 'Nhập tên đăng nhập' },
+    { name: 'password', type: 'password', label: 'Mật khẩu', placeholder: 'Mật khẩu tối thiểu 6 ký tự' },
+];
+
 export const registerOptions = Yup.object().shape({
     fullName: Yup.string()
         .required('Vui lòng nhập trường này')
@@ -28,6 +37,7 @@ export const registerOptions = Yup.object().shape({
         .min(10, 'Số điện thoại không hợp lệ')
         .required('Vui lòng nhập trường này')
         .matches(/^\S*$/, 'Vui lòng không để khoảng trắng')
+        .matches(/^[0-9\b]+$/, 'Số điện thoại không hợp lệ')
         .trim(),
     username: Yup.string().required('Vui lòng nhập trường này').trim(),
     password: Yup.string()

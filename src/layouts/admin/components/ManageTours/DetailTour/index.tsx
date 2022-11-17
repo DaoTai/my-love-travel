@@ -14,7 +14,7 @@ import {
     faRotateLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import { DetailTourProps } from './interface';
-import { init, detailTourOptions, statuses, categories } from './config';
+import { init, detailTourOptions, statuses, categories, formInputs } from './config';
 import { updateTour } from '../actions';
 import { STATUS } from '../constants';
 import Toast, { Status } from '~/components/Toast';
@@ -197,55 +197,33 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                 </button>
                 {/* Form detail */}
                 <form onSubmit={handleSubmit} action="" className={cx('wrap-detail-info')}>
-                    <div className={cx('detail-item')}>
-                        <label htmlFor="" className={cx('detail-label')}>
-                            ID tour:
-                        </label>
-                        <input type="text" value={values?.id} readOnly className={cx('detail-value')} />
-                    </div>
-                    <div className={cx('detail-item')}>
-                        <label htmlFor="" className={cx('detail-label')}>
-                            Người dẫn tour:
-                        </label>
-                        <div className={cx('select-guide-tour')}>
-                            <HeadlessTippy
-                                placement="bottom"
-                                interactive
-                                visible={showSelectGuide}
-                                onClickOutside={() => setShowSelectGuide(false)}
-                                render={(attrs) => (
-                                    <ul className={cx('list-guide-select')} {...attrs}>
-                                        <li className={cx('item')} onClick={() => handleSelectGuide(null)}>
-                                            Chưa xác định
-                                        </li>
-                                        {listGuide.map((guide) => {
-                                            return (
-                                                <li
-                                                    key={guide.idUser}
-                                                    className={cx('item', {
-                                                        active: guide.fullName === tour?.guide,
-                                                    })}
-                                                    onClick={() => handleSelectGuide(guide)}
-                                                >
-                                                    <div className="d-flex justify-space-between">
-                                                        <span>ID: {guide.idUser}</span>
-                                                        <span>{guide.fullName}</span>
-                                                    </div>
-                                                </li>
-                                            );
-                                        })}
-                                    </ul>
-                                )}
-                            >
-                                <button type="button" onClick={() => setShowSelectGuide(!showSelectGuide)}>
-                                    <span>{selectedGuide}</span>
-                                    <FontAwesomeIcon icon={faChevronDown} />
-                                </button>
-                            </HeadlessTippy>
-                        </div>
-                        <p className={cx('error-msg')}>{errors.guide && touched.guide ? errors.guide : null}</p>
-                    </div>
-                    <div className={cx('detail-item')}>
+                    {formInputs.map((input, i) => {
+                        const nameInput = input.name as keyof Tour;
+                        const valueInput = values[nameInput];
+                        return (
+                            <div key={i} className={cx('detail-item')}>
+                                <label htmlFor={nameInput} className={cx('detail-label')}>
+                                    {input.label}
+                                </label>
+                                <input
+                                    id={nameInput}
+                                    type={input.type}
+                                    name={nameInput}
+                                    className={cx('detail-value')}
+                                    value={valueInput}
+                                    readOnly={input.readOnly}
+                                    placeholder={input.placeholder}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                <p className={cx('error-msg')}>
+                                    {errors[nameInput] && touched[nameInput] ? errors[nameInput] : null}
+                                </p>
+                            </div>
+                        );
+                    })}
+
+                    {/* <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
                             Tên tour:
                         </label>
@@ -338,6 +316,79 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                     </div>
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
+                            Số lượng giới hạn:
+                        </label>
+                        <input
+                            type="number"
+                            name="limit"
+                            className={cx('detail-value')}
+                            value={values.limit}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        <p className={cx('error-msg')}>{errors.limit && touched.limit ? errors.limit : null}</p>
+                    </div>
+                    <div className={cx('detail-item')}>
+                        <label htmlFor="" className={cx('detail-label')}>
+                            Số khách hiện tại:
+                        </label>
+                        <input
+                            type="number"
+                            name="currentCustomers"
+                            className={cx('detail-value')}
+                            value={values.currentCustomers}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        <p className={cx('error-msg')}>
+                            {errors.currentCustomers && touched.currentCustomers ? errors.currentCustomers : null}
+                        </p>
+                    </div> */}
+                    {/* ============================================================================= */}
+                    <div className={cx('detail-item')}>
+                        <label htmlFor="" className={cx('detail-label')}>
+                            Người dẫn tour:
+                        </label>
+                        <div className={cx('select-guide-tour')}>
+                            <HeadlessTippy
+                                placement="bottom"
+                                interactive
+                                visible={showSelectGuide}
+                                onClickOutside={() => setShowSelectGuide(false)}
+                                render={(attrs) => (
+                                    <ul className={cx('list-guide-select')} {...attrs}>
+                                        <li className={cx('item')} onClick={() => handleSelectGuide(null)}>
+                                            Chưa xác định
+                                        </li>
+                                        {listGuide.map((guide) => {
+                                            return (
+                                                <li
+                                                    key={guide.idUser}
+                                                    className={cx('item', {
+                                                        active: guide.fullName === tour?.guide,
+                                                    })}
+                                                    onClick={() => handleSelectGuide(guide)}
+                                                >
+                                                    <div className="d-flex justify-space-between">
+                                                        <span>ID: {guide.idUser}</span>
+                                                        <span>{guide.fullName}</span>
+                                                    </div>
+                                                </li>
+                                            );
+                                        })}
+                                    </ul>
+                                )}
+                            >
+                                <button type="button" onClick={() => setShowSelectGuide(!showSelectGuide)}>
+                                    <span>{selectedGuide}</span>
+                                    <FontAwesomeIcon icon={faChevronDown} />
+                                </button>
+                            </HeadlessTippy>
+                        </div>
+                        <p className={cx('error-msg')}>{errors.guide && touched.guide ? errors.guide : null}</p>
+                    </div>
+                    <div className={cx('detail-item')}>
+                        <label htmlFor="" className={cx('detail-label')}>
                             Trạng thái:
                         </label>
                         <div className={cx('select-status-tour')}>
@@ -370,36 +421,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
                         </div>
                         <p className={cx('error-msg')}>{errors.status && touched.status ? errors.status : null}</p>
                     </div>
-                    <div className={cx('detail-item')}>
-                        <label htmlFor="" className={cx('detail-label')}>
-                            Số lượng giới hạn:
-                        </label>
-                        <input
-                            type="number"
-                            name="limit"
-                            className={cx('detail-value')}
-                            value={values.limit}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
-                        <p className={cx('error-msg')}>{errors.limit && touched.limit ? errors.limit : null}</p>
-                    </div>
-                    <div className={cx('detail-item')}>
-                        <label htmlFor="" className={cx('detail-label')}>
-                            Số khách hiện tại:
-                        </label>
-                        <input
-                            type="number"
-                            name="currentCustomers"
-                            className={cx('detail-value')}
-                            value={values.currentCustomers}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
-                        <p className={cx('error-msg')}>
-                            {errors.currentCustomers && touched.currentCustomers ? errors.currentCustomers : null}
-                        </p>
-                    </div>
+
                     <div className={cx('detail-item')}>
                         <label htmlFor="" className={cx('detail-label')}>
                             Thể loại:
