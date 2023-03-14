@@ -213,12 +213,12 @@ $heightSelectStatus: 300px;
         gap: 12px;
         .img-tour {
             flex: 1 1 auto;
-            width: 150px;
-            height: 150px;
+            width: 250px;
+            height: 250px;
             max-width: 100%;
             border-radius: 8px;
             filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.3));
-            background-position: top;
+            background-position: top center;
             background-size: cover;
             background-repeat: no-repeat;
             background-color: rgba(0, 0, 0, 0.04);

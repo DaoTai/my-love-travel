@@ -43,23 +43,25 @@ const Suggestion: React.FC = () => {
         <div id={cx('suggestion')}>
             <h1> Gợi ý địa điểm từ Love Travel ✈️</h1>
             <div className={cx('wrap-suggest-tours')}>
-                <Slider ref={sliderRef} {...settings}>
-                    {suggestedTours.map((suggestion, i) => (
-                        <Link key={i} to={suggestion.link} className={cx('card-tour')}>
-                            <div className={cx('wrap-tour-img')}>
-                                <img className={cx('tour-img')} src={suggestion.image} alt="" />
-                                <div className={cx('tour-link')}>
-                                    <h4>
-                                        Khám phá
-                                        <FontAwesomeIcon icon={faAngleRight} />
-                                    </h4>
-                                    <div className={cx('tour-link-text')}></div>
+                <div className={cx('wrap-slider')}>
+                    <Slider ref={sliderRef} {...settings}>
+                        {suggestedTours.map((suggestion, i) => (
+                            <Link key={i} to={suggestion.link} className={cx('card-tour')}>
+                                <div className={cx('wrap-tour-img')}>
+                                    <img className={cx('tour-img')} src={suggestion.image} alt="" />
+                                    <div className={cx('tour-link')}>
+                                        <h4>
+                                            Khám phá
+                                            <FontAwesomeIcon icon={faAngleRight} />
+                                        </h4>
+                                        <div className={cx('tour-link-text')}></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <h3 className={cx('tour-name')}>{suggestion.place}</h3>
-                        </Link>
-                    ))}
-                </Slider>
+                                <h3 className={cx('tour-name')}>{suggestion.place}</h3>
+                            </Link>
+                        ))}
+                    </Slider>
+                </div>
                 <div id={cx('btn-prev')} className={cx('btn-control')} onClick={() => sliderRef.current.slickPrev()}>
                     <FontAwesomeIcon icon={faAngleLeft} />
                 </div>

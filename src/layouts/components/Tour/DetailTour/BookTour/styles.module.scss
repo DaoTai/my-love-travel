@@ -6,16 +6,7 @@
     border-radius: 6px;
     padding: 16px 12px 32px;
     letter-spacing: 1px;
-    .tour-price,
-    .tour-start,
-    .tour-end,
-    .total-price {
-        padding: 0 8px;
-    }
-    .tour-start,
-    .tour-end {
-        font-weight: 600;
-    }
+
     .wrap-amount-customer-input {
         margin: 16px 12px 24px;
         display: flex;
@@ -78,7 +69,48 @@
         &.disabled {
             opacity: 0.5;
             pointer-events: none;
+            cursor: not-allowed;
+
             border-color: transparent;
+        }
+    }
+}
+.tour-price,
+.tour-start,
+.tour-end,
+.total-price {
+    padding: 0 8px;
+}
+.tour-start,
+.tour-end {
+    font-weight: 600;
+}
+.qr-code-pay {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+.wrap-btns {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+        padding: 8px 16px;
+        border-radius: 4px;
+        border: 1px solid var(--primary);
+        color: var(--text);
+        background-color: var(--white);
+        font-size: 1.5rem;
+        cursor: pointer;
+        transform: all 0.3s linear;
+        &:hover {
+            opacity: 0.8;
+        }
+        &#submit-btn {
+            background-color: var(--primary);
+            color: var(--white);
         }
     }
 }

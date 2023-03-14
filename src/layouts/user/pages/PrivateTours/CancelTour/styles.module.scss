@@ -21,6 +21,7 @@
     }
 }
 .content {
+    margin-top: 16px;
     font-size: 1.6rem;
     line-height: 1.8;
     a {
@@ -33,6 +34,7 @@
     justify-content: space-between;
     padding: 12px 0;
     button {
+        font-size: 1.5rem;
         padding: 8px 16px;
         border: 1px solid var(--primary);
         outline: none;

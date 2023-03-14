@@ -124,7 +124,6 @@ const TourCreator = ({ isOpen, onHide }: { isOpen: boolean; onHide: () => void }
                 const urlFile = URL.createObjectURL(file);
                 setImages((prev) => [...prev, urlFile]);
             });
-        setImages([]);
     };
 
     // Handle remove img
@@ -138,10 +137,9 @@ const TourCreator = ({ isOpen, onHide }: { isOpen: boolean; onHide: () => void }
             {isOpen && (
                 <Modal title="Thêm tour mới">
                     <div id={cx('tour-creator')}>
-                        <button id={cx('close-btn')}>
-                            <FontAwesomeIcon icon={faClose} onClick={onHide} />
+                        <button id={cx('close-btn')} onClick={onHide}>
+                            <FontAwesomeIcon icon={faClose} />
                         </button>
-
                         <div>
                             <Tippy animation="fade" placement="left" content="Hoàn tác">
                                 <button id={cx('reset-btn')} onClick={handleReset}>

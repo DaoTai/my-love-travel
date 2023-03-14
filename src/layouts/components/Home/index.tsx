@@ -23,7 +23,8 @@ const Home: React.FC = () => {
             <Categories />
             <Suggestion />
             <Event />
-            <Footer /> {/* Button scroll top */}
+            <Footer />
+            {/* Scroll to top button */}
             <button
                 id={cx('scroll-top-btn')}
                 className="d-flex align-items-center justify-content-center"

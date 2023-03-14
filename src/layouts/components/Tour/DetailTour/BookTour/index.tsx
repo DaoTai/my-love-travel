@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import Toast, { Status } from '~/components/Toast';
 import { Tour } from '../../interface';
+import Dialog from './DialogBooking';
 import style from './styles.module.scss';
 const cx = classNames.bind(style);
 
 const BookTour = ({ tour }: { tour: Tour }) => {
     const [showToast, setShowToast] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState<boolean>(false);
     const [amount, setAmount] = useState<number>(0);
 
     // Total price
@@ -33,6 +35,16 @@ const BookTour = ({ tour }: { tour: Tour }) => {
         };
     }, [showToast]);
 
+    // Handle submit tour
+    const handleSubmit = useCallback(() => {
+        setShowToast(true);
+    }, []);
+
+    // Handle close modal
+    const onClose = useCallback(() => {
+        setShowModal(false);
+    }, []);
+
     // Handle increase amount tour
     const handleIncreaseAmount = () => {
         setAmount((prev) => {
@@ -46,17 +58,6 @@ const BookTour = ({ tour }: { tour: Tour }) => {
             return prev > 0 ? prev - 1 : prev;
         });
     };
-
-    // Handle submit tour
-    const handleSubmit = () => {
-        console.log('Submit');
-
-        setShowToast(true);
-    };
-
-    // const timeStart =
-    //     tour.timeStart.getDate() + '/' + (tour.timeStart.getMonth() + 1) + '/' + tour.timeStart.getFullYear();
-    // const timeEnd = tour.timeEnd.getDate() + '/' + (tour.timeEnd.getMonth() + 1) + '/' + tour.timeEnd.getFullYear();
 
     return (
         <>
@@ -105,10 +106,11 @@ const BookTour = ({ tour }: { tour: Tour }) => {
                     </button>
                 </div>
                 <button
-                    onClick={handleSubmit}
+                    onClick={() => setShowModal(true)}
                     disabled={tour.limit - tour.currentCustomers < amount}
                     className={cx('book-tour-btn', {
                         disabled:
+                            amount == 0 ||
                             tour.limit - tour.currentCustomers === 0 ||
                             tour.limit - tour.currentCustomers < amount ||
                             showToast,
@@ -117,6 +119,8 @@ const BookTour = ({ tour }: { tour: Tour }) => {
                     Đặt tour
                 </button>
             </div>
+
+            {showModal && <Dialog tour={tour} totalPrice={totalPrice} onClose={onClose} onSubmit={handleSubmit} />}
         </>
     );
 };

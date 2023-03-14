@@ -122,7 +122,7 @@
 }
 
 #content {
-    margin: calc(var(--height-header-layout) + 24px) auto 0;
+    margin: calc(var(--height-header-layout)) auto 0;
     max-width: 100%;
     width: var(--width-header-layout);
     padding: 24px 8px;
@@ -131,7 +131,6 @@
 #search {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     gap: 0 20px;
     .wrap-input-search {
         flex: 1 1 auto;
@@ -142,21 +141,28 @@
             width: 100%;
             font-size: 1.6rem;
             letter-spacing: 1px;
-            padding: 12px;
+            padding: 14px 12px;
             border: 1px solid transparent;
             outline: none;
             border-radius: 8px;
             caret-color: var(--primary);
             box-shadow: 3px 3px 5px rgb(0 0 0 / 12%);
+            text-overflow: ellipsis;
+            overflow: hidden;
             &:focus {
                 border-color: var(--primary);
                 box-shadow: 1px 1px 3px #f99eae;
+            }
+            &::placeholder {
+                text-overflow: ellipsis;
+                overflow: hidden;
             }
         }
         .icon-search {
             position: absolute;
             top: 0;
             right: 0;
+            z-index: 1;
             height: 100%;
             padding: 0 12px;
             background-color: var(--primary);
@@ -172,7 +178,7 @@
                 top: 50%;
                 left: -50%;
                 transform: translate(-50%, -50%);
-                font-size: 1.5rem;
+                font-size: 2rem;
                 color: var(--text);
                 padding: 4px 12px;
                 transition: all 0.3s ease;
@@ -183,19 +189,19 @@
         }
     }
     #select-category {
-        text-align: center;
+        text-align: left;
         font-size: 1.6rem;
         font-weight: 400;
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        text-align: left;
         button {
             font-size: 1.5rem;
             letter-spacing: 1px;
             color: var(--primary);
             width: 160px;
             max-width: 100%;
+            height: 100%;
             padding: 10px 8px;
             border-radius: 8px;
             border: 1px solid var(--primary);

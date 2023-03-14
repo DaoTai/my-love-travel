@@ -45,9 +45,6 @@
     label {
         position: relative;
         font-weight: 600;
-        &::after {
-            // @include underline;
-        }
     }
     span {
         padding-left: 12px;
@@ -60,7 +57,7 @@
     }
     a {
         line-height: 1.5;
-        padding: 4px 12px;
+        padding: 8px 12px;
         background-color: var(--primary);
         border: 1px solid currentColor;
         color: var(--white);

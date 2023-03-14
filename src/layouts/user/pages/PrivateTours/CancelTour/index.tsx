@@ -27,10 +27,10 @@ const CanceledTour = ({ id, name, onHide }: CanceledTourProps) => {
         <Modal title="Thông báo" size="small">
             <div className={cx('content')}>
                 <p>
-                    Bạn chắc chắn muốn huỷ tour: <b>{name}</b>
+                    Bạn chắc chắn muốn huỷ tour: <b>{name}</b> ?
                 </p>
                 <p>
-                    <b>Lưu ý</b>: nếu quý khách huỷ tour trước 12 tiếng tour diễn ra, quý khách sẽ không được hoàn tiền
+                    <b>Lưu ý</b>: Nếu quý khách huỷ tour trước 12 tiếng tour diễn ra, quý khách sẽ không được hoàn tiền
                 </p>
                 <a href="/">Chính sách hoàn tiền</a>
                 <div className={cx('wrap-btns')}>

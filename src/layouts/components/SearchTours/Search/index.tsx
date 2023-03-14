@@ -1,17 +1,17 @@
-import { lazy, useEffect, useState, useRef, useCallback, ChangeEvent, Suspense } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { faArrowLeft, faArrowRight, faChevronDown, faClose, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadlessTippy from '@tippyjs/react/headless';
-import { faArrowLeft, faArrowRight, faChevronDown, faClose, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { useDebounce } from '~/hooks';
 import classNames from 'classnames/bind';
-import Tour from '~/layouts/components/Tour';
-import { TYPE_SEARCH } from './constants';
-import { Tour as ITour } from '~/layouts/components/Tour/interface';
-import { getListTour } from '~/layouts/components/Tour/actions';
-import { listTourSelector as storeListTour } from '~/layouts/components/Tour/selector';
+import { ChangeEvent, Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useDebounce } from '~/hooks';
 import { categories } from '~/layouts/admin/pages/ManageTours/DetailTour/config';
+import Tour from '~/layouts/components/Tour';
+import { getListTour } from '~/layouts/components/Tour/actions';
+import { Tour as ITour } from '~/layouts/components/Tour/interface';
+import { listTourSelector as storeListTour } from '~/layouts/components/Tour/selector';
 import style from '../styles.module.scss';
+import { TYPE_SEARCH } from './constants';
 const cx = classNames.bind(style);
 
 const Search = () => {

@@ -9,14 +9,12 @@ export const init = {
 };
 
 export const formInputs = [
-    { name: 'email', type: 'email', label: 'Email' },
     { name: 'password', type: 'password', label: 'Mật khẩu cũ' },
     { name: 'newPassword', type: 'password', label: 'Mật khẩu mới' },
     { name: 'newPasswordValidation', type: 'password', label: 'Xác nhận mật khẩu mới' },
 ];
 
 export const newPasswordOptions = Yup.object().shape({
-    email: Yup.string().email('Email không hợp lệ').required('Vui lòng nhập trường này'),
     password: Yup.string()
         .required('Vui lòng nhập trường này')
         .matches(/^\S*$/, 'Vui lòng không để khoảng trắng')
