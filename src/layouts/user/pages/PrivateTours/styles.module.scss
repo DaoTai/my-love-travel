@@ -1,5 +1,5 @@
 .container {
-    margin: 24px auto 36px;
+    margin: 0 auto 36px;
     width: var(--width-header-layout);
     max-width: 100%;
 }
@@ -8,8 +8,8 @@
     font-size: 4.2rem;
     font-family: 'Dancing Script';
     font-weight: 600;
-    margin: 24px 0 12px;
     text-align: center;
+    margin-bottom: 12px;
 }
 
 // Table private tours

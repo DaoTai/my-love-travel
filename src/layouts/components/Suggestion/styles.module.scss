@@ -14,6 +14,31 @@
 
     .wrap-suggest-tours {
         margin-top: var(--space-top-container);
+        position: relative;
+        .btn-control {
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid transparent;
+            color: var(--white);
+            font-size: 2.2rem;
+            width: 48px;
+            height: 48px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s linear;
+            &#btn-prev {
+                left: 0;
+            }
+            &#btn-next {
+                right: 0;
+            }
+        }
     }
     .card-tour {
         display: flex !important;

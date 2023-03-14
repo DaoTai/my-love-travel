@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { ChangeEvent, memo, MouseEvent } from 'react';
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
 import { HeartIcon } from '~/components/Icons';
@@ -10,7 +10,7 @@ import style from './styles.module.scss';
 const cx = classNames.bind(style);
 
 const Tour = ({ tour, onAddFavTour, favIdTours }: TourProps) => {
-    const handleAddFavTour = (e: any): void => {
+    const handleAddFavTour = (e: MouseEvent<HTMLDivElement>): void => {
         e.preventDefault();
         onAddFavTour(tour.id);
     };
@@ -22,7 +22,7 @@ const Tour = ({ tour, onAddFavTour, favIdTours }: TourProps) => {
                 <div>
                     <Tippy animation="fade" offset={[0, 16]} content="Thêm vào tour yêu thích" placement="top">
                         <div
-                            onClick={handleAddFavTour}
+                            onClick={(e: MouseEvent<HTMLDivElement>) => handleAddFavTour(e)}
                             className={cx('mark-icon', {
                                 active: favIdTours.includes(tour.id),
                             })}

@@ -28,7 +28,7 @@
             border-radius: 8px;
             transform: scale(0);
             transform-origin: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s linear;
         }
 
         &::before {

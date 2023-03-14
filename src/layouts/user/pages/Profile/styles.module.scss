@@ -4,8 +4,8 @@ $colorButton: linear-gradient(to left, #7430e6, #f224a7);
     font-size: 1.8rem;
     color: var(--white);
     margin: 0 8px;
-    width: 34px;
-    height: 34px;
+    min-width: 34px;
+    min-height: 34px;
     border-radius: 50%;
     background-image: linear-gradient(to left, #7430e6, #f224a7);
     border: 1px solid transparent;
@@ -18,46 +18,43 @@ $colorButton: linear-gradient(to left, #7430e6, #f224a7);
     }
 }
 #profile {
-    margin: 0 auto 36px;
+    margin: 12px auto;
     width: var(--width-header-layout);
     max-width: 100%;
     text-align: center;
     padding: 0 8px;
+}
+
+#form-profile {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container {
+    padding: 12px 8px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
     .title {
         font-size: 4.2rem;
         font-family: 'Dancing Script';
         font-weight: 600;
-        margin: 24px 0 12px;
     }
-
-    .wrap-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
+    .change-password-btn {
+        position: absolute;
+        top: 12px;
+        right: 0;
         button {
             @include button;
         }
     }
 }
 
-#form-profile {
-    padding: 0 8px;
-}
-
-.container {
-    padding: 12px 8px 24px;
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
-    border-radius: 6px;
-    box-shadow: 1px 0px 12px rgba(0, 0, 0, 0.2);
-}
-
 .avatar {
-    flex: 1 1 0;
+    flex: 1 1 30%;
 }
 .content {
-    flex: 2 1 100%;
+    flex: 1 1 70%;
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
@@ -67,9 +64,8 @@ $colorButton: linear-gradient(to left, #7430e6, #f224a7);
     @include button;
     font-size: 1.6rem;
     width: inherit;
-    float: right;
-    padding: 6px 20px;
-    margin-right: 0;
+    padding: 8px 24px;
+    margin-left: auto;
     border-radius: 4px;
 }
 
@@ -100,8 +96,8 @@ $colorButton: linear-gradient(to left, #7430e6, #f224a7);
         visibility: hidden;
     }
     img {
-        width: 200px;
-        height: 200px;
+        width: 260px;
+        height: 260px;
         object-fit: cover;
         border-radius: 50%;
         border: 2px solid #d53a9d;
@@ -112,38 +108,22 @@ $colorButton: linear-gradient(to left, #7430e6, #f224a7);
 }
 
 .form-group {
-    flex: 1 1 50%;
-    max-width: 50%;
+    width: 100%;
     text-align: left;
     margin: 12px 0;
-    display: flex;
-    align-items: center;
-    gap: 0 12px;
     .form-label {
         font-size: 1.6rem;
         font-weight: 500;
-        padding-left: 8px;
-        margin-left: 8px;
         display: block;
         position: relative;
         cursor: pointer;
-
-        &::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            border: 5px solid;
-            border-color: transparent transparent transparent var(--primary);
-        }
     }
     .wrap-input {
-        flex-grow: 1;
+        flex: 1 1 0;
         .form-input {
             font-size: 1.6rem;
             width: 100%;
-            padding: 8px 0 8px 6px;
+            padding: 12px 0 12px 4px;
             caret-color: var(--primary);
             border: 1px solid;
             border-color: transparent transparent var(--primary) transparent;

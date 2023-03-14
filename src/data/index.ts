@@ -412,10 +412,13 @@ export const profile: Profile = {
 };
 
 // My comments
-export const myComments: Partial<Comment>[] = [
+export const myComments: Comment[] = [
     {
         id: 11,
         idTour: '1',
+        idAccount: 123,
+        nameAccount: 'daotai',
+        avatar: 'abc',
         comment: 'Good services !!',
         time: '2 ngày trước',
     },

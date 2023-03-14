@@ -41,10 +41,6 @@ const Header: React.FC = () => {
         };
     }, [location]);
 
-    const handleScrollTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
     return (
         <>
             {/* Header Layout */}
@@ -69,15 +65,6 @@ const Header: React.FC = () => {
                     <Actions />
                 </nav>
             </header>
-
-            {/* Button scroll top */}
-            <button
-                id={cx('scroll-top-btn')}
-                className="d-flex align-items-center justify-content-center"
-                onClick={handleScrollTop}
-            >
-                <FontAwesomeIcon icon={faArrowUp} />
-            </button>
         </>
     );
 };

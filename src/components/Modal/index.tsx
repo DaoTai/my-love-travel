@@ -1,16 +1,17 @@
 import className from 'classnames/bind';
+import { ReactChildren } from 'react';
 import styles from './styles.module.scss';
 const cx = className.bind(styles);
-const ModalLayout = (props: any) => {
+const ModalLayout = ({ size, title, children }: { size?: 'small'; title?: string; children?: any }) => {
     return (
         <div id={cx('modal')}>
             <div
                 className={cx('modal', {
-                    small: props.size === 'small',
+                    small: size === 'small',
                 })}
             >
-                <h1 className={cx('heading')}>{props.title}</h1>
-                {props.children}
+                <h1 className={cx('heading')}>{title}</h1>
+                {children}
             </div>
         </div>
     );

@@ -1,22 +1,14 @@
-import { Route } from './interface';
+import Fragment from '~/components/Fragment';
 import Home from '~/layouts/components/Home';
 import SearchTours from '~/layouts/components/SearchTours';
 import DetailTour from '~/layouts/components/Tour/DetailTour';
-import Fragment from '~/components/Fragment';
+import { Route } from './interface';
 // import about Auth
-import { Login, Register, ConfirmAccount, ConfirmOTP } from '~/layouts/components/Auth';
+import { ConfirmAccount, ConfirmOTP, Login, Register } from '~/layouts/components/Auth';
 //import about User
-import {
-    Profile,
-    PrivateTours,
-    History,
-    FavouriteTours,
-    ProfileForm,
-    NewPassword,
-    DetailPrivateTour,
-} from '~/layouts/user/pages';
+import { FavouriteTours, History, PrivateTours, Profile, ProfileForm } from '~/layouts/user/pages';
 // import about Admin
-import { Admin, Statistical, ManageUsers, ManageTours } from '~/layouts/admin/components';
+import { ManageTours, ManageUsers, Statistical } from '~/layouts/admin/components';
 // Public routes
 const publicRoutes: Array<Route> = [
     {

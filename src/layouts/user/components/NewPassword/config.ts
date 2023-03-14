@@ -10,7 +10,6 @@ export const init = {
 
 export const formInputs = [
     { name: 'email', type: 'email', label: 'Email' },
-    { name: 'phone', type: 'text', label: 'Số điện thoại' },
     { name: 'password', type: 'password', label: 'Mật khẩu cũ' },
     { name: 'newPassword', type: 'password', label: 'Mật khẩu mới' },
     { name: 'newPasswordValidation', type: 'password', label: 'Xác nhận mật khẩu mới' },
@@ -18,11 +17,6 @@ export const formInputs = [
 
 export const newPasswordOptions = Yup.object().shape({
     email: Yup.string().email('Email không hợp lệ').required('Vui lòng nhập trường này'),
-    phone: Yup.string()
-        .min(10, 'Số điện thoại không hợp lệ')
-        .required('Vui lòng nhập trường này')
-        .matches(/^\S*$/, 'Vui lòng không để khoảng trắng')
-        .trim(),
     password: Yup.string()
         .required('Vui lòng nhập trường này')
         .matches(/^\S*$/, 'Vui lòng không để khoảng trắng')

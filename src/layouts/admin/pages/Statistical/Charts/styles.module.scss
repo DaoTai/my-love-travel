@@ -59,6 +59,10 @@
     }
 }
 
+.highcharts-credits {
+    display: none !important;
+}
+
 // Tablet & mobile
 @media (max-width: 1023px) {
     .wrap-chart {

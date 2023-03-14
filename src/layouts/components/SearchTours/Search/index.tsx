@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback, ChangeEvent } from 'react';
+import { lazy, useEffect, useState, useRef, useCallback, ChangeEvent, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadlessTippy from '@tippyjs/react/headless';
@@ -59,7 +59,7 @@ const Search = () => {
             return tour.place.includes(debounced);
         });
         setListTour(searchedTours);
-    }, [debounced, typeSearch]);
+    }, [debounced, typeSearch, dispatch]);
 
     // On change search value
     const handleChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -169,7 +169,9 @@ const Search = () => {
                 {listTour.length > 0 ? (
                     <div id={cx('list-tour')}>
                         {listTour.map((tour, i) => (
-                            <Tour key={i} tour={tour} favIdTours={favIdTours} onAddFavTour={handleAddFavTour} />
+                            <Suspense key={i} fallback={<p>Đang tải...</p>}>
+                                <Tour tour={tour} favIdTours={favIdTours} onAddFavTour={handleAddFavTour} />
+                            </Suspense>
                         ))}
                     </div>
                 ) : (

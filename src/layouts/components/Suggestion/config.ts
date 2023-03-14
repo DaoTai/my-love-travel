@@ -2,7 +2,7 @@ export const settings = {
     infinite: true,
     dots: true,
     pauseOnHover: true,
-    speed: 1500,
+    speed: 800,
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,

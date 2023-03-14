@@ -10,7 +10,10 @@
     width: 25%;
     transition: all 0.3s linear;
     &:hover {
-        transform: translateY(-6px);
+        transform: translateY(-2px);
+        .tour {
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+        }
     }
 }
 .tour {
@@ -23,7 +26,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-
+    transition: all 0.3s linear;
     animation: showFade 0.5s linear;
     .mark-icon {
         position: absolute;

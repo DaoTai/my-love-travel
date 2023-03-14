@@ -11,8 +11,17 @@ import { init, registerOptions } from './config';
 import style from './styles.module.scss';
 const cx = classNames.bind(style);
 
+interface Province {
+    code: number;
+    codename: string;
+    districts: string[];
+    division_type: string;
+    name: string;
+    phone_code: number;
+}
+
 const Register: React.FC = () => {
-    const [provinces, setProvinces] = useState<any[]>([{ name: '' }]);
+    const [provinces, setProvinces] = useState<Province[]>([]);
     const [showToast, setShowToast] = useState<boolean>(false);
     const [contentToast, setContentToast] = useState<Partial<ToastData>>({
         status: Status.success,

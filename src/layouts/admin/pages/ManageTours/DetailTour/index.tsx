@@ -77,7 +77,7 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
             intro: tour?.intro,
             utilities: tour?.utilities,
         });
-        const handleHide = (e: any) => {
+        const handleHide = (e: KeyboardEvent) => {
             e.which === 27 && onHide();
         };
         window.addEventListener('keydown', handleHide);
@@ -173,13 +173,13 @@ const DetailTour = ({ tour, onHide }: DetailTourProps) => {
     };
 
     // Handle add new img
-    const handlePreviewImg = (e: any) => {
-        const files = e.target.files;
-        Array.from(files).forEach((file: any) => {
-            file.pre = URL.createObjectURL(file);
-            setImages((prev) => [...prev, file.pre]);
-        });
-        e.target.value = null;
+    const handlePreviewImg = (e: ChangeEvent<HTMLInputElement>) => {
+        const files: FileList | null = e.target.files;
+        files &&
+            Array.from(files).forEach((file: any) => {
+                file.pre = URL.createObjectURL(file);
+                setImages((prev) => [...prev, file.pre]);
+            });
     };
 
     // Handle remove img

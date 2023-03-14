@@ -23,7 +23,7 @@ const AccountCreator = ({ isOpen, onHide }: { isOpen: boolean; onHide: () => voi
         useFormik({
             initialValues: init,
             validationSchema: registerOptions,
-            onSubmit: (values, e: any) => {
+            onSubmit: (values, e) => {
                 setShowToast(true);
                 dispatch(
                     addUser({

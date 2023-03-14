@@ -21,7 +21,7 @@ const DeleteUser = ({ id, name, isOpen, onHide }: DeleteUserProps) => {
     };
 
     useEffect(() => {
-        const handleHide = (e: any) => {
+        const handleHide = (e: KeyboardEvent) => {
             e.which === 27 && onHide();
         };
         window.addEventListener('keydown', handleHide);

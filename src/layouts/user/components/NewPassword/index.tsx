@@ -59,7 +59,7 @@ const NewPassword = (props: any, ref: any) => {
         <>
             {/* Modal */}
             {showNewPasswordModal && (
-                <Modal title="Đổi mật khẩu">
+                <Modal title="Đổi mật khẩu" size="small">
                     {/* Form */}
                     <form onSubmit={handleSubmit}>
                         {formInputs.map((input, i) => {

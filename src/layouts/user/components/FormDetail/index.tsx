@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, ChangeEvent } from 'react';
 import Tippy from '@tippyjs/react';
 import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames/bind';
@@ -54,12 +54,13 @@ const FormProfile = () => {
         };
     }, [showToast]);
     // Preview Avatar
-    const handlePreviewAvatar = (e: any) => {
-        const file = e.target.files[0];
-        file.pre = URL.createObjectURL(file);
-        setAvatar(file);
-        setFieldValue('avatar', file.pre);
-        e.target.value = null;
+    const handlePreviewAvatar = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            const file = e.target.files[0] as File;
+            const url = URL.createObjectURL(file);
+            setAvatar(file);
+            setFieldValue('avatar', url);
+        }
     };
 
     return (
@@ -90,7 +91,7 @@ const FormProfile = () => {
                         return (
                             <div key={i} className={cx('form-group')}>
                                 <label className={cx('form-label')} htmlFor={input.name}>
-                                    {input.label}
+                                    {input.label}:
                                 </label>
                                 <div className={cx('wrap-input')}>
                                     <input
@@ -148,10 +149,11 @@ const FormProfile = () => {
                             </label>
                         </div>
                     </div>
+
+                    <button type="submit" className={cx('submit-btn')}>
+                        Lưu lại
+                    </button>
                 </div>
-                <button type="submit" className={cx('submit-btn')}>
-                    Lưu lại
-                </button>
             </form>
 
             {/* Toast */}

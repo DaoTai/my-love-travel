@@ -1,3 +1,5 @@
+import { FC, ReactElement } from 'react';
+
 // Interface data
 export interface ToastData {
     status: any;

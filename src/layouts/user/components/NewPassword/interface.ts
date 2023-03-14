@@ -3,3 +3,7 @@ export interface NewPasswordData {
     email: string;
     newPassword: string;
 }
+
+export interface NewPasswordRef {
+    handleShowModal: () => void;
+}

@@ -4,19 +4,20 @@ import { useParams } from 'react-router-dom';
 import { comments as FakeOtherComments, myComments as FakeMyComments, profile } from '~/data';
 import MyComment from './MyComment';
 import OtherComment from './OtherComment';
+import { Comment } from '~/layouts/components/Tour/interface';
 import style from '../styles.module.scss';
 const cx = classNames.bind(style);
 const CommentsTour = () => {
     const { id } = useParams();
     const [comments, setComments] = useState(FakeOtherComments.filter((comment) => comment.idTour === id));
     const [myComment, setMyComment] = useState<string>('');
-    const [myComments, setMyComments] = useState(FakeMyComments.filter((comment) => comment.idTour === id));
+    const [myComments, setMyComments] = useState<Comment[]>(FakeMyComments.filter((comment) => comment.idTour === id));
     const [showWrapButtons, setShowWrapButtons] = useState<boolean>(false);
 
     // Submit comment
     const handleSendComment = () => {
         if (myComment.trim()) {
-            setMyComments((prev: any) => {
+            setMyComments((prev: any[]) => {
                 const dataSend = {
                     ...profile,
                     idTour: id,
@@ -71,8 +72,8 @@ const CommentsTour = () => {
                     </div>
                     {/* My comments */}
                     <div className={cx('wrap-other-comments')}>
-                        {myComments.map((myComment) => (
-                            <MyComment key={myComment.id} myComment={myComment as any} myAccount={profile} />
+                        {myComments.map((myComment: Partial<Comment>) => (
+                            <MyComment key={myComment.id} myComment={myComment as Comment} myAccount={profile} />
                         ))}
                     </div>
                     {/* Other comments */}

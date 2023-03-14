@@ -1,10 +1,10 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { settings } from './config';
 import { SuggestionProps } from './interface';
 import { Tour } from '~/layouts/components/Tour/interface';
@@ -18,6 +18,7 @@ const cx = classNames.bind(styles);
 
 const Suggestion: React.FC = () => {
     const listTourSelector: Array<Tour[]> = useSelector(storeListTour);
+    const sliderRef = useRef(Object(null));
     const dispatch = useDispatch();
     // Get suggest tour
     const suggestedTours = useMemo(() => {
@@ -42,7 +43,7 @@ const Suggestion: React.FC = () => {
         <div id={cx('suggestion')}>
             <h1> Gợi ý địa điểm từ Love Travel ✈️</h1>
             <div className={cx('wrap-suggest-tours')}>
-                <Slider {...settings}>
+                <Slider ref={sliderRef} {...settings}>
                     {suggestedTours.map((suggestion, i) => (
                         <Link key={i} to={suggestion.link} className={cx('card-tour')}>
                             <div className={cx('wrap-tour-img')}>
@@ -59,6 +60,12 @@ const Suggestion: React.FC = () => {
                         </Link>
                     ))}
                 </Slider>
+                <div id={cx('btn-prev')} className={cx('btn-control')} onClick={() => sliderRef.current.slickPrev()}>
+                    <FontAwesomeIcon icon={faAngleLeft} />
+                </div>
+                <div id={cx('btn-next')} className={cx('btn-control')} onClick={() => sliderRef.current.slickNext()}>
+                    <FontAwesomeIcon icon={faAngleRight} />
+                </div>
             </div>
         </div>
     );

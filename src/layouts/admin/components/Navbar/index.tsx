@@ -20,10 +20,7 @@ const Navbar = () => {
             <nav>
                 <ul>
                     <li className={cx('nav-item')}>
-                        <NavLink
-                            to="/admin/statistical"
-                            className={(nav: any) => cx('nav-link', { active: nav.isActive })}
-                        >
+                        <NavLink to="/admin/statistical" className={(nav) => cx('nav-link', { active: nav.isActive })}>
                             <FontAwesomeIcon icon={faChartLine} />
                             <span className={cx('nav-name')}>Thống kê</span>
                         </NavLink>
@@ -32,7 +29,7 @@ const Navbar = () => {
                     <li className={cx('nav-item')}>
                         <NavLink
                             to="/admin/manage-tours"
-                            className={(nav: any) => cx('nav-link', { active: nav.isActive })}
+                            className={(nav: { isActive: boolean }) => cx('nav-link', { active: nav.isActive })}
                         >
                             <FontAwesomeIcon icon={faLocation} />
                             <span className={cx('nav-name')}>Danh sách tour</span>
@@ -41,7 +38,7 @@ const Navbar = () => {
                     <li className={cx('nav-item')}>
                         <NavLink
                             to="/admin/manage-users"
-                            className={(nav: any) => cx('nav-link', { active: nav.isActive })}
+                            className={(nav: { isActive: boolean }) => cx('nav-link', { active: nav.isActive })}
                         >
                             <FontAwesomeIcon icon={faUsers} />
                             <span className={cx('nav-name')}>Người dùng</span>

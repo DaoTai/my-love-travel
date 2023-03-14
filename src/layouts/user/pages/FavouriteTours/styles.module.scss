@@ -1,9 +1,10 @@
-#favourite-tours-page {
-    margin: calc(var(--height-header-layout) + 24px) auto 0;
+.container {
+    margin: 0 auto 36px;
+    width: var(--width-header-layout);
+    max-width: 100%;
 }
 
 .wrap-list-fav-tour {
-    margin: 24px auto 36px;
     width: var(--width-header-layout);
     max-width: 100%;
     display: flex;
@@ -15,7 +16,6 @@
     font-size: 4.2rem;
     font-family: 'Dancing Script';
     font-weight: 600;
-    margin: 24px 0 12px;
-    position: relative;
     text-align: center;
+    margin-bottom: 12px;
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import Tippy from '@tippyjs/react';
@@ -33,7 +33,7 @@ const TourCreator = ({ isOpen, onHide }: { isOpen: boolean; onHide: () => void }
     const { values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue, handleReset } = useFormik({
         initialValues: init,
         validationSchema: detailTourOptions,
-        onSubmit: (values, e: any) => {
+        onSubmit: (values, e) => {
             setShowToast(true);
             dispatch(addTour(values as Omit<Tour, 'id'>));
             handleReset(e);
@@ -117,13 +117,14 @@ const TourCreator = ({ isOpen, onHide }: { isOpen: boolean; onHide: () => void }
     };
 
     // Handle add new img
-    const handlePreviewImg = (e: any) => {
-        const files = e.target.files;
-        Array.from(files).forEach((file: any) => {
-            file.pre = URL.createObjectURL(file);
-            setImages((prev) => [...prev, file.pre]);
-        });
-        e.target.value = null;
+    const handlePreviewImg = (e: ChangeEvent<HTMLInputElement>) => {
+        const files: FileList | null = e.target.files;
+        files &&
+            Array.from(files).forEach((file) => {
+                const urlFile = URL.createObjectURL(file);
+                setImages((prev) => [...prev, urlFile]);
+            });
+        setImages([]);
     };
 
     // Handle remove img

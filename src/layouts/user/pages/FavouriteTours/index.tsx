@@ -6,6 +6,7 @@ import { Tour as ITour } from '~/layouts/components/Tour/interface';
 import { getListTour } from '~/layouts/components/Tour/actions';
 import { listTourSelector as storeListTour } from '~/layouts/components/Tour/selector';
 import styles from './styles.module.scss';
+import { Helmet } from 'react-helmet';
 const cx = classNames.bind(styles);
 const FavouriteTours = () => {
     const dispatch = useDispatch();
@@ -46,16 +47,28 @@ const FavouriteTours = () => {
     }, [dispatch]);
 
     return (
-        <div className="main">
-            <h1 className={cx('title')}>Tour yêu thích</h1>
-            <div className={cx('wrap-list-fav-tour')}>
-                {favTours.map((favTour: ITour) => {
-                    return (
-                        <Tour key={favTour.id} tour={favTour} favIdTours={favIdTours} onAddFavTour={handleAddFavTour} />
-                    );
-                })}
+        <>
+            <Helmet>
+                <title>Tour yêu thích</title>
+            </Helmet>
+            <div className="main">
+                <div className={cx('container')}>
+                    <h1 className={cx('title')}>Tour yêu thích</h1>
+                    <div className={cx('wrap-list-fav-tour')}>
+                        {favTours.map((favTour: ITour) => {
+                            return (
+                                <Tour
+                                    key={favTour.id}
+                                    tour={favTour}
+                                    favIdTours={favIdTours}
+                                    onAddFavTour={handleAddFavTour}
+                                />
+                            );
+                        })}
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

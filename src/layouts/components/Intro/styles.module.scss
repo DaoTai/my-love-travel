@@ -14,23 +14,18 @@
         top: 35%;
         left: 50%;
         transform: translate(-50%, -35%);
-        font-size: 4.8rem;
+        font-size: 5.2rem;
         text-align: center;
         letter-spacing: 8px;
         font-weight: 600;
         width: 100%;
         color: var(--white);
         text-rendering: optimize;
-        text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.6);
+        text-shadow: 4px 2px 2px rgba(0, 0, 0, 0.6);
         -webkit-user-select: none; /* Safari */
         -ms-user-select: none; /* IE 10 and IE 11 */
         user-select: none; /* Standard syntax */
-        text-decoration: underline wavy #6aba62;
-        text-underline-offset: 20%;
         transition: all 0.3s ease-in-out;
-        &:hover {
-            animation: changeColor 0.3s ease forwards;
-        }
         div {
             background: transparent !important;
             color: var(--white) !important;
@@ -76,33 +71,30 @@
     border-radius: 8px;
     .intro__tour-content {
         display: flex !important;
-        align-items: center !important;
+        min-height: 50vh;
         position: relative;
-        padding: 8px;
     }
 
     .intro__image {
         flex: 1 1 50%;
-        width: 50%;
+        width: 100%;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-        height: 50vh;
-        width: 100%;
-        border-top-left-radius: 100%;
-        border-bottom-right-radius: 100%;
         filter: drop-shadow(1px 0px 2px rgba(0, 0, 0, 0.4));
         transition: all 0.3s linear;
         &:hover {
             filter: contrast(120%) drop-shadow(1px 0px 2px rgba(0, 0, 0, 0.4));
-            border-radius: 8px;
         }
     }
     .intro__tour {
         flex: 1 1 50%;
         width: 50%;
         text-align: center;
-        padding: 0 12px;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         .intro__tour-quote {
             font-size: 3rem;
             font-weight: 600;
@@ -115,6 +107,7 @@
         }
         .intro__tour-desc {
             text-align: justify;
+            letter-spacing: 1px;
             padding-bottom: 8px;
         }
     }
@@ -127,9 +120,10 @@
             z-index: 1;
             top: 50%;
             transform: translateY(-50%);
+            font-size: 2.2rem;
             border: 1px solid transparent;
-            width: 42px;
-            height: 42px;
+            width: 48px;
+            height: 48px;
             background-color: rgba(0, 0, 0, 0.2);
             border-radius: 50%;
             cursor: pointer;
