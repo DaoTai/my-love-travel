@@ -68,7 +68,6 @@
     max-width: 100%;
     margin: var(--space-top-container) auto;
     box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
-    border-radius: 8px;
     .intro__tour-content {
         display: flex !important;
         min-height: 50vh;
@@ -81,7 +80,6 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-        filter: drop-shadow(1px 0px 2px rgba(0, 0, 0, 0.4));
         transition: all 0.3s linear;
         &:hover {
             filter: contrast(120%) drop-shadow(1px 0px 2px rgba(0, 0, 0, 0.4));

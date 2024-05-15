@@ -38,6 +38,7 @@ const BookTour = ({ tour }: { tour: Tour }) => {
     // Handle submit tour
     const handleSubmit = useCallback(() => {
         setShowToast(true);
+        onClose();
     }, []);
 
     // Handle close modal

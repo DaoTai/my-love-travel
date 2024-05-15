@@ -102,8 +102,8 @@ export const tours: Array<Tour[]> = [
             status: 'Activing',
             limit: 50,
             images: [
-                'https://image.thanhnien.vn/w1024/Uploaded/2022/bfznsfyr-bn/2022_03_27/the-aston-residence-1-7474.jpg',
-                'http://xaviahotel.com/vnt_upload/news/11_2017/nha-trang_1.jpg',
+                'https://focusasiatravel.vn/wp-content/uploads/2023/09/eb13dca8-82c2-42c0-8698-c37a468c001b.jpg',
+                'https://shtour.vn/wp-content/uploads/2023/06/nhatrang.jpg',
             ],
             currentCustomers: 40,
             categories: ['Nghỉ dưỡng'],
@@ -259,8 +259,8 @@ export const tours: Array<Tour[]> = [
             status: 'Activing',
             limit: 50,
             images: [
-                'https://image.thanhnien.vn/w1024/Uploaded/2022/bfznsfyr-bn/2022_03_27/the-aston-residence-1-7474.jpg',
-                'http://xaviahotel.com/vnt_upload/news/11_2017/nha-trang_1.jpg',
+                'https://focusasiatravel.vn/wp-content/uploads/2023/09/eb13dca8-82c2-42c0-8698-c37a468c001b.jpg',
+                'https://shtour.vn/wp-content/uploads/2023/06/nhatrang.jpg',
             ],
             currentCustomers: 40,
             categories: ['Nghỉ dưỡng'],
@@ -340,8 +340,8 @@ export const privateTours: PrivateTour[] = [
         status: 'Activing',
         limit: 50,
         images: [
-            'https://image.thanhnien.vn/w1024/Uploaded/2022/bfznsfyr-bn/2022_03_27/the-aston-residence-1-7474.jpg',
-            'http://xaviahotel.com/vnt_upload/news/11_2017/nha-trang_1.jpg',
+            'https://focusasiatravel.vn/wp-content/uploads/2023/09/eb13dca8-82c2-42c0-8698-c37a468c001b.jpg',
+            'https://shtour.vn/wp-content/uploads/2023/06/nhatrang.jpg',
         ],
         currentCustomers: 40,
         categories: ['Nghỉ dưỡng'],

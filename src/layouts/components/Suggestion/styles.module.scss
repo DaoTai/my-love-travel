@@ -44,7 +44,14 @@
         display: flex !important;
         align-items: center;
         flex-direction: column;
-        padding: 0 12px;
+        padding: 4px 12px;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        transition: all 0.3s linear;
+        &:hover {
+            border-color: #ccc;
+        }
+
         .wrap-tour-img {
             position: relative;
             display: flex;
@@ -66,6 +73,7 @@
                 width: 200px;
                 height: 200px;
                 border-radius: 50%;
+                object-fit: cover;
                 filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
             }
 

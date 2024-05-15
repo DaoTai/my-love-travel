@@ -6,15 +6,18 @@
     border-radius: 6px;
     padding: 16px 12px 32px;
     letter-spacing: 1px;
+    overflow: hidden;
 
     .wrap-amount-customer-input {
-        margin: 16px 12px 24px;
+        margin: 12px auto;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 0 12px;
         color: var(--text);
         input {
+            flex: 1 0 auto;
+            width: 10px;
             caret-color: var(--primary);
             padding: 8px 4px;
             font-size: 1.6rem;
@@ -95,7 +98,8 @@
     margin-top: 12px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 12px;
+    justify-content: end;
     button {
         padding: 8px 16px;
         border-radius: 4px;

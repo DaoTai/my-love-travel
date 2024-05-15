@@ -1,5 +1,4 @@
 import className from 'classnames/bind';
-import { ReactChildren } from 'react';
 import styles from './styles.module.scss';
 const cx = className.bind(styles);
 const ModalLayout = ({ size, title, children }: { size?: 'small'; title?: string; children?: any }) => {
